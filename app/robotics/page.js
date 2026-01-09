@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import ProceduralArm from "@/components/ProceduralArm";
 import { CheckCircle2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -78,7 +79,9 @@ export default function RoboticsPage() {
           <div className="absolute top-4 left-4 z-10 bg-black/50 backdrop-blur px-3 py-1 rounded text-xs text-cyan-400 font-mono border border-cyan-900">
             LIVE RENDER // INTERACTIVE
           </div>
-          <ProceduralArm />
+          <Suspense fallback={<div className="flex items-center justify-center h-full text-cyan-500 font-mono">LOADING SYSTEM...</div>}>
+            <ProceduralArm />
+          </Suspense>
         </div>
 
       </div>

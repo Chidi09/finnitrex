@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import DataViz3D from "@/components/DataViz3D";
 import { ArrowLeft, TrendingUp, ShieldAlert, Activity, Lock } from "lucide-react";
 import Link from "next/link";
@@ -31,7 +32,9 @@ export default function FintechPage() {
               <p className="text-sm text-gray-400">Real-time AI prediction modeling</p>
             </div>
             {/* The 3D Component */}
-            <DataViz3D />
+            <Suspense fallback={<div className="flex items-center justify-center h-full text-cyan-500 font-mono">LOADING DATA VISUALIZATION...</div>}>
+              <DataViz3D />
+            </Suspense>
           </div>
 
           {/* Metrics Row */}

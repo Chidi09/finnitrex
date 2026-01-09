@@ -9,21 +9,15 @@ import * as THREE from "three";
 const Core = () => {
   return (
     <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-      <mesh>
-        <icosahedronGeometry args={[1, 0]} />
-        <meshPhysicalMaterial 
-          color="#00ffff" 
-          roughness={0} 
-          metalness={0.8} 
-          transmission={0.6} 
-          thickness={2} 
-          emissive="#0044aa"
-          emissiveIntensity={0.5}
-        />
-      </mesh>
-      <mesh scale={[1.1, 1.1, 1.1]}>
+      {/* Outer Glow Cage */}
+      <mesh scale={[1.2, 1.2, 1.2]}>
         <icosahedronGeometry args={[1, 0]} />
         <meshBasicMaterial color="#00ffff" wireframe transparent opacity={0.3} />
+      </mesh>
+      {/* Inner Solid Core - Self Emissive so it's never black */}
+      <mesh>
+        <icosahedronGeometry args={[1, 0]} />
+        <meshBasicMaterial color="#00ffff" wireframe={false} transparent opacity={0.9} />
       </mesh>
     </Float>
   );
@@ -62,34 +56,30 @@ const Modules = ({ count = 6, radius = 3.5 }) => {
           <Float speed={4} rotationIntensity={1} floatIntensity={1}>
             <mesh>
               <boxGeometry args={[0.8, 0.8, 0.8]} />
-              <meshStandardMaterial color="#222" roughness={0.2} metalness={0.8} />
+              {/* Visible Material */}
+              <meshBasicMaterial color="#222" wireframe /> 
             </mesh>
             <mesh scale={[1.05, 1.05, 1.05]}>
               <boxGeometry args={[0.8, 0.8, 0.8]} />
-              <meshBasicMaterial color="#a855f7" wireframe transparent opacity={0.5} />
+              <meshBasicMaterial color={i % 2 === 0 ? "#00ffff" : "#a855f7"} wireframe />
             </mesh>
-            
-            {/* B. Text Label */}
             <Text
               position={[0, 1.2, 0]}
-              fontSize={0.25}
+              fontSize={0.3}
               color="#ffffff"
               anchorX="center"
               anchorY="middle"
-              font="/fonts/Inter-Bold.ttf" // Falls back if not found, standard sans
             >
               {mod.label}
             </Text>
           </Float>
 
-          {/* C. Connection Line to Center (Computed relative to group rotation in world space normally, 
-              but since we rotate the group, the local relationship stays static, simplifying the math) 
-          */}
+          {/* C. Connection Line to Center */}
           <Line
-            points={[[0, 0, 0], [-mod.x, -mod.y, -mod.z]]} // Line points back to 0,0,0 (Center)
+            points={[[0, 0, 0], [-mod.x, -mod.y, -mod.z]]}
             color={i % 2 === 0 ? "#00ffff" : "#a855f7"}
             transparent
-            opacity={0.3}
+            opacity={0.5}
             lineWidth={1}
           />
         </group>
@@ -100,7 +90,7 @@ const Modules = ({ count = 6, radius = 3.5 }) => {
 
 export default function LMSStructure() {
   return (
-    <div className="h-[600px] w-full bg-gradient-to-b from-gray-900 via-black to-black rounded-3xl overflow-hidden border border-gray-800 shadow-2xl relative">
+    <div className="h-[500px] w-full bg-gray-900/20 rounded-xl overflow-hidden border border-gray-800 relative">
       
       {/* Overlay Text */}
       <div className="absolute top-6 left-6 z-10 pointer-events-none">
@@ -109,15 +99,10 @@ export default function LMSStructure() {
       </div>
 
       <Canvas camera={{ position: [0, 2, 8], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} color="#ffffff" />
-        <pointLight position={[-10, -5, -10]} intensity={1} color="#a855f7" />
-        
+        <ambientLight intensity={2} /> {/* Increased light */}
+        <pointLight position={[10, 10, 10]} intensity={2} />
         <Core />
         <Modules />
-        
-        {/* Animated Particles in background */}
-        <gridHelper args={[20, 20, 0x222222, 0x111111]} position={[0, -3, 0]} />
         <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
       </Canvas>
     </div>

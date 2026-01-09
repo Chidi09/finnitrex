@@ -55,7 +55,7 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-white font-bold uppercase tracking-widest text-xs mb-2 border-b border-gray-800 pb-2">Navigation Node</h3>
             <ul className="space-y-2">
-              <li><Link href="/lms" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-1">LMS & Software <ArrowUpRight size={10}/></Link></li>
+              <li><Link href="/lms" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-1">Software Solutions <ArrowUpRight size={10}/></Link></li>
               <li><Link href="/fintech" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-1">Data Analytics <ArrowUpRight size={10}/></Link></li>
               <li><Link href="/robotics" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-1">Future Labs <ArrowUpRight size={10}/></Link></li>
             </ul>
@@ -70,7 +70,7 @@ export default function Footer() {
                London, United Kingdom
              </p>
              <div className="text-[10px] text-gray-600 mt-4">
-               © 2024 Finnitrex Solutions Ltd.<br/>
+               © {new Date().getFullYear()} Finnitrex Solutions Ltd.<br/>
                All rights reserved.
              </div>
           </div>

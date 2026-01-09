@@ -31,14 +31,14 @@ export default function CustomCursor() {
     <>
       {/* 1. Main Dot */}
       <motion.div
-        className="hidden md:block fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[100] mix-blend-difference"
+        className="hidden md:block fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference"
         animate={{ x: mousePosition.x - 4, y: mousePosition.y - 4 }}
         transition={{ type: "tween", ease: "backOut", duration: 0 }}
       />
       
       {/* 2. Trailing Ring */}
       <motion.div
-        className={`hidden md:block fixed top-0 left-0 w-8 h-8 rounded-full border pointer-events-none z-[100] transition-colors duration-200 ${
+        className={`hidden md:block fixed top-0 left-0 w-8 h-8 rounded-full border pointer-events-none z-[9999] transition-colors duration-200 ${
           isClicking ? "border-cyan-400 bg-cyan-400/20" : "border-white/50"
         }`}
         animate={{ x: mousePosition.x - 16, y: mousePosition.y - 16, scale: isClicking ? 0.8 : 1 }}

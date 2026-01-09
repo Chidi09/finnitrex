@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Stage, ContactShadows } from "@react-three/drei";
+import { OrbitControls, ContactShadows } from "@react-three/drei";
 
 // A reusable component for arm segments to keep code clean
 const ArmSegment = ({ position, rotation, args, color, children }) => {
@@ -10,7 +10,7 @@ const ArmSegment = ({ position, rotation, args, color, children }) => {
     <group position={position} rotation={rotation}>
       <mesh>
         <boxGeometry args={args} />
-        <meshStandardMaterial color={color} roughness={0.2} metalness={0.8} />
+        <meshStandardMaterial color={color} roughness={0.2} metalness={0.5} />
       </mesh>
       {children}
     </group>
@@ -95,12 +95,18 @@ const Robot = () => {
 
 export default function ProceduralArm() {
   return (
-    <div className="h-[500px] w-full lg:h-full min-h-[500px]">
+    <div className="h-[500px] w-full lg:h-full min-h-[500px] relative">
+      {/* Add a fallback background in case WebGL fails */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black -z-10" />
+      
       <Canvas shadows camera={{ position: [0, 2, 8], fov: 50 }}>
-        {/* Stage handles environment lighting automatically for a "studio" look */}
-        <Stage environment="city" intensity={0.6}>
-          <Robot />
-        </Stage>
+        {/* REPLACED <Stage> WITH MANUAL LIGHTS TO FIX CRASH */}
+        <ambientLight intensity={1} />
+        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={100} castShadow />
+        <pointLight position={[-10, -10, -10]} intensity={100} color="#00ffff" />
+        
+        <Robot />
+        
         <OrbitControls enableZoom={false} />
         <ContactShadows opacity={0.5} scale={10} blur={1.5} far={0.8} />
       </Canvas>

@@ -41,8 +41,9 @@ const LiveGraph = () => {
         // Apply to the instanced mesh
         meshRef.current.setMatrixAt(i, dummy.matrix);
 
-        // Dynamic Coloring: Taller bars = Hotter colors (Red/Purple), Shorter = Cooler (Blue/Cyan)
-        meshRef.current.setColorAt(i, color.setHSL(0.6 - (height * 0.1), 1, 0.5));
+        // Dynamic Coloring: Brighten the colors significantly
+        const hue = 0.6 - (height * 0.1); // Blue to Cyan
+        meshRef.current.setColorAt(i, color.setHSL(hue, 1, 0.7)); // Increased Lightness to 0.7
         
         i++;
       }
@@ -54,7 +55,13 @@ const LiveGraph = () => {
   return (
     <instancedMesh ref={meshRef} args={[null, null, count * count]}>
       <boxGeometry args={[1, 1, 1]} />
-      <meshPhongMaterial vertexColors />
+      <meshStandardMaterial 
+        vertexColors 
+        emissive="#000044" 
+        emissiveIntensity={0.5} 
+        roughness={0.2} 
+        metalness={0.8} 
+      />
     </instancedMesh>
   );
 };
@@ -64,7 +71,7 @@ export default function DataViz3D() {
     <div className="h-full w-full min-h-[400px]">
       <Canvas camera={{ position: [8, 8, 8], fov: 45 }}>
         {/* Lights */}
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={1.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} color="#ffffff" />
         <pointLight position={[-10, -10, -10]} intensity={0.5} color="#00ffff" />
         
