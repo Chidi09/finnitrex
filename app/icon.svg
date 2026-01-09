@@ -1,0 +1,33 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 1. The Vertical Spine (Structure) - Cyan -->
+  <path
+    d="M 25 10 L 45 10 L 45 90 L 25 90 Z"
+    stroke="#06b6d4"
+    stroke-width="4"
+    fill="rgba(6,182,212, 0.3)"
+  />
+  
+  <!-- 2. The Upper Fin (Fintech Growth) - Blue -->
+  <path
+    d="M 50 10 L 90 10 L 75 40 L 50 40 Z"
+    stroke="#3b82f6"
+    stroke-width="4"
+    fill="rgba(59,130,246, 0.3)"
+  />
+  
+  <!-- 3. The Middle Fin (Optics/Focus) - Purple -->
+  <path
+    d="M 50 50 L 80 50 L 70 70 L 50 70 Z"
+    stroke="#8b5cf6"
+    stroke-width="4"
+    fill="rgba(139,92,246, 0.3)"
+  />
+  
+  <!-- 4. The AI Node (The Brain) - White -->
+  <circle
+    cx="35"
+    cy="25"
+    r="4"
+    fill="white"
+  />
+</svg>
