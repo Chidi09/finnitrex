@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import ProjectWizard from "@/components/ProjectWizard";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -22,7 +23,9 @@ export default function StartPage() {
 
       {/* The Wizard */}
       <div className="w-full z-10">
-        <ProjectWizard />
+        <Suspense fallback={<div className="flex items-center justify-center h-full text-cyan-500 font-mono">LOADING WIZARD...</div>}>
+          <ProjectWizard />
+        </Suspense>
       </div>
 
     </main>

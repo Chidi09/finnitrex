@@ -4,10 +4,10 @@ import FinnitrexLogo from "@/components/FinnitrexLogo";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen flex flex-col items-center overflow-hidden text-white">
+    <main className="relative min-h-screen flex flex-col items-center overflow-x-hidden text-white w-full">
       
       {/* 1. ENHANCED HERO SECTION */}
-      <div className="z-10 container mx-auto px-6 pt-32 pb-20 text-center relative w-full">
+      <div className="z-10 container mx-auto px-4 md:px-6 pt-32 pb-12 text-center relative w-full max-w-[100vw]">
         
         {/* Holographic Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-cyan-500/30 bg-cyan-900/10 backdrop-blur-md text-cyan-400 text-xs font-mono mb-8 animate-pulse">

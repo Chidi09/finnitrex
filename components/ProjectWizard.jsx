@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   ArrowRight, 
@@ -30,6 +31,7 @@ const SYSTEMS = [
 ];
 
 export default function ProjectWizard() {
+  const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
   const [status, setStatus] = useState("IDLE");
   const [data, setData] = useState({
@@ -41,6 +43,22 @@ export default function ProjectWizard() {
     email: "",
     details: ""
   });
+
+  // Load data from URL parameters if present
+  useEffect(() => {
+    const nameParam = searchParams.get("name");
+    const emailParam = searchParams.get("email");
+    const systemParam = searchParams.get("system");
+
+    if (nameParam || emailParam || systemParam) {
+      setData(prev => ({
+        ...prev,
+        name: nameParam || prev.name,
+        email: emailParam || prev.email,
+        system: systemParam || prev.system
+      }));
+    }
+  }, [searchParams]);
 
   const handleToggleFeature = (feature) => {
     setData(prev => ({
