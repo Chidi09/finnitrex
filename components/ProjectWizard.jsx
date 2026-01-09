@@ -120,7 +120,7 @@ export default function ProjectWizard() {
       {/* SIDEBAR: Progress & Info */}
       <div className="bg-gray-900/50 p-8 md:w-1/3 border-b md:border-b-0 md:border-r border-gray-800 flex flex-col justify-between">
         <div>
-          <div className="text-xs font-mono text-cyan-500 mb-6">INSTALLATION WIZARD v2.0</div>
+          <div className="text-xs font-mono text-lime-400 mb-6">INSTALLATION WIZARD v2.0</div>
           <h2 className="text-2xl font-bold text-white mb-2">Initialize Project</h2>
           <p className="text-sm text-gray-400">Configure your system requirements to begin the development sequence.</p>
         </div>
@@ -132,7 +132,7 @@ export default function ProjectWizard() {
             return (
               <div key={s.id} className="flex items-center gap-3">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border transition-all
-                  ${isActive ? "bg-cyan-500 text-black border-cyan-500" : 
+                  ${isActive ? "bg-lime-500 text-black border-lime-500" : 
                     isCompleted ? "bg-green-500/20 text-green-500 border-green-500" : "bg-gray-800 text-gray-500 border-gray-700"}
                 `}>
                   {isCompleted ? <CheckCircle2 size={16} /> : s.id}
@@ -148,7 +148,7 @@ export default function ProjectWizard() {
       <div className="p-8 md:w-2/3 bg-black/80 relative">
         <div className="absolute top-0 left-0 w-full h-1 bg-gray-900">
           <motion.div 
-            className="h-full bg-cyan-500"
+            className="h-full bg-lime-500"
             initial={{ width: "25%" }}
             animate={{ width: `${step * 25}%` }}
           />
@@ -186,11 +186,11 @@ export default function ProjectWizard() {
                           onClick={() => setData({ ...data, system: sys.label })}
                           className={`p-4 rounded-xl border text-left flex items-center gap-4 transition-all
                             ${data.system === sys.label 
-                              ? "bg-cyan-900/20 border-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.2)]" 
+                              ? "bg-lime-900/20 border-lime-500 shadow-[0_0_15px_rgba(190,242,100,0.2)]" 
                               : "bg-gray-900/20 border-gray-800 hover:border-gray-600"}
                           `}
                         >
-                          <sys.icon className={data.system === sys.label ? "text-cyan-400" : "text-gray-600"} size={24} />
+                          <sys.icon className={data.system === sys.label ? "text-lime-400" : "text-gray-600"} size={24} />
                           <div>
                             <div className={`font-bold ${data.system === sys.label ? "text-white" : "text-gray-400"}`}>{sys.label}</div>
                             <div className="text-xs text-gray-500">{sys.desc}</div>
@@ -212,7 +212,7 @@ export default function ProjectWizard() {
                             type="checkbox" 
                             checked={data.features.includes(feat)}
                             onChange={() => handleToggleFeature(feat)}
-                            className="w-4 h-4 rounded border-gray-600 bg-black text-cyan-500 focus:ring-offset-black"
+                            className="w-4 h-4 rounded border-gray-600 bg-black text-lime-500 focus:ring-offset-black"
                           />
                           <span className="text-sm text-gray-300">{feat}</span>
                         </label>
@@ -220,7 +220,7 @@ export default function ProjectWizard() {
                     </div>
                     <textarea
                       placeholder="// Additional technical details..."
-                      className="w-full bg-gray-900/20 border border-gray-800 rounded p-3 text-sm text-white focus:border-cyan-500 focus:outline-none h-32 resize-none"
+                      className="w-full bg-gray-900/20 border border-gray-800 rounded p-3 text-sm text-white focus:border-lime-500 focus:outline-none h-32 resize-none"
                       value={data.details}
                       onChange={(e) => setData({...data, details: e.target.value})}
                     />
@@ -233,14 +233,14 @@ export default function ProjectWizard() {
                     <h3 className="text-xl font-bold mb-8 text-white">Project Constraints</h3>
                     
                     <div className="mb-8">
-                      <label className="block text-sm font-mono text-cyan-500 mb-4">ESTIMATED BUDGET</label>
+                      <label className="block text-sm font-mono text-lime-400 mb-4">ESTIMATED BUDGET</label>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                         {["< $5k", "$5k - $15k", "$15k - $50k", "$50k+"].map((b) => (
                           <button
                             key={b}
                             onClick={() => setData({ ...data, budget: b })}
                             className={`py-2 px-4 rounded border text-sm transition-colors
-                              ${data.budget === b ? "bg-cyan-500 text-black border-cyan-500 font-bold" : "bg-transparent border-gray-700 text-gray-400"}
+                              ${data.budget === b ? "bg-lime-500 text-black border-lime-500 font-bold" : "bg-transparent border-gray-700 text-gray-400"}
                             `}
                           >
                             {b}
@@ -250,11 +250,11 @@ export default function ProjectWizard() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-mono text-purple-500 mb-4">TARGET TIMELINE</label>
+                      <label className="block text-sm font-mono text-emerald-400 mb-4">TARGET TIMELINE</label>
                       <select 
                         value={data.timeline}
                         onChange={(e) => setData({...data, timeline: e.target.value})}
-                        className="w-full bg-gray-900 border border-gray-700 rounded p-3 text-white focus:border-cyan-500 outline-none"
+                        className="w-full bg-gray-900 border border-gray-700 rounded p-3 text-white focus:border-lime-500 outline-none"
                       >
                         <option>Urgent (&lt; 1 Month)</option>
                         <option>Standard (1-3 Months)</option>
@@ -275,7 +275,7 @@ export default function ProjectWizard() {
                         <input 
                           type="text" 
                           placeholder="Your Name / Company"
-                          className="w-full bg-transparent border-b border-gray-700 py-2 text-lg text-white focus:border-cyan-500 outline-none transition-colors"
+                          className="w-full bg-transparent border-b border-gray-700 py-2 text-lg text-white focus:border-lime-500 outline-none transition-colors"
                           value={data.name}
                           onChange={(e) => setData({...data, name: e.target.value})}
                         />
@@ -285,7 +285,7 @@ export default function ProjectWizard() {
                         <input 
                           type="email" 
                           placeholder="name@company.com"
-                          className="w-full bg-transparent border-b border-gray-700 py-2 text-lg text-white focus:border-cyan-500 outline-none transition-colors"
+                          className="w-full bg-transparent border-b border-gray-700 py-2 text-lg text-white focus:border-lime-500 outline-none transition-colors"
                           value={data.email}
                           onChange={(e) => setData({...data, email: e.target.value})}
                         />
@@ -318,7 +318,7 @@ export default function ProjectWizard() {
                 <button 
                   onClick={() => canProceed() && setStep(s => s + 1)}
                   disabled={!canProceed()}
-                  className="flex items-center gap-2 bg-white text-black px-6 py-2 rounded font-bold hover:bg-cyan-400 transition-colors disabled:opacity-50 disabled:bg-gray-700 disabled:text-gray-400"
+                  className="flex items-center gap-2 bg-white text-black px-6 py-2 rounded font-bold hover:bg-lime-400 transition-colors disabled:opacity-50 disabled:bg-gray-700 disabled:text-gray-400"
                 >
                   NEXT <ArrowRight size={16} />
                 </button>

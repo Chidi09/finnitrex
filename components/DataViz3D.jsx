@@ -33,11 +33,12 @@ const LiveGraph = () => {
 
         meshRef.current.setMatrixAt(i, dummy.matrix);
 
-        // VIBRANT COLOR LOGIC
-        // Low = Cyan (#06b6d4), High = Purple/Pink (#d946ef)
+        // SLIME LIME COLOR LOGIC
+        // Low = Lime (#bef264), High = Emerald (#10b981)
         // We use lerp to blend between two specific glowing colors
         const intensity = Math.max(0, Math.min(1, (height - 1) / 4));
-        color.setHSL(0.55 - (intensity * 0.25), 1, 0.5); // Ranges from Blue to Purple
+        const hue = 0.25 + (intensity * 0.05); // 0.25 is Green/Lime ish in HSL
+        color.setHSL(hue, 1, 0.5);
         
         meshRef.current.setColorAt(i, color);
         i++;
@@ -61,8 +62,8 @@ export default function DataViz3D() {
     <div className="h-full w-full min-h-[400px] bg-gray-900/50 rounded-xl overflow-hidden">
       <Canvas camera={{ position: [8, 6, 8], fov: 45 }}>
         <ambientLight intensity={1} />
-        <pointLight position={[10, 10, 10]} intensity={2} color="#00ffff" />
-        <pointLight position={[-10, -5, -10]} intensity={2} color="#d946ef" />
+        <pointLight position={[10, 10, 10]} intensity={2} color="#bef264" />
+        <pointLight position={[-10, -5, -10]} intensity={2} color="#ffffff" />
         
         <LiveGraph />
         

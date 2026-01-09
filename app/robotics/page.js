@@ -9,7 +9,7 @@ export default function RoboticsPage() {
       
       {/* Navigation Helper */}
       <div className="p-6">
-        <Link href="/" className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors w-fit">
+        <Link href="/" className="flex items-center gap-2 text-lime-400 hover:text-lime-300 transition-colors w-fit">
           <ArrowLeft size={20} /> Back to Hub
         </Link>
       </div>
@@ -19,10 +19,10 @@ export default function RoboticsPage() {
         {/* LEFT COLUMN: Text Content */}
         <div className="space-y-8">
           <div>
-            <div className="inline-block px-3 py-1 bg-purple-900/30 border border-purple-500/30 rounded-full text-purple-400 text-xs font-mono mb-4">
+            <div className="inline-block px-3 py-1 bg-lime-900/30 border border-lime-500/30 rounded-full text-lime-400 text-xs font-mono mb-4">
               FUTURE LABS // R&D DIVISION
             </div>
-            <h2 className="text-cyan-400 font-mono tracking-widest text-sm mb-2">SERVICE VECTOR: 02</h2>
+            <h2 className="text-lime-400 font-mono tracking-widest text-sm mb-2">SERVICE VECTOR: 02</h2>
             <h1 className="text-5xl lg:text-6xl font-bold mb-6">
               Robotics <br />
               <span className="text-gray-600">
@@ -42,7 +42,7 @@ export default function RoboticsPage() {
             
             <div className="grid grid-cols-1 gap-4">
               <div className="flex items-start gap-4 p-4 rounded-lg bg-gray-900/50 border border-gray-800">
-                <CheckCircle2 className="text-purple-500 mt-1 shrink-0" />
+                <CheckCircle2 className="text-lime-400 mt-1 shrink-0" />
                 <div>
                   <h4 className="font-bold text-white">Logistics & Supply Chain</h4>
                   <p className="text-sm text-gray-400 mt-1">
@@ -52,7 +52,7 @@ export default function RoboticsPage() {
               </div>
 
               <div className="flex items-start gap-4 p-4 rounded-lg bg-gray-900/50 border border-gray-800">
-                <CheckCircle2 className="text-cyan-500 mt-1 shrink-0" />
+                <CheckCircle2 className="text-emerald-400 mt-1 shrink-0" />
                 <div>
                   <h4 className="font-bold text-white">Advanced Manufacturing</h4>
                   <p className="text-sm text-gray-400 mt-1">
@@ -75,11 +75,11 @@ export default function RoboticsPage() {
         </div>
 
         {/* RIGHT COLUMN: The 3D Interaction */}
-        <div className="relative h-full w-full min-h-[500px] bg-gradient-to-b from-gray-900 to-black rounded-3xl border border-gray-800 overflow-hidden shadow-2xl shadow-cyan-900/20">
-          <div className="absolute top-4 left-4 z-10 bg-black/50 backdrop-blur px-3 py-1 rounded text-xs text-cyan-400 font-mono border border-cyan-900">
+        <div className="relative h-full w-full min-h-[500px] bg-gradient-to-b from-gray-900 to-black rounded-3xl border border-gray-800 overflow-hidden shadow-2xl shadow-lime-900/20">
+          <div className="absolute top-4 left-4 z-10 bg-black/50 backdrop-blur px-3 py-1 rounded text-xs text-lime-400 font-mono border border-lime-900">
             LIVE RENDER // INTERACTIVE
           </div>
-          <Suspense fallback={<div className="flex items-center justify-center h-full text-cyan-500 font-mono">LOADING SYSTEM...</div>}>
+          <Suspense fallback={<div className="flex items-center justify-center h-full text-lime-400 font-mono">LOADING SYSTEM...</div>}>
             <ProceduralArm />
           </Suspense>
         </div>

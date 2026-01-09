@@ -1,94 +1,111 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 
-export default function FinnitrexLogo({ className = "w-16 h-16", textVisible = true }) { // Default size increased
-  const [glitchActive, setGlitchActive] = useState(false);
-
-  // Trigger glitch periodically
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setGlitchActive(true);
-      setTimeout(() => setGlitchActive(false), 300); // Short burst
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // "Ethereal" RGB Split Animation
-  const rgbVariant = {
-    idle: { x: 0, opacity: 1, textShadow: "0px 0px 0px transparent" },
-    glitch: {
-      x: [0, -2, 2, -1, 1, 0],
-      textShadow: [
-        "2px 0 #bef264, -2px 0 #a855f7", // Lime & Purple
-        "-2px 0 #a855f7, 2px 0 #bef264",
-        "0px 0 transparent"
-      ],
-      transition: { duration: 0.2, ease: "linear" }
-    }
-  };
-
+export default function FinnitrexLogo({ className = "w-24 h-24", textVisible = true }) {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center gap-4 select-none">
+    <div className="flex flex-col items-center gap-4 select-none">
       
-      {/* THE ICON: Scaled Up & New Colors */}
+      {/* THE ICON: Neural Circuit */}
       <div className={`${className} relative`}>
         <motion.svg
-          viewBox="0 0 100 100"
+          viewBox="0 0 300 300"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full drop-shadow-[0_0_15px_rgba(190,242,100,0.4)]" // Lime Glow
+          className="w-full h-full drop-shadow-[0_0_15px_rgba(190,242,100,0.5)]" // Slime Glow
         >
-          {/* Main Spine (Structure) - Now Lime */}
-          <path d="M 25 10 L 45 10 L 45 90 L 25 90 Z" stroke="#bef264" strokeWidth="4" fill="rgba(190,242,100, 0.1)" />
+          <defs>
+            <linearGradient id="slimeGradient" x1="0" y1="0" x2="300" y2="300">
+              <stop offset="0%" stopColor="#bef264" /> {/* Lime-400 */}
+              <stop offset="100%" stopColor="#10b981" /> {/* Emerald-500 */}
+            </linearGradient>
+            <radialGradient id="brainGradient" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#bef264" />
+              <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+
+          {/* 1. Outer Circuit Ring (Rotating) */}
+          <motion.g
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+            style={{ transformOrigin: "150px 150px" }}
+          >
+             <circle cx="150" cy="150" r="120" stroke="url(#slimeGradient)" strokeWidth="2" strokeDasharray="10 10" opacity="0.6" />
+             {/* Rotating Blip on Ring */}
+             <circle cx="150" cy="30" r="4" fill="#bef264" />
+          </motion.g>
+
+          {/* 2. Neural Nodes & Connections */}
+          <g opacity="0.9">
+            {/* Lines */}
+            <path d="M150 60 L150 115" stroke="#bef264" strokeWidth="2" />
+            <path d="M210 100 L175 125" stroke="#bef264" strokeWidth="2" />
+            <path d="M230 170 L185 160" stroke="#bef264" strokeWidth="2" />
+            <path d="M190 230 L165 185" stroke="#bef264" strokeWidth="2" />
+            <path d="M110 230 L135 185" stroke="#bef264" strokeWidth="2" />
+            <path d="M70 170 L115 160" stroke="#bef264" strokeWidth="2" />
+            <path d="M90 100 L125 125" stroke="#bef264" strokeWidth="2" />
+
+            {/* Nodes */}
+            {[
+              { cx: 150, cy: 60 }, { cx: 210, cy: 100 }, { cx: 230, cy: 170 },
+              { cx: 190, cy: 230 }, { cx: 110, cy: 230 }, { cx: 70, cy: 170 }, { cx: 90, cy: 100 }
+            ].map((node, i) => (
+              <motion.circle 
+                key={i} 
+                cx={node.cx} 
+                cy={node.cy} 
+                r="6" 
+                fill="#1a2e05" 
+                stroke="#bef264" 
+                strokeWidth="2"
+                initial={{ scale: 1 }}
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ delay: i * 0.1, duration: 2, repeat: Infinity }}
+              />
+            ))}
+          </g>
           
-          {/* Top Fin (Fintech) - Now Emerald */}
-          <path d="M 50 10 L 90 10 L 75 40 L 50 40 Z" stroke="#10b981" strokeWidth="4" fill="rgba(16,185,129, 0.1)" />
-          
-          {/* Mid Fin (Optics) - Now Violet */}
-          <path d="M 50 50 L 80 50 L 70 70 L 50 70 Z" stroke="#8b5cf6" strokeWidth="4" fill="rgba(139,92,246, 0.1)" />
-          
-          {/* The Node Pulse - White Hot */}
-          <motion.circle
-            cx="35"
-            cy="25"
-            r="4"
-            fill="white"
-            animate={{ opacity: [1, 0.2, 1], scale: [1, 1.2, 1] }}
-            transition={{ duration: 3, repeat: Infinity }}
+          {/* 3. Central AI Brain (Pulsing) */}
+          <motion.g
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            style={{ transformOrigin: "150px 150px" }}
+          >
+            {/* Core Glow */}
+            <circle cx="150" cy="150" r="40" fill="url(#brainGradient)" opacity="0.4" />
+            {/* Hexagon Core Shape */}
+            <path d="M 150 130 L 167 140 L 167 160 L 150 170 L 133 160 L 133 140 Z" stroke="#bef264" strokeWidth="3" fill="none" />
+            <circle cx="150" cy="150" r="4" fill="#bef264" />
+          </motion.g>
+
+          {/* 4. Pulse Shockwave */}
+          <motion.circle 
+            cx="150" 
+            cy="150" 
+            r="50" 
+            stroke="#bef264" 
+            strokeWidth="1" 
+            fill="none" 
+            initial={{ r: 50, opacity: 0.5 }}
+            animate={{ r: 100, opacity: 0 }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
           />
+
         </motion.svg>
       </div>
 
-      {/* THE TEXT: Big, Bold, Glitching */}
+      {/* THE TEXT: Monospace Lime */}
       {textVisible && (
-        <div className="flex flex-col items-center md:items-start">
-          <motion.h1 
-            variants={rgbVariant}
-            animate={glitchActive ? "glitch" : "idle"}
-            className="text-4xl md:text-6xl font-black tracking-tighter text-white leading-none font-sans"
-          >
-            FINNITREX
-          </motion.h1>
-          
-          {/* The "Systems" Subtext */}
-          <motion.div 
-            className="flex justify-between w-full mt-1"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-          >
-             <span className="text-[10px] md:text-xs font-mono tracking-[0.4em] text-lime-400 font-bold uppercase">
-               SYSTEMS
-             </span>
-             {/* Decorative blinking block */}
-             <motion.div 
-                animate={{ opacity: [0, 1, 0] }} 
-                transition={{ duration: 0.8, repeat: Infinity }}
-                className="w-2 h-2 bg-lime-400" 
-             />
-          </motion.div>
+        <div className="text-center">
+          <div className="text-4xl md:text-5xl font-bold tracking-wider leading-none" style={{ fontFamily: 'monospace' }}>
+            <span className="text-lime-400 drop-shadow-[0_0_8px_rgba(190,242,100,0.8)]">FINNI</span>
+            <span className="text-white">TREX</span>
+          </div>
+          <div className="text-[10px] md:text-xs tracking-[0.4em] text-emerald-500 font-bold mt-2">
+            INTELLIGENT SOLUTIONS
+          </div>
         </div>
       )}
     </div>

@@ -8,7 +8,7 @@ export default function SoftwarePage() {
   return (
     <main className="min-h-screen bg-black text-white pb-20">
       <div className="p-6 border-b border-gray-900">
-        <Link href="/" className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors w-fit">
+        <Link href="/" className="flex items-center gap-2 text-lime-400 hover:text-lime-300 transition-colors w-fit">
           <ArrowLeft size={20} /> Back to Hub
         </Link>
       </div>
@@ -18,22 +18,22 @@ export default function SoftwarePage() {
         {/* HERO: Broad Software Focus */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-blue-900/30 border border-blue-500/30 text-blue-400 text-xs font-mono">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-lime-900/30 border border-lime-500/30 text-lime-400 text-xs font-mono">
               <Code size={12} /> FULL STACK ENGINEERING
             </div>
             <h1 className="text-5xl lg:text-7xl font-bold tracking-tight">
               Complex Systems. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-emerald-500 to-lime-600">
                 Flawless Execution.
               </span>
             </h1>
-            <p className="text-gray-400 text-lg leading-relaxed border-l-2 border-cyan-900 pl-6">
+            <p className="text-gray-400 text-lg leading-relaxed border-l-2 border-lime-900 pl-6">
               We architect digital ecosystems. From high-performance static websites to enterprise-grade Learning Management Systems (LMS) and AI-driven data pipelines.
             </p>
           </div>
           <div className="w-full h-[500px]">
              {/* We use the structure to show "Complexity" */}
-            <Suspense fallback={<div className="flex items-center justify-center h-full text-cyan-500 font-mono">LOADING ARCHITECTURE...</div>}>
+            <Suspense fallback={<div className="flex items-center justify-center h-full text-lime-400 font-mono">LOADING ARCHITECTURE...</div>}>
               <LMSStructure />
             </Suspense>
           </div>
@@ -42,28 +42,28 @@ export default function SoftwarePage() {
         {/* CAPABILITIES MATRIX: Showing "We do a lot of things" */}
         <div className="mb-24">
           <h2 className="text-3xl font-bold mb-10 flex items-center gap-3">
-            <Server className="text-cyan-500" /> Active Capabilities
+            <Server className="text-lime-400" /> Active Capabilities
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             
             {/* Capability 1: Custom Software (The Main) */}
-            <div className="p-6 rounded-xl bg-gray-900/40 border border-gray-700 hover:border-cyan-500 transition-all group">
-              <Globe className="w-8 h-8 text-cyan-400 mb-4 group-hover:scale-110 transition-transform" />
+            <div className="p-6 rounded-xl bg-gray-900/40 border border-gray-700 hover:border-lime-500 transition-all group">
+              <Globe className="w-8 h-8 text-lime-400 mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-lg font-bold text-white mb-2">High-Performance Web</h3>
               <p className="text-sm text-gray-400">Static site generation (Next.js) for zero-latency loading and perfect SEO scoring.</p>
             </div>
 
             {/* Capability 2: LMS (Nested) */}
-            <div className="p-6 rounded-xl bg-gray-900/40 border border-gray-700 hover:border-blue-500 transition-all group">
-              <GraduationCap className="w-8 h-8 text-blue-400 mb-4 group-hover:scale-110 transition-transform" />
+            <div className="p-6 rounded-xl bg-gray-900/40 border border-gray-700 hover:border-emerald-500 transition-all group">
+              <GraduationCap className="w-8 h-8 text-emerald-400 mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-lg font-bold text-white mb-2">LMS Architectures</h3>
               <p className="text-sm text-gray-400">Custom education platforms with student tracking, certification, and video delivery.</p>
             </div>
 
             {/* Capability 3: AI & LLMs (Nested) */}
-            <div className="p-6 rounded-xl bg-gray-900/40 border border-gray-700 hover:border-purple-500 transition-all group">
-              <Cpu className="w-8 h-8 text-purple-400 mb-4 group-hover:scale-110 transition-transform" />
+            <div className="p-6 rounded-xl bg-gray-900/40 border border-gray-700 hover:border-lime-300 transition-all group">
+              <Cpu className="w-8 h-8 text-lime-300 mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-lg font-bold text-white mb-2">LLM Integration</h3>
               <p className="text-sm text-gray-400">Fine-tuning language models for customer support bots and internal knowledge bases.</p>
             </div>
@@ -85,7 +85,7 @@ export default function SoftwarePage() {
              {/* Capability 6: Robotics (Future) */}
              <div className="p-6 rounded-xl bg-gray-900/20 border border-gray-800 border-dashed relative overflow-hidden">
               <div className="absolute inset-0 bg-black/60 z-10 flex items-center justify-center">
-                <span className="text-xs font-mono bg-cyan-900/50 text-cyan-400 px-2 py-1 rounded border border-cyan-800">R&D / FUTURE ROADMAP</span>
+                <span className="text-xs font-mono bg-lime-900/50 text-lime-400 px-2 py-1 rounded border border-lime-800">R&D / FUTURE ROADMAP</span>
               </div>
               <Cpu className="w-8 h-8 text-gray-600 mb-4" />
               <h3 className="text-lg font-bold text-gray-500 mb-2">Robotics Automation</h3>

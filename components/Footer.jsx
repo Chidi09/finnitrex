@@ -41,7 +41,7 @@ export default function Footer() {
                 <span>UK Sponsor Licence: <span className="text-yellow-500">PENDING</span></span>
               </li>
               <li className="flex items-center gap-2">
-                <Globe size={14} className="text-purple-500" />
+                <Globe size={14} className="text-emerald-400" />
                 <span>Global Talent Visa Route</span>
               </li>
               <li className="flex items-center gap-2">

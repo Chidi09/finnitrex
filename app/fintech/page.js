@@ -9,7 +9,7 @@ export default function FintechPage() {
       
       {/* Top Nav */}
       <div className="flex justify-between items-center mb-8">
-        <Link href="/" className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors">
+        <Link href="/" className="flex items-center gap-2 text-lime-400 hover:text-lime-300 transition-colors">
           <ArrowLeft size={20} /> Back to Hub
         </Link>
         <div className="text-right">
@@ -24,15 +24,15 @@ export default function FintechPage() {
         <div className="lg:col-span-2 space-y-6">
           
           {/* 3D Main Window */}
-          <div className="bg-gray-900/40 rounded-3xl border border-gray-800 overflow-hidden backdrop-blur-sm relative h-[500px] shadow-2xl shadow-blue-900/10">
+          <div className="bg-gray-900/40 rounded-3xl border border-gray-800 overflow-hidden backdrop-blur-sm relative h-[500px] shadow-2xl shadow-lime-900/10">
             <div className="absolute top-4 left-6 z-10">
               <h2 className="text-xl font-bold flex items-center gap-2">
-                <Activity className="text-cyan-400" /> Market Flux Simulator
+                <Activity className="text-lime-400" /> Market Flux Simulator
               </h2>
               <p className="text-sm text-gray-400">Real-time AI prediction modeling</p>
             </div>
             {/* The 3D Component */}
-            <Suspense fallback={<div className="flex items-center justify-center h-full text-cyan-500 font-mono">LOADING DATA VISUALIZATION...</div>}>
+            <Suspense fallback={<div className="flex items-center justify-center h-full text-lime-400 font-mono">LOADING DATA VISUALIZATION...</div>}>
               <DataViz3D />
             </Suspense>
           </div>
@@ -46,12 +46,12 @@ export default function FintechPage() {
             </div>
             <div className="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
               <div className="text-gray-400 text-sm mb-1">Data Points Processed</div>
-              <div className="text-3xl font-bold text-blue-400">4.2M/s</div>
+              <div className="text-3xl font-bold text-emerald-400">4.2M/s</div>
               <div className="text-xs text-gray-500 mt-2">Latency: &lt;12ms</div>
             </div>
             <div className="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
               <div className="text-gray-400 text-sm mb-1">Risk Assessment</div>
-              <div className="text-3xl font-bold text-purple-400">LOW</div>
+              <div className="text-3xl font-bold text-lime-300">LOW</div>
               <div className="text-xs text-gray-500 mt-2">AI-driven compliance active</div>
             </div>
           </div>
@@ -61,17 +61,17 @@ export default function FintechPage() {
         <div className="space-y-6">
           
           {/* Service 1: Analytics */}
-          <div className="bg-gray-900/40 p-8 rounded-3xl border border-gray-800 hover:border-cyan-500/50 transition-colors">
-            <div className="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mb-4">
-              <TrendingUp className="text-blue-400" />
+          <div className="bg-gray-900/40 p-8 rounded-3xl border border-gray-800 hover:border-lime-500/50 transition-colors">
+            <div className="w-12 h-12 bg-lime-500/10 rounded-full flex items-center justify-center mb-4">
+              <TrendingUp className="text-lime-400" />
             </div>
             <h3 className="text-xl font-bold mb-2">AI Predictive Analytics</h3>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
               Designed for investment firms and corporate finance. Our algorithms analyze market volatility to forecast trends before they happen.
             </p>
             <ul className="text-sm text-gray-500 space-y-2">
-              <li className="flex gap-2"><span className="text-cyan-500">•</span> Pattern Recognition</li>
-              <li className="flex gap-2"><span className="text-cyan-500">•</span> Sentiment Analysis</li>
+              <li className="flex gap-2"><span className="text-lime-400">•</span> Pattern Recognition</li>
+              <li className="flex gap-2"><span className="text-lime-400">•</span> Sentiment Analysis</li>
             </ul>
           </div>
 
@@ -91,9 +91,9 @@ export default function FintechPage() {
           </div>
 
           {/* Service 3: Security */}
-          <div className="bg-gray-900/40 p-8 rounded-3xl border border-gray-800 hover:border-purple-500/50 transition-colors">
-             <div className="w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center mb-4">
-              <ShieldAlert className="text-purple-400" />
+          <div className="bg-gray-900/40 p-8 rounded-3xl border border-gray-800 hover:border-emerald-500/50 transition-colors">
+             <div className="w-12 h-12 bg-emerald-500/10 rounded-full flex items-center justify-center mb-4">
+              <ShieldAlert className="text-emerald-400" />
             </div>
             <h3 className="text-xl font-bold mb-2">Risk Management</h3>
             <p className="text-gray-400 text-sm leading-relaxed">

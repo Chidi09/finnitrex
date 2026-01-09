@@ -12,12 +12,12 @@ const Core = () => {
       {/* Outer Glow Cage */}
       <mesh scale={[1.2, 1.2, 1.2]}>
         <icosahedronGeometry args={[1, 0]} />
-        <meshBasicMaterial color="#00ffff" wireframe transparent opacity={0.3} />
+        <meshBasicMaterial color="#bef264" wireframe transparent opacity={0.3} />
       </mesh>
       {/* Inner Solid Core - Self Emissive so it's never black */}
       <mesh>
         <icosahedronGeometry args={[1, 0]} />
-        <meshBasicMaterial color="#00ffff" wireframe={false} transparent opacity={0.9} />
+        <meshBasicMaterial color="#bef264" wireframe={false} transparent opacity={0.9} />
       </mesh>
     </Float>
   );
@@ -61,7 +61,7 @@ const Modules = ({ count = 6, radius = 3.5 }) => {
             </mesh>
             <mesh scale={[1.05, 1.05, 1.05]}>
               <boxGeometry args={[0.8, 0.8, 0.8]} />
-              <meshBasicMaterial color={i % 2 === 0 ? "#00ffff" : "#a855f7"} wireframe />
+              <meshBasicMaterial color={i % 2 === 0 ? "#bef264" : "#10b981"} wireframe />
             </mesh>
             <Text
               position={[0, 1.2, 0]}
@@ -77,7 +77,7 @@ const Modules = ({ count = 6, radius = 3.5 }) => {
           {/* C. Connection Line to Center */}
           <Line
             points={[[0, 0, 0], [-mod.x, -mod.y, -mod.z]]}
-            color={i % 2 === 0 ? "#00ffff" : "#a855f7"}
+            color={i % 2 === 0 ? "#bef264" : "#10b981"}
             transparent
             opacity={0.5}
             lineWidth={1}
@@ -94,7 +94,7 @@ export default function LMSStructure() {
       
       {/* Overlay Text */}
       <div className="absolute top-6 left-6 z-10 pointer-events-none">
-        <div className="text-xs font-mono text-cyan-500 mb-1">SYSTEM ARCHITECTURE_</div>
+        <div className="text-xs font-mono text-lime-400 mb-1">SYSTEM ARCHITECTURE_</div>
         <div className="text-white font-bold text-xl">Modular LMS Stack</div>
       </div>
 

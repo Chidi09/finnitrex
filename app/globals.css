@@ -22,12 +22,13 @@ body {
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
-/* New Highlight Color: Lime Green */
+/* SLIME LIME SELECTION */
 ::selection {
   background: rgba(190, 242, 100, 0.3); /* Lime-400 opacity */
   color: #bef264;
 }
 
+/* SCROLLBAR */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -35,9 +36,9 @@ body {
   background: #000; 
 }
 ::-webkit-scrollbar-thumb {
-  background: #333; 
+  background: #1a2e05; /* Dark Green */
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #bef264; /* Lime hover */
+  background: #bef264; /* Slime Lime */
 }

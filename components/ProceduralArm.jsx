@@ -104,10 +104,10 @@ const ComplexRobot = () => {
           <group ref={arm1Ref}>
             {/* Main Beam */}
             <MetalPart position={[0, 1.5, 0]} args={[0.6, 3.5, 0.6]} color="#333" />
-            {/* Decorative Shell (Cyan branding) */}
+            {/* Decorative Shell (Lime branding) */}
             <mesh position={[0, 1.5, 0]}>
                  <boxGeometry args={[0.65, 2, 0.65]} />
-                 <meshStandardMaterial color="#00bcd4" roughness={0.2} metalness={0.3} />
+                 <meshStandardMaterial color="#bef264" roughness={0.2} metalness={0.3} />
             </mesh>
             
             {/* Hydraulic Pistons details */}
@@ -125,7 +125,7 @@ const ComplexRobot = () => {
                  {/* Wire details running along arm */}
                  <mesh position={[0.25, 1.5, 0]}>
                     <boxGeometry args={[0.05, 3, 0.1]} />
-                    <meshStandardMaterial color="orange" emissive="orange" emissiveIntensity={0.5} />
+                    <meshStandardMaterial color="#bef264" emissive="#bef264" emissiveIntensity={0.5} />
                  </mesh>
 
                  {/* 7. WRIST */}
@@ -141,7 +141,7 @@ const ComplexRobot = () => {
                         {/* Lens Eye */}
                         <mesh position={[0, 0.4, 0.26]}>
                              <circleGeometry args={[0.15, 32]} />
-                             <meshBasicMaterial color="#00ffff" />
+                             <meshBasicMaterial color="#bef264" />
                         </mesh>
                         
                         {/* 8. GRIPPER CLAWS */}
@@ -173,8 +173,8 @@ export default function ProceduralArm() {
         {/* Dramatic Lighting for "Future Lab" feel */}
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 10, 5]} angle={0.3} penumbra={1} intensity={150} castShadow color="#ffffff" />
-        <pointLight position={[-5, 5, -5]} intensity={50} color="#00bcd4" />
-        <pointLight position={[5, -5, 5]} intensity={50} color="#a855f7" />
+        <pointLight position={[-5, 5, -5]} intensity={50} color="#bef264" />
+        <pointLight position={[5, -5, 5]} intensity={50} color="#10b981" />
         
         <ComplexRobot />
         
@@ -185,7 +185,7 @@ export default function ProceduralArm() {
 
       {/* Instructions Overlay */}
       <div className="absolute bottom-6 left-6 pointer-events-none">
-         <div className="text-xs font-mono text-cyan-500 bg-black/50 px-2 py-1 rounded border border-cyan-900/50">
+         <div className="text-xs font-mono text-lime-400 bg-black/50 px-2 py-1 rounded border border-lime-900/50">
             SYSTEM: ACTIVE TRACKING
          </div>
       </div>
