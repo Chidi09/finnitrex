@@ -27,18 +27,18 @@ export default function MobileDock() {
               {isActive && (
                 <motion.div 
                   layoutId="dock-glow"
-                  className="absolute -top-10 bg-cyan-500/20 w-12 h-12 rounded-full blur-xl"
+                  className="absolute -top-10 bg-lime-500/20 w-12 h-12 rounded-full blur-xl"
                 />
               )}
               
-              <div className={`transition-all duration-300 ${isActive ? "text-cyan-400 -translate-y-1" : "text-gray-500"}`}>
+              <div className={`transition-all duration-300 ${isActive ? "text-lime-400 -translate-y-1" : "text-gray-500"}`}>
                 <Icon size={24} strokeWidth={isActive ? 2.5 : 1.5} />
               </div>
               
               {isActive && (
                 <motion.div 
                   layoutId="dock-dot"
-                  className="absolute -bottom-2 w-1 h-1 bg-cyan-400 rounded-full"
+                  className="absolute -bottom-2 w-1 h-1 bg-lime-400 rounded-full"
                 />
               )}
             </Link>

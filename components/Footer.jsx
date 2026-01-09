@@ -10,7 +10,7 @@ export default function Footer() {
       
       {/* Background Grid Decoration */}
       <div className="absolute inset-0 opacity-10 pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#22d3ee 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
+           style={{ backgroundImage: 'radial-gradient(#bef264 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -26,8 +26,8 @@ export default function Footer() {
               <br/>
               Established UK Limited Company.
             </p>
-            <div className="flex items-center gap-2 text-green-500 bg-green-950/20 px-3 py-1 rounded border border-green-900 w-fit">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <div className="flex items-center gap-2 text-lime-400 bg-lime-950/20 px-3 py-1 rounded border border-lime-900 w-fit">
+              <div className="w-2 h-2 bg-lime-400 rounded-full animate-pulse" />
               OPERATIONAL
             </div>
           </div>
@@ -37,7 +37,7 @@ export default function Footer() {
             <h3 className="text-white font-bold uppercase tracking-widest text-xs mb-2 border-b border-gray-800 pb-2">Compliance Protocols</h3>
             <ul className="space-y-2 text-gray-400">
               <li className="flex items-center gap-2">
-                <ShieldCheck size={14} className="text-cyan-500" />
+                <ShieldCheck size={14} className="text-lime-400" />
                 <span>UK Sponsor Licence: <span className="text-yellow-500">PENDING</span></span>
               </li>
               <li className="flex items-center gap-2">
@@ -55,9 +55,9 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-white font-bold uppercase tracking-widest text-xs mb-2 border-b border-gray-800 pb-2">Navigation Node</h3>
             <ul className="space-y-2">
-              <li><Link href="/lms" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-1">Software Solutions <ArrowUpRight size={10}/></Link></li>
-              <li><Link href="/fintech" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-1">Data Analytics <ArrowUpRight size={10}/></Link></li>
-              <li><Link href="/robotics" className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center gap-1">Future Labs <ArrowUpRight size={10}/></Link></li>
+              <li><Link href="/lms" className="text-gray-400 hover:text-lime-400 transition-colors flex items-center gap-1">Software Solutions <ArrowUpRight size={10}/></Link></li>
+              <li><Link href="/fintech" className="text-gray-400 hover:text-lime-400 transition-colors flex items-center gap-1">Data Analytics <ArrowUpRight size={10}/></Link></li>
+              <li><Link href="/robotics" className="text-gray-400 hover:text-lime-400 transition-colors flex items-center gap-1">Future Labs <ArrowUpRight size={10}/></Link></li>
             </ul>
           </div>
 

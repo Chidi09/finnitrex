@@ -21,3 +21,23 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
+
+/* New Highlight Color: Lime Green */
+::selection {
+  background: rgba(190, 242, 100, 0.3); /* Lime-400 opacity */
+  color: #bef264;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000; 
+}
+::-webkit-scrollbar-thumb {
+  background: #333; 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #bef264; /* Lime hover */
+}

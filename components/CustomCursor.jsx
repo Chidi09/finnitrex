@@ -39,7 +39,7 @@ export default function CustomCursor() {
       {/* 2. Trailing Ring */}
       <motion.div
         className={`hidden md:block fixed top-0 left-0 w-8 h-8 rounded-full border pointer-events-none z-[9999] transition-colors duration-200 ${
-          isClicking ? "border-cyan-400 bg-cyan-400/20" : "border-white/50"
+          isClicking ? "border-lime-400 bg-lime-400/20" : "border-white/50"
         }`}
         animate={{ x: mousePosition.x - 16, y: mousePosition.y - 16, scale: isClicking ? 0.8 : 1 }}
         transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.8 }}

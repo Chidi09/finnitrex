@@ -61,7 +61,7 @@ export default function ContactTerminal() {
               <input 
                 type="text" 
                 required
-                className="w-full bg-gray-900/50 border border-gray-700 rounded p-3 text-white focus:border-cyan-500 focus:outline-none focus:bg-gray-900 transition-colors"
+                className="w-full bg-gray-900/50 border border-gray-700 rounded p-3 text-white focus:border-lime-500 focus:outline-none focus:bg-gray-900 transition-colors"
                 placeholder="e.g. John Doe or Acme Corp"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -74,7 +74,7 @@ export default function ContactTerminal() {
               <input 
                 type="email" 
                 required
-                className="w-full bg-gray-900/50 border border-gray-700 rounded p-3 text-white focus:border-cyan-500 focus:outline-none focus:bg-gray-900 transition-colors"
+                className="w-full bg-gray-900/50 border border-gray-700 rounded p-3 text-white focus:border-lime-500 focus:outline-none focus:bg-gray-900 transition-colors"
                 placeholder="john@example.com"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -96,7 +96,7 @@ export default function ContactTerminal() {
                     onClick={() => setForm({ ...form, service: srv.label })}
                     className={`flex items-center gap-2 p-3 rounded border text-sm font-medium transition-all
                       ${isSelected 
-                        ? "bg-cyan-900/30 border-cyan-500 text-cyan-400" 
+                        ? "bg-lime-900/30 border-lime-500 text-lime-400" 
                         : "bg-gray-900/30 border-gray-800 text-gray-500 hover:border-gray-600 hover:text-gray-300"
                       }`}
                   >
@@ -112,7 +112,7 @@ export default function ContactTerminal() {
           <div className="pt-2">
             <button 
               type="submit"
-              className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold py-4 rounded transition-all shadow-lg shadow-cyan-900/20 flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-lime-500 to-emerald-600 hover:from-lime-400 hover:to-emerald-500 text-black font-bold py-4 rounded transition-all shadow-lg shadow-lime-900/20 flex items-center justify-center gap-2"
             >
               CONTINUE TO CONFIGURATION <ArrowRight size={18} />
             </button>
