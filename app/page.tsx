@@ -1,11 +1,17 @@
+import NeuralNetwork3D from "@/components/NeuralNetwork3D";
+import FinnitrexLogo from "@/components/FinnitrexLogo"; 
+import TechTicker from "@/components/TechTicker";
+import { ArrowRight, Cpu, LineChart, Terminal, ShieldCheck, Zap, Globe } from "lucide-react";
 import Link from "next/link";
-import { ArrowRight, Cpu, LineChart, Terminal } from "lucide-react";
-import FinnitrexLogo from "@/components/FinnitrexLogo";
 
 export default function Home() {
   return (
     <main className="relative min-h-screen flex flex-col items-center overflow-x-hidden text-white w-full bg-black">
       
+      {/* 3D Background */}
+      <NeuralNetwork3D />
+
+      {/* --- HERO SECTION --- */}
       <div className="z-10 container mx-auto px-4 md:px-6 pt-20 pb-20 text-center relative w-full">
         
         {/* HERO LOGO */}
@@ -37,13 +43,55 @@ export default function Home() {
               <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-200 ease-out" />
            </Link>
            
-           <Link href="/lms" className="w-full md:w-auto px-8 py-5 rounded-none border border-gray-700 hover:border-lime-400 hover:text-lime-400 transition-all backdrop-blur-sm text-lg font-medium tracking-wide">
+           <Link href="/software" className="w-full md:w-auto px-8 py-5 rounded-none border border-gray-700 hover:border-lime-400 hover:text-lime-400 transition-all backdrop-blur-sm text-lg font-medium tracking-wide">
               VIEW SOLUTIONS
            </Link>
         </div>
       </div>
 
-      {/* Capabilities - Lime Icons Only */}
+      {/* --- NEW: TECH TICKER --- */}
+      <TechTicker />
+
+      {/* --- NEW: WHY FINNITREX (Value Props) --- */}
+      <div className="w-full bg-gray-900/30 border-b border-gray-800 backdrop-blur-sm relative z-10">
+        <div className="container mx-auto px-6 py-24">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            
+            <div className="space-y-4">
+              <div className="w-12 h-12 bg-lime-900/20 rounded flex items-center justify-center border border-lime-500/30">
+                <Zap className="text-lime-400" />
+              </div>
+              <h3 className="text-xl font-bold text-white">Speed & Precision</h3>
+              <p className="text-gray-400 leading-relaxed">
+                We build on static-first architectures (Next.js). No bloat, no loading screens—just instant data availability.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="w-12 h-12 bg-emerald-900/20 rounded flex items-center justify-center border border-emerald-500/30">
+                <ShieldCheck className="text-emerald-400" />
+              </div>
+              <h3 className="text-xl font-bold text-white">Data Fortified</h3>
+              <p className="text-gray-400 leading-relaxed">
+                GDPR compliant by design. We implement banking-grade encryption for all financial and personnel data pipelines.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="w-12 h-12 bg-lime-900/20 rounded flex items-center justify-center border border-lime-500/30">
+                <Globe className="text-lime-400" />
+              </div>
+              <h3 className="text-xl font-bold text-white">Global Infrastructure</h3>
+              <p className="text-gray-400 leading-relaxed">
+                UK-based governance with a global talent network. We deploy systems that scale across borders effortlessly.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* --- CAPABILITIES GRID --- */}
       <div className="z-10 container mx-auto px-6 py-20">
         <h2 className="text-xs font-mono text-lime-400 mb-8 tracking-[0.3em] uppercase text-center md:text-left">
           // SYSTEM_MODULES
@@ -51,7 +99,7 @@ export default function Home() {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
-          <Link href="/lms" className="group p-8 rounded bg-gray-900/50 border border-gray-800 hover:border-lime-500 hover:bg-black transition-all">
+          <Link href="/software" className="group p-8 rounded bg-gray-900/50 border border-gray-800 hover:border-lime-500 hover:bg-black transition-all">
             <Terminal className="w-10 h-10 text-lime-400 mb-6 group-hover:drop-shadow-[0_0_10px_rgba(190,242,100,0.8)] transition-all" />
             <h3 className="text-xl font-bold mb-3 text-white">LMS & Software</h3>
             <p className="text-sm text-gray-400 group-hover:text-gray-300">Custom Learning Management Systems and static web architectures.</p>
