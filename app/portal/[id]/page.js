@@ -8,6 +8,8 @@ import {
   CreditCard,
   CheckCircle2,
   Plus,
+  Phone,
+  FileCheck,
 } from "lucide-react";
 import FinnitrexLogo from "@/components/FinnitrexLogo";
 import { motion } from "framer-motion";
@@ -99,6 +101,32 @@ export default function ClientPortal({ params }) {
                 <span className="bg-yellow-500/20 text-yellow-500 px-2 py-1 rounded text-xs border border-yellow-500/30">
                   PENDING DEPOSIT
                 </span>
+              </div>
+
+              <div className="mt-6 space-y-3">
+                <p className="text-xs text-gray-500">PAYMENT ACTIONS:</p>
+                <a
+                  href={`https://wa.me/447521511800?text=${encodeURIComponent(
+                    `Hello, I am verifying payment for Project ID: ${params.id}. Attached is my receipt.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-500 text-white py-3 rounded font-bold text-sm transition-colors"
+                >
+                  <Phone size={16} /> VERIFY VIA WHATSAPP
+                </a>
+                <a
+                  href={`mailto:payments@finnitrex.com?subject=Payment Proof ${params.id}&body=${encodeURIComponent(
+                    `Attached is the receipt for project ${params.id}.`
+                  )}`}
+                  className="flex items-center justify-center gap-2 w-full bg-gray-800 hover:bg-gray-700 text-gray-300 py-3 rounded font-bold text-sm transition-colors"
+                >
+                  <FileCheck size={16} /> SEND RECEIPT VIA EMAIL
+                </a>
+                <p className="text-[10px] text-center text-gray-500 mt-2">
+                  *Please attach your transaction receipt. Status will update
+                  within 24h.
+                </p>
               </div>
             </div>
           </div>

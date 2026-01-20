@@ -1,29 +1,30 @@
 import { SendMailClient } from "zeptomail";
 import { NextResponse } from "next/server";
+import { db } from "@/lib/store";
 
-// Initialize Client with your specific credentials
 const url = "https://api.zeptomail.com/";
 const token = process.env.ZEPTOMAIL_TOKEN;
 
 export async function POST(request) {
   try {
     const client = new SendMailClient({ url, token });
-    
-    // Parse the incoming data
+
     const body = await request.json();
     const { name, email, service, message } = body;
 
-    // Basic Validation
     if (!name || !email) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
     }
 
-    // Determine Subject Line based on the source (Wizard vs Terminal)
-    const subjectLine = service.startsWith("WIZARD") 
+    db.addRequest({ name, email, service, message });
+
+    const subjectLine = service?.startsWith("WIZARD")
       ? `[PROJECT INITIATION] ${name} - ${service}`
       : `[NEW INQUIRY] ${service}: ${name}`;
 
-    // Send the email via ZeptoMail
     await client.sendMail({
       from: {
         address: process.env.EMAIL_FROM || "noreply@finnitrex.com",
@@ -40,7 +41,7 @@ export async function POST(request) {
       reply_to: [
         {
           address: email,
-          name: name,
+          name,
         },
       ],
       subject: subjectLine,
@@ -59,13 +60,14 @@ export async function POST(request) {
           </div>
           
           <div style="margin-top: 20px; font-size: 10px; color: #555;">
-            SECURE TRANSMISSION VIA FINNITREX.SYS
+            SECURE TRANSMISSION VIA FINNITREX.SYS<br/>
+            View and accept in Mission Control: <a href="https://finnitrex.com/admin" style="color:#bef264;">ADMIN PANEL</a>
           </div>
         </div>
       `,
     });
 
-    return NextResponse.json({ success: true, message: "Transmission Successful" });
+    return NextResponse.json({ success: true, message: "Request Logged" });
   } catch (error) {
     console.error("ZeptoMail Error:", error);
     return NextResponse.json({ error: "Transmission Failed" }, { status: 500 });
