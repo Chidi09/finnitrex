@@ -79,6 +79,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://finnitrex.com",
   },
+  icons: {
+    icon: "/icon.svg",
+  },
   verification: {
     // Add your verification codes here when available
     // google: "your-google-verification-code",
