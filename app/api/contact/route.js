@@ -19,7 +19,14 @@ export async function POST(request) {
       );
     }
 
-    await db.addRequest({ name, email, service, message });
+    // Save to database first
+    try {
+      await db.addRequest({ name, email, service, message });
+    } catch (dbError) {
+      console.error("Database Error:", dbError);
+      // Continue to send email even if DB fails (graceful degradation)
+      // But log the error for debugging
+    }
 
     const subjectLine = service?.startsWith("WIZARD")
       ? `[PROJECT INITIATION] ${name} - ${service}`
@@ -69,7 +76,18 @@ export async function POST(request) {
 
     return NextResponse.json({ success: true, message: "Request Logged" });
   } catch (error) {
-    console.error("ZeptoMail Error:", error);
-    return NextResponse.json({ error: "Transmission Failed" }, { status: 500 });
+    console.error("Contact API Error:", error);
+    console.error("Error details:", {
+      message: error.message,
+      stack: error.stack,
+      name: error.name,
+    });
+    return NextResponse.json(
+      { 
+        error: "Transmission Failed",
+        details: process.env.NODE_ENV === "development" ? error.message : undefined
+      },
+      { status: 500 }
+    );
   }
 }
