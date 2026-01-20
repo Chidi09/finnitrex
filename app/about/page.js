@@ -20,10 +20,10 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
             
             {/* Left: 3D Globe */}
-            <div className="space-y-6">
-              <div className="bg-gray-900/50 rounded-3xl border border-gray-800 overflow-hidden backdrop-blur-sm">
+            <div className="space-y-6 flex flex-col">
+              <div className="bg-gray-900/50 rounded-3xl border border-gray-800 overflow-hidden backdrop-blur-sm w-full flex-1 aspect-square min-h-[400px] md:min-h-[500px]">
                 <Suspense fallback={
-                  <div className="flex items-center justify-center h-[500px] text-lime-400 font-mono">
+                  <div className="flex items-center justify-center w-full h-full min-h-[400px] md:min-h-[500px] text-lime-400 font-mono">
                     LOADING GLOBAL NETWORK...
                   </div>
                 }>

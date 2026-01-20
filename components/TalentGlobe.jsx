@@ -136,8 +136,13 @@ const Globe = () => {
 
 export default function TalentGlobe() {
   return (
-    <div className="h-full w-full min-h-[500px] bg-gradient-to-b from-black via-gray-900 to-black rounded-3xl overflow-hidden border border-gray-800">
-      <Canvas camera={{ position: [0, 0, 6], fov: 50 }}>
+    <div className="w-full h-full min-h-[400px] md:min-h-[500px] bg-gradient-to-b from-black via-gray-900 to-black rounded-3xl overflow-hidden border border-gray-800 relative">
+      <Canvas 
+        camera={{ position: [0, 0, 6], fov: 50 }} 
+        style={{ width: '100%', height: '100%', display: 'block' }}
+        gl={{ antialias: true, alpha: false }}
+        dpr={[1, 2]}
+      >
         <ambientLight intensity={1} />
         <pointLight position={[5, 5, 5]} intensity={2} color="#bef264" />
         <pointLight position={[-5, -5, -5]} intensity={2} color="#10b981" />
