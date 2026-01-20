@@ -9,12 +9,12 @@ const token = process.env.ZEPTOMAIL_TOKEN;
 export async function POST(request) {
   const { reqId, deposit } = await request.json();
 
-  const reqData = db.getRequestById(reqId);
+  const reqData = await db.getRequestById(reqId);
   if (!reqData) {
     return NextResponse.json({ error: "Request not found" }, { status: 404 });
   }
 
-  const newProject = db.createProject(reqData, deposit);
+  const newProject = await db.createProject(reqData, deposit);
 
   const client = new SendMailClient({ url, token });
 

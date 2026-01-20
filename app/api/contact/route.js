@@ -19,7 +19,7 @@ export async function POST(request) {
       );
     }
 
-    db.addRequest({ name, email, service, message });
+    await db.addRequest({ name, email, service, message });
 
     const subjectLine = service?.startsWith("WIZARD")
       ? `[PROJECT INITIATION] ${name} - ${service}`
