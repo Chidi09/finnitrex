@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import MobileDock from "@/components/MobileDock";
 import CustomCursor from "@/components/CustomCursor";
+import CookieBanner from "@/components/CookieBanner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -102,7 +103,7 @@ export default function RootLayout({
       >
         {/* ENHANCEMENT: Custom Cursor */}
         <CustomCursor />
-        
+
         {/* Main Content */}
         <div className="min-h-screen">
           {children}
@@ -113,6 +114,9 @@ export default function RootLayout({
 
         {/* ENHANCEMENT: Mobile App Dock */}
         <MobileDock />
+
+        {/* COMPLIANCE: Cookie Banner */}
+        <CookieBanner />
       </body>
     </html>
   );

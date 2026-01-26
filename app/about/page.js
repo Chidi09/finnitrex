@@ -22,13 +22,13 @@ const itemVar = {
 
 export default function AboutPage() {
   return (
-    <motion.main 
+    <motion.main
       initial="hidden"
       animate="show"
       variants={containerVar}
       className="min-h-screen bg-black text-gray-300 font-sans relative overflow-hidden"
     >
-      
+
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-lime-900/10 rounded-full blur-[100px] -z-10 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-900/10 rounded-full blur-[100px] -z-10 pointer-events-none" />
@@ -53,7 +53,7 @@ export default function AboutPage() {
 
           {/* Main Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20 items-center">
-            
+
             {/* Left: 3D Globe */}
             <motion.div variants={itemVar} className="space-y-6 flex flex-col h-full">
               <div className="bg-gray-900/30 rounded-3xl border border-gray-800 overflow-hidden backdrop-blur-sm w-full h-[500px] relative group hover:border-lime-500/30 transition-colors duration-500">
@@ -75,13 +75,19 @@ export default function AboutPage() {
                 </h2>
                 <div className="prose prose-invert text-gray-400 leading-relaxed">
                   <p className="mb-4">
-                    Finnitrex Solutions Ltd is a premier UK technology firm specializing in <span className="text-white">advanced software architecture</span>, 
-                    AI integration, and digital ecosystem development. 
+                    Finnitrex Solutions Ltd is a premier UK technology firm specializing in <span className="text-white">advanced software architecture</span>,
+                    AI integration, and digital ecosystem development.
                   </p>
                   <p>
-                    From our headquarters in London, we deploy enterprise-grade solutions for the education, finance, and manufacturing sectors. 
+                    From our headquarters in London, we deploy enterprise-grade solutions for the education, finance, and manufacturing sectors.
                     Our hybrid model combines rigorous UK governance with a <span className="text-lime-400">borderless talent network</span>, allowing us to scale rapid development teams without compromising on security or compliance.
                   </p>
+                  <div className="mt-4 py-3 px-4 bg-lime-900/10 border-l-2 border-lime-500 rounded-r-lg">
+                    <p className="text-xs text-lime-400 font-mono mb-1">REGULATORY NOTICE</p>
+                    <p className="text-sm text-gray-400">
+                      Processing of our Tier 2 Sponsor Licence is currently <strong>pending</strong>. Finnitrex Ltd is not yet an approved sponsor for UK work visas.
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -103,11 +109,11 @@ export default function AboutPage() {
           <motion.div variants={containerVar} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
             {[
               { title: "Our Mission", icon: Target, color: "text-lime-400", border: "border-lime-500/30", bg: "bg-lime-900/10", desc: "To architect digital ecosystems that combine cutting-edge AI, static-first performance, and enterprise-grade security." },
-              { title: "Global Talent", icon: Users, color: "text-emerald-400", border: "border-emerald-500/30", bg: "bg-emerald-900/10", desc: "We actively recruit overseas talent through UK Sponsor Licence pathways, building a diverse team of elite engineers." },
+              { title: "Global Talent", icon: Users, color: "text-emerald-400", border: "border-emerald-500/30", bg: "bg-emerald-900/10", desc: "We are building processes to recruit overseas talent. Note: Our UK Sponsor Licence is currently pending approval; we are not yet verified to sponsor visas." },
               { title: "Compliance", icon: ShieldCheck, color: "text-white", border: "border-gray-700", bg: "bg-gray-800/30", desc: "GDPR-compliant architecture by design. We maintain banking-grade encryption standards for all data pipelines." }
             ].map((card, i) => (
-              <motion.div 
-                key={i} 
+              <motion.div
+                key={i}
                 variants={itemVar}
                 className={`p-8 rounded-2xl border ${card.border} ${card.bg} backdrop-blur-sm hover:-translate-y-2 transition-transform duration-300`}
               >
@@ -120,9 +126,9 @@ export default function AboutPage() {
 
           {/* Services Overview */}
           <motion.div variants={itemVar} className="bg-gradient-to-br from-gray-900/50 to-black rounded-3xl border border-gray-800 p-8 md:p-12 relative overflow-hidden">
-             {/* Decorative grid */}
-             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
-            
+            {/* Decorative grid */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+
             <div className="relative z-10">
               <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
                 <Globe className="text-lime-400" /> Technical Capabilities
@@ -147,8 +153,8 @@ export default function AboutPage() {
               </div>
 
               <div className="mt-12 pt-8 border-t border-gray-800 text-center">
-                <Link 
-                  href="/start" 
+                <Link
+                  href="/start"
                   className="inline-flex items-center gap-2 px-10 py-4 bg-lime-400 text-black font-bold text-lg rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_rgba(190,242,100,0.3)]"
                 >
                   INITIALIZE PROJECT
