@@ -1,6 +1,7 @@
 import { SendMailClient } from "zeptomail";
 import { NextResponse } from "next/server";
 import { db } from "@/lib/store";
+import { rateLimit } from "@/lib/rate-limit";
 
 const url = "https://api.zeptomail.com/";
 const token = process.env.ZEPTOMAIL_TOKEN;
@@ -12,9 +13,34 @@ export async function POST(request) {
     const body = await request.json();
     const { name, email, service, message } = body;
 
+    const requestIp = request.headers.get("x-forwarded-for") || "127.0.0.1";
+
+    // Rate Limit: 2 emails per hour per IP (Prevent spam)
+    const { success } = await rateLimit({
+      ip: requestIp,
+      action: "contact_form",
+      limit: 2,
+      windowMs: 60 * 60 * 1000 // 1 hour
+    });
+
+    if (!success) {
+      return NextResponse.json(
+        { error: "Transmission limit exceeded. Please wait before sending another signal." },
+        { status: 429 }
+      );
+    }
+
     if (!name || !email) {
       return NextResponse.json(
         { error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
+
+    // Basic Sanitization
+    if (message && message.length > 5000) {
+      return NextResponse.json(
+        { error: "Message too long." },
         { status: 400 }
       );
     }
@@ -83,7 +109,7 @@ export async function POST(request) {
       name: error.name,
     });
     return NextResponse.json(
-      { 
+      {
         error: "Transmission Failed",
         details: process.env.NODE_ENV === "development" ? error.message : undefined
       },

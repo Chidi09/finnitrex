@@ -23,6 +23,9 @@ export default function LoginPage() {
     if (res.ok) {
       setStatus("ACCESS GRANTED");
       setTimeout(() => router.push("/admin"), 800);
+    } else if (res.status === 429) {
+      setStatus("LOCKED");
+      alert("Too many attempts. Please wait.");
     } else {
       setStatus("DENIED");
       setKey("");
@@ -48,35 +51,31 @@ export default function LoginPage() {
         </div>
 
         <div
-          className={`border rounded-xl p-8 transition-colors duration-500 ${
-            status === "DENIED"
+          className={`border rounded-xl p-8 transition-colors duration-500 ${status === "DENIED"
               ? "border-red-600 bg-red-950/10"
               : status === "ACCESS GRANTED"
-              ? "border-lime-500 bg-lime-950/10"
-              : "border-gray-800 bg-gray-900/50"
-          }`}
+                ? "border-lime-500 bg-lime-950/10"
+                : "border-gray-800 bg-gray-900/50"
+            }`}
         >
           <div className="flex justify-between items-center mb-8 border-b border-gray-800 pb-4">
             <span className="text-xs text-gray-500">ENCRYPTION: AES-256</span>
             <div className="flex gap-2">
               <div
-                className={`w-2 h-2 rounded-full ${
-                  status === "LOCKED"
+                className={`w-2 h-2 rounded-full ${status === "LOCKED"
                     ? "bg-red-500 animate-pulse"
                     : "bg-gray-700"
-                }`}
+                  }`}
               />
               <div
-                className={`w-2 h-2 rounded-full ${
-                  status === "VERIFYING"
+                className={`w-2 h-2 rounded-full ${status === "VERIFYING"
                     ? "bg-yellow-500 animate-pulse"
                     : "bg-gray-700"
-                }`}
+                  }`}
               />
               <div
-                className={`w-2 h-2 rounded-full ${
-                  status === "ACCESS GRANTED" ? "bg-lime-500" : "bg-gray-700"
-                }`}
+                className={`w-2 h-2 rounded-full ${status === "ACCESS GRANTED" ? "bg-lime-500" : "bg-gray-700"
+                  }`}
               />
             </div>
           </div>
@@ -102,10 +101,9 @@ export default function LoginPage() {
             <button
               disabled={status === "VERIFYING" || status === "ACCESS GRANTED"}
               className={`w-full py-3 rounded font-bold text-sm tracking-widest flex items-center justify-center gap-2 transition-all
-                ${
-                  status === "DENIED"
-                    ? "bg-red-600 text-white cursor-not-allowed"
-                    : status === "ACCESS GRANTED"
+                ${status === "DENIED"
+                  ? "bg-red-600 text-white cursor-not-allowed"
+                  : status === "ACCESS GRANTED"
                     ? "bg-lime-500 text-black cursor-default"
                     : "bg-gray-800 hover:bg-gray-700 text-white hover:text-lime-400"
                 }
