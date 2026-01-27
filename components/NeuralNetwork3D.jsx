@@ -7,9 +7,16 @@ import * as THREE from "three";
 const ParticleNetwork = ({ count = 100, radius = 20 }) => {
   const pointsRef = useRef();
   const linesRef = useRef();
-  
+
   // 1. Initialize Particles with random positions and velocities
   const { positions, velocities, colors } = useMemo(() => {
+    // Simple seeded random function
+    let seed = 9012;
+    const random = () => {
+      const x = Math.sin(seed++) * 10000;
+      return x - Math.floor(x);
+    };
+
     const pos = new Float32Array(count * 3);
     const vel = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
@@ -19,17 +26,17 @@ const ParticleNetwork = ({ count = 100, radius = 20 }) => {
 
     for (let i = 0; i < count; i++) {
       // Random Position
-      pos[i * 3] = (Math.random() - 0.5) * radius;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * radius;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * radius;
+      pos[i * 3] = (random() - 0.5) * radius;
+      pos[i * 3 + 1] = (random() - 0.5) * radius;
+      pos[i * 3 + 2] = (random() - 0.5) * radius;
 
       // Random Velocity (Drifting)
-      vel[i * 3] = (Math.random() - 0.5) * 0.02;
-      vel[i * 3 + 1] = (Math.random() - 0.5) * 0.02;
-      vel[i * 3 + 2] = (Math.random() - 0.5) * 0.02;
+      vel[i * 3] = (random() - 0.5) * 0.02;
+      vel[i * 3 + 1] = (random() - 0.5) * 0.02;
+      vel[i * 3 + 2] = (random() - 0.5) * 0.02;
 
       // Color Mix
-      tempColor.lerpColors(emerald, lime, Math.random());
+      tempColor.lerpColors(emerald, lime, random());
       col[i * 3] = tempColor.r;
       col[i * 3 + 1] = tempColor.g;
       col[i * 3 + 2] = tempColor.b;
@@ -57,7 +64,7 @@ const ParticleNetwork = ({ count = 100, radius = 20 }) => {
 
     // 3. Dynamic Line Connections (The Plexus Effect)
     const linePositions = [];
-    
+
     // Threshold for connection distance
     const connectDistance = 3.5;
 
@@ -91,12 +98,12 @@ const ParticleNetwork = ({ count = 100, radius = 20 }) => {
           <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
           <bufferAttribute attach="attributes-color" count={count} array={colors} itemSize={3} />
         </bufferGeometry>
-        <pointsMaterial 
-          size={0.15} 
-          vertexColors 
-          transparent 
-          opacity={0.8} 
-          sizeAttenuation={true} 
+        <pointsMaterial
+          size={0.15}
+          vertexColors
+          transparent
+          opacity={0.8}
+          sizeAttenuation={true}
           blending={THREE.AdditiveBlending}
         />
       </points>
@@ -104,11 +111,11 @@ const ParticleNetwork = ({ count = 100, radius = 20 }) => {
       {/* The Lines */}
       <lineSegments ref={linesRef}>
         <bufferGeometry />
-        <lineBasicMaterial 
-          color="#bef264" 
-          transparent 
-          opacity={0.15} 
-          blending={THREE.AdditiveBlending} 
+        <lineBasicMaterial
+          color="#bef264"
+          transparent
+          opacity={0.15}
+          blending={THREE.AdditiveBlending}
         />
       </lineSegments>
     </group>
@@ -121,7 +128,7 @@ const MouseRotator = ({ children }) => {
     if (group.current) {
       // Gentle rotation
       group.current.rotation.y = state.clock.getElapsedTime() * 0.05;
-      
+
       // Mouse interaction (Parallax)
       const x = state.mouse.x * 0.2;
       const y = state.mouse.y * 0.2;
@@ -135,7 +142,7 @@ const MouseRotator = ({ children }) => {
 export default function NeuralNetwork3D() {
   return (
     <div className="absolute inset-0 w-full h-full -z-10 bg-black">
-      <Canvas 
+      <Canvas
         camera={{ position: [0, 0, 15], fov: 60 }}
         gl={{ antialias: true, alpha: false }}
         dpr={[1, 1.5]}
@@ -145,7 +152,7 @@ export default function NeuralNetwork3D() {
           <ParticleNetwork count={70} radius={18} />
         </MouseRotator>
       </Canvas>
-      
+
       {/* Overlay Gradient for seamless text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none" />
     </div>
