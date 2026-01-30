@@ -13,6 +13,60 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 **Note:** Without `REDIS_URL`, rate limiting falls back to an insecure in-memory store that doesn't work correctly in serverless environments.
 
+**Database connection:**
+- `POSTGRES_URL` or `POSTGRES_PRISMA_URL` - Vercel Postgres connection string (automatically set when using Vercel Postgres)
+
+## Database Migrations
+
+This project uses **Drizzle ORM** for professional database schema management. The old `/api/setup` route has been deprecated.
+
+📖 **For detailed migration instructions, see [doc/MIGRATION_GUIDE.md](doc/MIGRATION_GUIDE.md)**
+
+### Initial Setup
+
+1. **Set up your database connection:**
+   - For Vercel Postgres: The connection string is automatically available as `POSTGRES_URL`
+   - For local development: Create `.env.local` with your connection string:
+     ```env
+     POSTGRES_URL=postgresql://user:password@localhost:5432/dbname
+     ```
+
+2. **Generate and apply migrations:**
+   ```bash
+   # Generate migration files from schema changes
+   npm run db:generate
+   
+   # Apply migrations to your database
+   npm run db:migrate
+   ```
+
+3. **View your database (optional):**
+   ```bash
+   # Open Drizzle Studio (visual database browser)
+   npm run db:studio
+   ```
+
+### Making Schema Changes
+
+1. Edit `lib/db/schema.ts` to modify your table definitions
+2. Run `npm run db:generate` to create migration files
+3. Review the generated SQL in the `drizzle/` directory
+4. Run `npm run db:migrate` to apply changes to your database
+
+### Migration Workflow
+
+```bash
+# 1. Make changes to lib/db/schema.ts
+# 2. Generate migration
+npm run db:generate
+
+# 3. Review generated SQL in drizzle/ folder
+# 4. Apply migration
+npm run db:migrate
+```
+
+**Important:** Always review generated migrations before applying them to production!
+
 ## Getting Started
 
 First, run the development server:

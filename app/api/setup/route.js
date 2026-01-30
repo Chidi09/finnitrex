@@ -1,22 +1,24 @@
-import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 
-// ⚠️ DEVELOPMENT/INITIAL SETUP ROUTE ONLY ⚠️
+// ⚠️ DEPRECATED - DO NOT USE ⚠️
 // 
-// WARNING: This route creates database tables every time it's called.
-// This is acceptable for prototyping, but RISKY for production:
-// - Accidental calls can cause issues
-// - No proper migration versioning
-// - No rollback capability
-// - Public endpoint - anyone can trigger database operations
+// This route has been replaced with Drizzle ORM migrations.
+// 
+// MIGRATION INSTRUCTIONS:
+// 1. Use Drizzle Kit for all database schema changes
+// 2. Run `npm run db:generate` to generate migration files
+// 3. Run `npm run db:migrate` to apply migrations to your database
+// 4. See README.md for detailed migration instructions
 //
-// RECOMMENDATION:
-// 1. Run these SQL commands manually in Vercel Storage console ONCE
-// 2. Remove or protect this route in production (e.g., require admin auth + environment check)
-// 3. Use a proper migration tool (Drizzle Kit, Prisma Migrate) for production
+// This route is kept for backwards compatibility only and will be removed in a future version.
+// If you need to initialize the database, use Drizzle migrations instead.
 //
-// SECURITY FIX: Protected with admin authentication
 export async function GET(request) {
+  return NextResponse.json({
+    error: "This route is deprecated. Use Drizzle migrations instead.",
+    message: "See README.md for migration instructions. Run 'npm run db:migrate' to initialize the database.",
+    deprecated: true
+  }, { status: 410 }); // 410 Gone - indicates the resource is permanently unavailable
   // SECURITY: Require admin authentication
   const session = request.cookies.get("admin_session")?.value;
   
