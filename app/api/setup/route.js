@@ -29,6 +29,45 @@ export async function GET() {
       );
     `;
 
+    await sql`
+      CREATE TABLE IF NOT EXISTS quotes (
+        id VARCHAR(255) PRIMARY KEY,
+        invoice_number VARCHAR(255) UNIQUE,
+        client_name VARCHAR(255),
+        client_email VARCHAR(255),
+        client_company VARCHAR(255),
+        base_package VARCHAR(255),
+        selected_features JSONB,
+        feature_quantities JSONB,
+        ongoing_costs JSONB,
+        base_total DECIMAL(10, 2),
+        features_total DECIMAL(10, 2),
+        subtotal DECIMAL(10, 2),
+        vat DECIMAL(10, 2),
+        total DECIMAL(10, 2),
+        ongoing_total DECIMAL(10, 2),
+        first_year_total DECIMAL(10, 2),
+        discount_percentage DECIMAL(5, 2) DEFAULT 0,
+        discount_amount DECIMAL(10, 2) DEFAULT 0,
+        final_total DECIMAL(10, 2),
+        expires_at TIMESTAMP,
+        status VARCHAR(50) DEFAULT 'PENDING',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
+
+    await sql`
+      CREATE TABLE IF NOT EXISTS revenue (
+        id VARCHAR(255) PRIMARY KEY,
+        source_type VARCHAR(50),
+        source_id VARCHAR(255),
+        amount DECIMAL(10, 2),
+        category VARCHAR(100),
+        description TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
+
     return NextResponse.json({
       message: "Database Initialized Successfully ✅",
     });

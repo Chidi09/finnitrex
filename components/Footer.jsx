@@ -64,6 +64,7 @@ export default function Footer() {
             <h3 className="text-white font-bold uppercase tracking-widest text-xs mb-2 border-b border-gray-800 pb-2">Navigation Node</h3>
             <ul className="space-y-2">
               <li><Link href="/about" className="text-gray-400 hover:text-lime-400 transition-colors flex items-center gap-1">About Us <ArrowUpRight size={10} /></Link></li>
+              <li><Link href="/quote" className="text-gray-400 hover:text-lime-400 transition-colors flex items-center gap-1">Get Quote <ArrowUpRight size={10} /></Link></li>
               <li><Link href="/software" className="text-gray-400 hover:text-lime-400 transition-colors flex items-center gap-1">LMS & Software <ArrowUpRight size={10} /></Link></li>
               <li><Link href="/fintech" className="text-gray-400 hover:text-emerald-400 transition-colors flex items-center gap-1">Data Analytics <ArrowUpRight size={10} /></Link></li>
               <li><Link href="/robotics" className="text-gray-400 hover:text-lime-400 transition-colors flex items-center gap-1">Future Labs <ArrowUpRight size={10} /></Link></li>

@@ -43,6 +43,10 @@ export default function Home() {
               <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-200 ease-out" />
            </Link>
            
+           <Link href="/quote" className="w-full md:w-auto px-8 py-5 rounded-none border border-gray-700 hover:border-lime-400 hover:text-lime-400 transition-all backdrop-blur-sm text-lg font-medium tracking-wide">
+              GET QUOTE
+           </Link>
+           
            <Link href="/software" className="w-full md:w-auto px-8 py-5 rounded-none border border-gray-700 hover:border-lime-400 hover:text-lime-400 transition-all backdrop-blur-sm text-lg font-medium tracking-wide">
               VIEW SOLUTIONS
            </Link>
