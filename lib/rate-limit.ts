@@ -30,7 +30,16 @@ type RateLimitResult = {
     reset: number;
 };
 
-// Fallback in-memory store
+// ⚠️ CRITICAL PRODUCTION WARNING ⚠️
+// Fallback in-memory store - DO NOT RELY ON THIS FOR PRODUCTION
+// 
+// If deployed to Vercel (serverless):
+// - Rate limiting works per Function Instance
+// - Multiple lambda instances = multiple rate limit buckets per user
+// - Cold starts reset the memory map, allowing bypass
+// 
+// SOLUTION: You MUST provision a Redis instance (e.g., Upstash) and set REDIS_URL
+// The memory store is ONLY for local development
 const memoryStore = new Map<string, { count: number; expiresAt: number }>();
 
 export async function rateLimit({
@@ -61,10 +70,15 @@ export async function rateLimit({
             };
         } catch (error) {
             console.warn("Redis rate limit failed, falling back to memory:", error);
+            // ⚠️ WARNING: Falling back to insecure in-memory store
+            if (process.env.NODE_ENV === "production") {
+                console.error("CRITICAL: Redis failed in production! Rate limiting is compromised!");
+            }
         }
     }
 
-    // In-memory fallback
+    // ⚠️ INSECURE FALLBACK: In-memory store (only for development)
+    // This does NOT work correctly in serverless environments
     const now = Date.now();
     const record = memoryStore.get(key);
 

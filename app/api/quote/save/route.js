@@ -2,10 +2,15 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/store";
 import { SendMailClient } from "zeptomail";
 import { generateInvoiceEmail } from "@/lib/emailTemplates";
-import { basePackages, features, ongoingCosts } from "@/lib/pricingConfig";
+import { basePackages, features, ongoingCosts as ongoingCostsConfig } from "@/lib/pricingConfig";
 
 const url = "https://api.zeptomail.com/";
 const token = process.env.ZEPTOMAIL_TOKEN;
+
+// Helper function to round currency values to 2 decimal places
+function roundCurrency(value) {
+  return Math.round(value * 100) / 100;
+}
 
 export async function POST(request) {
   try {
@@ -17,8 +22,7 @@ export async function POST(request) {
       selectedPackage,
       selectedFeatures,
       featureQuantities,
-      ongoingCosts,
-      calculations,
+      ongoingCosts: ongoingCostsSelected, // Renamed to avoid conflict with import
       discountType,
       discountValue,
       offerAmount,
@@ -32,37 +36,66 @@ export async function POST(request) {
       );
     }
 
-    // Generate invoice number
-    const invoiceNumber = `INV-${Date.now().toString().slice(-6)}`;
-    const expiresAt = new Date();
-    expiresAt.setDate(expiresAt.getDate() + 30); // 30 days
+    // SECURITY FIX: Recalculate all pricing on server-side
+    // DO NOT trust calculations from client - they can be tampered with
+    
+    // 1. Recalculate Base Package Price
+    const baseTotal = basePackages[selectedPackage]?.basePrice || 0;
 
-    // Build feature names and prices for email template
+    // 2. Recalculate Features Total
+    let featuresTotal = 0;
     const featureNames = {};
     const featurePrices = {};
     Object.entries(selectedFeatures || {}).forEach(([key, enabled]) => {
       if (enabled && features[key]) {
+        const qty = featureQuantities?.[key] || 1;
+        const featurePrice = features[key].price * qty;
+        featuresTotal += featurePrice;
         featureNames[key] = features[key].name;
         featurePrices[key] = features[key].price;
       }
     });
 
+    // 3. Recalculate Ongoing Costs Total
+    let ongoingTotal = 0;
     const ongoingCostNames = {};
     const ongoingCostPrices = {};
-    Object.entries(ongoingCosts || {}).forEach(([key, enabled]) => {
-      if (enabled && ongoingCosts[key]) {
-        ongoingCostNames[key] = ongoingCosts[key].name;
-        ongoingCostPrices[key] = ongoingCosts[key].price;
+    Object.entries(ongoingCostsSelected || {}).forEach(([key, enabled]) => {
+      if (enabled && ongoingCostsConfig[key]) {
+        ongoingTotal += ongoingCostsConfig[key].price;
+        ongoingCostNames[key] = ongoingCostsConfig[key].name;
+        ongoingCostPrices[key] = ongoingCostsConfig[key].price;
       }
     });
 
-    // Calculate discount amounts
-    const discountPercentage = discountType === "percentage" ? parseFloat(discountValue || 0) : 0;
-    const discountAmountValue = discountType === "amount" ? parseFloat(discountValue || 0) : 
-                                discountType === "offer" ? parseFloat(calculations.discountAmount || 0) : 0;
-    const finalTotal = calculations.total;
+    // 4. Recalculate Subtotal, VAT, and Total
+    const subtotal = roundCurrency(baseTotal + featuresTotal);
+    const vat = roundCurrency(subtotal * 0.20);
+    const total = roundCurrency(subtotal + vat);
+    const firstYearTotal = roundCurrency(total + ongoingTotal);
 
-    // Save quote to database
+    // 5. Calculate discount amounts (server-side validation)
+    const discountPercentage = discountType === "percentage" ? parseFloat(discountValue || 0) : 0;
+    let discountAmountValue = 0;
+    
+    if (discountType === "amount") {
+      discountAmountValue = roundCurrency(parseFloat(discountValue || 0));
+    } else if (discountType === "offer" && offerAmount) {
+      // Calculate discount from offer amount
+      discountAmountValue = roundCurrency(total - parseFloat(offerAmount || 0));
+    } else if (discountType === "percentage") {
+      discountAmountValue = roundCurrency(total * (discountPercentage / 100));
+    }
+
+    // 6. Calculate final total after discount
+    const finalTotal = roundCurrency(Math.max(0, total - discountAmountValue));
+
+    // Generate invoice number
+    const invoiceNumber = `INV-${Date.now().toString().slice(-6)}`;
+    const expiresAt = new Date();
+    expiresAt.setDate(expiresAt.getDate() + 30); // 30 days
+
+    // Save quote to database with SERVER-CALCULATED values
     const quoteData = {
       invoiceNumber,
       clientName,
@@ -71,14 +104,14 @@ export async function POST(request) {
       basePackage: selectedPackage,
       selectedFeatures: selectedFeatures || {},
       featureQuantities: featureQuantities || {},
-      ongoingCosts: ongoingCosts || {},
-      baseTotal: calculations.baseTotal,
-      featuresTotal: calculations.featuresTotal,
-      subtotal: calculations.subtotal,
-      vat: calculations.vat,
-      total: calculations.total,
-      ongoingTotal: calculations.ongoingTotal,
-      firstYearTotal: calculations.firstYearTotal,
+      ongoingCosts: ongoingCostsSelected || {},
+      baseTotal,
+      featuresTotal,
+      subtotal,
+      vat,
+      total,
+      ongoingTotal,
+      firstYearTotal,
       discountPercentage,
       discountAmount: discountAmountValue,
       finalTotal,

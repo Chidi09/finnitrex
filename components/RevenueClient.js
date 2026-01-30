@@ -7,7 +7,17 @@ import { DollarSign, TrendingUp, Activity, Camera } from "lucide-react";
 export default function RevenueClient({ stats }) {
   const [isScreenshotMode, setIsScreenshotMode] = useState(false);
 
-  // Detect Screenshot Keys (PrintScreen, or Cmd+Shift+3/4 on Mac)
+  // ⚠️ SCREENSHOT DETECTION LIMITATION ⚠️
+  // This only detects keyboard shortcuts while the browser window is focused.
+  // It CANNOT detect:
+  // - OS-level screenshots triggered outside the browser
+  // - Background screenshot tools
+  // - Screen recording software
+  // - Mobile device screenshots
+  // 
+  // DO NOT rely on this for actual security (DLP - Data Loss Prevention).
+  // This is a visual gimmick only for user awareness.
+  // For real security, use browser extensions or OS-level DLP solutions.
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "PrintScreen" || (e.metaKey && e.shiftKey && (e.key === "3" || e.key === "4"))) {

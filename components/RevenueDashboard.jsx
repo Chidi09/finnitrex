@@ -38,47 +38,41 @@ export default function RevenueDashboard() {
   useEffect(() => {
     fetchRevenueData();
     
-    // Screenshot detection
+    // ⚠️ VISUAL EFFECT ONLY - NOT A SECURITY FEATURE ⚠️
+    // Screenshot detection is purely cosmetic and does NOT provide real security.
+    // It only detects keyboard shortcuts while the browser window is focused.
+    // It CANNOT detect:
+    // - OS-level screenshots (Windows Snipping Tool, macOS Screenshot, etc.)
+    // - External screenshot tools
+    // - Screen recording software
+    // - Mobile device screenshots
+    // - Screenshots taken when browser window is not focused
+    //
+    // REMOVED: DevTools detection loop (setInterval every 500ms)
+    // Reason: Causes false positives (browser extensions, vertical tabs, etc.)
+    // and creates unnecessary performance overhead.
+    //
+    // REMOVED: Right-click prevention
+    // Reason: Poor UX - users expect context menu functionality
+    //
+    // If data is truly confidential, do not send it to the client at all.
+    // Use proper server-side authorization instead.
     const handleKeyDown = (e) => {
-      // Detect Print Screen, Windows + Shift + S, etc.
+      // Optional: Visual effect for keyboard shortcuts only (not security)
       if (e.key === 'PrintScreen' || 
           (e.ctrlKey && e.shiftKey && e.key === 'S') ||
           (e.metaKey && e.shiftKey && e.key === '4')) {
-        e.preventDefault();
+        // Don't prevent default - let the screenshot happen
+        // Just show visual effect for awareness
         setShowScreenshot(true);
-        setTimeout(() => setShowScreenshot(false), 3000);
-      }
-    };
-
-    // Detect right-click context menu
-    const handleContextMenu = (e) => {
-      e.preventDefault();
-    };
-
-    // Detect DevTools
-    let devtools = { open: false };
-    const detectDevTools = () => {
-      const threshold = 160;
-      if (window.outerHeight - window.innerHeight > threshold || 
-          window.outerWidth - window.innerWidth > threshold) {
-        if (!devtools.open) {
-          devtools.open = true;
-          setShowScreenshot(true);
-          setTimeout(() => setShowScreenshot(false), 3000);
-        }
-      } else {
-        devtools.open = false;
+        setTimeout(() => setShowScreenshot(false), 2000);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('contextmenu', handleContextMenu);
-    const devToolsInterval = setInterval(detectDevTools, 500);
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('contextmenu', handleContextMenu);
-      clearInterval(devToolsInterval);
     };
   }, []);
 

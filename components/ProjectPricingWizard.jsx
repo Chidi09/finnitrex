@@ -77,19 +77,39 @@ export default function ProjectPricingWizard() {
     }
   }, [data.system]);
 
-  // Load data from URL parameters
+  // SECURITY FIX: Load data from sessionStorage instead of URL parameters
+  // This prevents PII (name, email) from being exposed in browser history and server logs
   useEffect(() => {
-    const nameParam = searchParams.get("name");
-    const emailParam = searchParams.get("email");
-    const systemParam = searchParams.get("system");
+    try {
+      const storedData = sessionStorage.getItem('wizardFormData');
+      if (storedData) {
+        const formData = JSON.parse(storedData);
+        setData(prev => ({
+          ...prev,
+          name: formData.name || prev.name,
+          email: formData.email || prev.email,
+          system: formData.system || prev.system
+        }));
+        
+        // Clean up after reading (optional - keeps data for page refresh)
+        // sessionStorage.removeItem('wizardFormData');
+      }
+    } catch (error) {
+      console.error('Failed to load form data from sessionStorage:', error);
+      // Fallback: Try URL params for backwards compatibility (remove after migration)
+      const nameParam = searchParams.get("name");
+      const emailParam = searchParams.get("email");
+      const systemParam = searchParams.get("system");
 
-    if (nameParam || emailParam || systemParam) {
-      setData(prev => ({
-        ...prev,
-        name: nameParam || prev.name,
-        email: emailParam || prev.email,
-        system: systemParam || prev.system
-      }));
+      if (nameParam || emailParam || systemParam) {
+        console.warn('Using URL params (deprecated - will be removed)');
+        setData(prev => ({
+          ...prev,
+          name: nameParam || prev.name,
+          email: emailParam || prev.email,
+          system: systemParam || prev.system
+        }));
+      }
     }
   }, [searchParams]);
 

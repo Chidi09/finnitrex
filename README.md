@@ -1,5 +1,18 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Environment Variables
+
+**Required for production:**
+
+- `JWT_SECRET` - Secret key for signing admin session tokens (generate a strong random string, e.g., `openssl rand -base64 32`)
+- `ADMIN_ACCESS_KEY` - Password for admin login
+- `REDIS_URL` - Redis connection URL (e.g., from Upstash) - **CRITICAL for rate limiting in production**
+- `ZEPTOMAIL_TOKEN` - ZeptoMail API token for sending emails
+- `EMAIL_FROM` - Email address for sending quotes (optional, defaults to noreply@finnitrex.com)
+- Database connection variables (Vercel Postgres)
+
+**Note:** Without `REDIS_URL`, rate limiting falls back to an insecure in-memory store that doesn't work correctly in serverless environments.
+
 ## Getting Started
 
 First, run the development server:

@@ -25,6 +25,9 @@ export async function GET() {
       }
       const monthData = monthlyRevenueMap.get(monthKey);
       monthData.revenue += amount;
+      // ⚠️ TODO: Hardcoded profit margin (65%) - this should be calculated from actual costs
+      // Ideally, store the cost snapshot when the quote is saved, then calculate profit as revenue - cost
+      // Current approach: If pricing changes in pricingConfig.js, historical profit data becomes inaccurate
       monthData.profit += amount * 0.65; // 65% profit margin estimate
     });
 
@@ -42,6 +45,7 @@ export async function GET() {
       }
       const monthData = monthlyRevenueMap.get(monthKey);
       monthData.revenue += deposit;
+      // ⚠️ TODO: Hardcoded profit margin - see comment above
       monthData.profit += deposit * 0.65;
     });
 

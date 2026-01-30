@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { rateLimit } from "@/lib/rate-limit";
+import { SignJWT } from "jose";
 
 export async function POST(request) {
   try {
@@ -23,9 +24,22 @@ export async function POST(request) {
     const { accessKey } = await request.json();
 
     if (accessKey === process.env.ADMIN_ACCESS_KEY) {
+      // SECURITY FIX: Sign JWT token instead of plain "active" cookie
+      // This prevents users from manually creating admin_session cookie
+      if (!process.env.JWT_SECRET) {
+        console.error("JWT_SECRET environment variable is not set!");
+        return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
+      }
+
+      const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+      const token = await new SignJWT({ role: "admin" })
+        .setProtectedHeader({ alg: "HS256" })
+        .setExpirationTime("24h")
+        .sign(secret);
+
       const response = NextResponse.json({ success: true });
 
-      response.cookies.set("admin_session", "active", {
+      response.cookies.set("admin_session", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "strict",

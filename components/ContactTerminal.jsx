@@ -24,14 +24,24 @@ export default function ContactTerminal() {
 
   const handleBridge = (e) => {
     e.preventDefault();
-    // Redirect to Wizard with pre-filled data using URL Query Params
-    const query = new URLSearchParams({
-      name: form.name,
-      email: form.email,
-      system: form.service // Pre-select the system in the wizard
-    }).toString();
     
-    router.push(`/start?${query}`);
+    // SECURITY FIX: Use sessionStorage instead of URL parameters
+    // URLs are logged in browser history, proxy logs, and server access logs.
+    // This prevents PII (name, email) from being exposed in plain-text logs.
+    try {
+      sessionStorage.setItem('wizardFormData', JSON.stringify({
+        name: form.name,
+        email: form.email,
+        system: form.service // Pre-select the system in the wizard
+      }));
+    } catch (error) {
+      console.error('Failed to save form data to sessionStorage:', error);
+      // Fallback: If sessionStorage fails, still navigate but log a warning
+      // In production, you might want to show an error to the user
+    }
+    
+    // Navigate without exposing PII in URL
+    router.push('/start');
   };
 
   return (

@@ -1,7 +1,48 @@
 import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+// ⚠️ DEVELOPMENT/INITIAL SETUP ROUTE ONLY ⚠️
+// 
+// WARNING: This route creates database tables every time it's called.
+// This is acceptable for prototyping, but RISKY for production:
+// - Accidental calls can cause issues
+// - No proper migration versioning
+// - No rollback capability
+// - Public endpoint - anyone can trigger database operations
+//
+// RECOMMENDATION:
+// 1. Run these SQL commands manually in Vercel Storage console ONCE
+// 2. Remove or protect this route in production (e.g., require admin auth + environment check)
+// 3. Use a proper migration tool (Drizzle Kit, Prisma Migrate) for production
+//
+// SECURITY FIX: Protected with admin authentication
+export async function GET(request) {
+  // SECURITY: Require admin authentication
+  const session = request.cookies.get("admin_session")?.value;
+  
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized - Admin access required" }, { status: 401 });
+  }
+
+  // Verify JWT token
+  try {
+    const { jwtVerify } = await import("jose");
+    if (!process.env.JWT_SECRET) {
+      return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
+    }
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+    await jwtVerify(session, secret);
+  } catch (err) {
+    return NextResponse.json({ error: "Invalid session token" }, { status: 401 });
+  }
+
+  // Additional safety: Disable in production unless explicitly enabled via env var
+  if (process.env.NODE_ENV === "production" && process.env.ALLOW_SETUP_ROUTE !== "true") {
+    return NextResponse.json({ 
+      error: "This route is disabled in production. Set ALLOW_SETUP_ROUTE=true to enable (not recommended)" 
+    }, { status: 403 });
+  }
+
   try {
     await sql`
       CREATE TABLE IF NOT EXISTS requests (
