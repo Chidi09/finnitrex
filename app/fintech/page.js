@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import DataViz3D from "@/components/DataViz3D";
+import FAQSection from "@/components/FAQSection"; // Import
 import {
   ArrowLeft,
   TrendingUp,
@@ -9,6 +10,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+// ... [Keep existing metadata] ...
 export const metadata = {
   title: "Fintech & Predictive Analytics",
   description:
@@ -35,10 +37,34 @@ export const metadata = {
   },
 };
 
+const fintechFAQs = [
+  {
+    question: "What is the latency on your predictive analytics engine?",
+    answer:
+      "Our core engine typically operates with <12ms latency for data ingestion and processing. We utilize edge computing and optimized gRPC pipelines to ensure real-time analysis of market fluctuations.",
+  },
+  {
+    question:
+      "How do you ensure data privacy and regulatory compliance (GDPR/FCA)?",
+    answer:
+      "We implement 'Privacy by Design'. All PII (Personally Identifiable Information) is encrypted at rest (AES-256) and in transit (TLS 1.3). Our RegTech modules are specifically updated to adhere to current FCA and GDPR requirements regarding data sovereignty and audit trails.",
+  },
+  {
+    question: "Can the AI model adapt to our specific risk parameters?",
+    answer:
+      "Yes. We don't use a 'black box' model. We fine-tune our base models on your historical data and specific risk tolerance levels. You maintain control over the sensitivity thresholds for fraud detection and automated trading signals.",
+  },
+  {
+    question: "What data sources does the system integrate with?",
+    answer:
+      "Our system is agnostic. It can ingest data from standard financial feeds (Bloomberg, Reuters), legacy banking APIs, and alternative data sources (sentiment analysis, blockchain ledgers) simultaneously.",
+  },
+];
+
 export default function FintechPage() {
   return (
     <main className="min-h-screen bg-black text-white p-4 md:p-8">
-      {/* Top Nav */}
+      {/* ... [Keep existing Top Nav] ... */}
       <div className="flex justify-between items-center mb-8">
         <Link
           href="/"
@@ -52,16 +78,17 @@ export default function FintechPage() {
             <span className="font-light text-gray-500">ANALYTICS</span>
           </h1>
           <p className="text-xs text-green-400 font-mono">
-            SYSTEM STATUS: ONLINE // SPONSOR LICENCE: PENDING
+            SYSTEM STATUS: ONLINE
           </p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* LEFT COLUMN: The Visualizer */}
+        {/* ... [Keep existing Left Column] ... */}
         <div className="lg:col-span-2 space-y-6">
           {/* 3D Main Window */}
           <div className="bg-gray-900/40 rounded-3xl border border-gray-800 overflow-hidden backdrop-blur-sm relative h-[500px] shadow-2xl shadow-lime-900/10">
+            {/* ... */}
             <div className="absolute top-4 left-6 z-10">
               <h2 className="text-xl font-bold flex items-center gap-2">
                 <Activity className="text-lime-400" /> Market Flux Simulator
@@ -70,7 +97,6 @@ export default function FintechPage() {
                 Real-time AI prediction modeling
               </p>
             </div>
-            {/* The 3D Component */}
             <Suspense
               fallback={
                 <div className="flex items-center justify-center h-full text-lime-400 font-mono">
@@ -84,6 +110,7 @@ export default function FintechPage() {
 
           {/* Metrics Row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* ... */}
             <div className="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
               <div className="text-gray-400 text-sm mb-1">
                 Predictive Accuracy
@@ -112,9 +139,9 @@ export default function FintechPage() {
           </div>
         </div>
 
-        {/* RIGHT COLUMN: Service Details */}
+        {/* ... [Keep existing Right Column] ... */}
         <div className="space-y-6">
-          {/* Service 1: Analytics */}
+          {/* Service Cards */}
           <div className="bg-gray-900/40 p-8 rounded-3xl border border-gray-800 hover:border-lime-500/50 transition-colors">
             <div className="w-12 h-12 bg-lime-500/10 rounded-full flex items-center justify-center mb-4">
               <TrendingUp className="text-lime-400" />
@@ -135,7 +162,6 @@ export default function FintechPage() {
             </ul>
           </div>
 
-          {/* Service 2: Compliance */}
           <div className="bg-gray-900/40 p-8 rounded-3xl border border-gray-800 hover:border-green-500/50 transition-colors">
             <div className="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center mb-4">
               <Lock className="text-green-400" />
@@ -155,7 +181,6 @@ export default function FintechPage() {
             </ul>
           </div>
 
-          {/* Service 3: Security */}
           <div className="bg-gray-900/40 p-8 rounded-3xl border border-gray-800 hover:border-emerald-500/50 transition-colors">
             <div className="w-12 h-12 bg-emerald-500/10 rounded-full flex items-center justify-center mb-4">
               <ShieldAlert className="text-emerald-400" />
@@ -167,6 +192,15 @@ export default function FintechPage() {
             </p>
           </div>
         </div>
+      </div>
+
+      {/* --- ADDED FAQ SECTION HERE --- */}
+      <div className="mt-16">
+        <FAQSection
+          title="Fintech Systems FAQ"
+          description="Technical specifications regarding our AI models and compliance architecture."
+          items={fintechFAQs}
+        />
       </div>
     </main>
   );

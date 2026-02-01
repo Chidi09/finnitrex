@@ -234,3 +234,50 @@ export function FAQSchema({ faqs }: FAQSchemaProps) {
     />
   );
 }
+
+interface CaseStudySchemaProps {
+  title: string;
+  description: string;
+  date: string;
+  author: string;
+  url: string;
+  image?: string;
+}
+
+export function CaseStudySchema({
+  title,
+  description,
+  date,
+  author,
+  url,
+  image,
+}: CaseStudySchemaProps) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description: description,
+    author: {
+      "@type": "Organization",
+      name: author,
+    },
+    datePublished: date,
+    image: image || "https://finnitrex.com/og-image.png",
+    url: url,
+    publisher: {
+      "@type": "Organization",
+      name: "Finnitrex Solutions Ltd",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://finnitrex.com/icon.svg",
+      },
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}

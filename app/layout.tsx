@@ -99,6 +99,8 @@ export const metadata: Metadata = {
   category: "Technology",
 };
 
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -114,6 +116,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans bg-black text-white antialiased selection:bg-lime-500/30 selection:text-white`}
       >
+        <GoogleAnalytics
+          GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID || ""}
+        />
         {/* ENHANCEMENT: Custom Cursor */}
         <CustomCursor />
 
