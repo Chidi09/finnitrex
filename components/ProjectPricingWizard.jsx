@@ -35,7 +35,7 @@ const STEPS = [
   { id: 2, title: "Define Scope & Features" },
   { id: 3, title: "Project Constraints" },
   { id: 4, title: "Pricing & Quote" },
-  { id: 5, title: "Generate Invoice" },
+  { id: 5, title: "Generate Estimate" },
 ];
 
 // System to Package Mapping
@@ -237,7 +237,7 @@ export default function ProjectPricingWizard() {
     }, 1500);
   };
 
-  const generateInvoice = async () => {
+  const generateEstimate = async () => {
     if (!data.name || !data.email) {
       alert("Please enter your name and email to generate invoice");
       return;
@@ -284,7 +284,7 @@ export default function ProjectPricingWizard() {
     }
   };
 
-  const printInvoice = () => {
+  const printEstimate = () => {
     // Browser print (jspdf can be added later if needed)
     window.print();
   };
@@ -368,7 +368,7 @@ export default function ProjectPricingWizard() {
               setStep(1);
               setStatus("IDLE");
             }}
-            onPrint={printInvoice}
+            onPrint={printEstimate}
           />
         ) : status === "SUCCESS" ? (
           <div className="h-full flex flex-col items-center justify-center text-center space-y-6">
@@ -872,7 +872,7 @@ export default function ProjectPricingWizard() {
                 </button>
               ) : (
                 <button
-                  onClick={generateInvoice}
+                  onClick={generateEstimate}
                   disabled={!canProceed() || saving}
                   className="flex items-center gap-2 bg-gradient-to-r from-lime-500 to-lime-600 text-black px-8 py-2 rounded font-bold hover:shadow-[0_0_20px_rgba(190,242,100,0.5)] transition-all disabled:opacity-50"
                 >
@@ -883,7 +883,7 @@ export default function ProjectPricingWizard() {
                     </>
                   ) : (
                     <>
-                      <FileText size={16} /> GENERATE INVOICE
+                      <FileText size={16} /> GENERATE ESTIMATE
                     </>
                   )}
                 </button>
@@ -968,6 +968,9 @@ function InvoiceView({
             </div>
             <div className="font-mono text-emerald-400 print:text-emerald-600 text-sm">
               {expiryDate}
+            </div>
+            <div className="mt-2 p-1 bg-lime-400/10 border border-lime-400/20 rounded text-[10px] text-lime-500 text-center uppercase font-bold tracking-wider">
+              Provisional Quote
             </div>
           </div>
         </div>

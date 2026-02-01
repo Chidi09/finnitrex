@@ -524,6 +524,9 @@ function InvoiceView({
             <div className="font-mono text-emerald-400 print:text-emerald-600 text-sm">
               {expiryDate}
             </div>
+            <div className="mt-2 p-1 bg-lime-400/10 border border-lime-400/20 rounded text-[10px] text-lime-500 text-center uppercase font-bold tracking-wider">
+              Provisional Quote
+            </div>
           </div>
         </div>
 

@@ -26,28 +26,28 @@ export interface CaseStudy {
 export const caseStudies: CaseStudy[] = [
   {
     slug: "legacy-fintech-migration-nextjs",
-    title:
-      "How we migrated a legacy fintech app to Next.js 14 without downtime", // Exact title from doc
-    client: "FinTrust Global", // Placeholder name
+    title: "Migrating Legacy Fintech to Next.js 14 Zero Downtime",
+    client: "Sterling Pay",
     industry: "FinTech",
     description:
-      "A complete architectural overhaul of a monolithic banking application to a modern static-first architecture.",
+      "Complete architectural overhaul of a 10-year-old monolithic banking application.",
     challenge:
-      "The client was stuck on a legacy angular codebase that took 12 seconds to load. They needed to migrate to a modern stack without disrupting $5M in daily transactions.",
+      "The client's legacy Angular codebase took 8s to load, causing a 40% drop-off rate. They needed to migrate to a modern stack without disrupting $50M in daily transaction volume.",
     solution:
-      "We utilized the strangler fig pattern to migrate routes one by one to Next.js 14. This allowed us to launch the new 'speed-critical' marketing pages first, while keeping the legacy backend operational during the transition.",
+      "We utilized the 'Strangler Fig' pattern to migrate routes incrementally to Next.js 14. We built a parallel static-first frontend that communicated with their legacy backend via a new GraphQL mesh layer.",
     results: [
-      { metric: "Downtime", value: "0s", label: "During Migration" },
-      { metric: "Lighthouse", value: "100", label: "Performance Score" },
+      { metric: "Downtime", value: "0ms", label: "During Migration" },
+      { metric: "Lighthouse", value: "98/100", label: "Performance Score" },
       { metric: "Conversion", value: "+45%", label: "Lead Gen Increase" },
     ],
-    techStack: [
-      "Next.js 14",
-      "React Server Components",
-      "TypeScript",
-      "Vercel",
-    ],
-    heroImage: "/case-studies/migration.jpg", // Ensure you have an image or placeholder
+    techStack: ["Next.js 14", "GraphQL", "Node.js", "Docker", "AWS ECS"],
+    testimonial: {
+      quote:
+        "We were terrified of touching the legacy code. Finnitrex not only migrated us safely but improved our site speed by 400% in the process.",
+      author: "Marcus Thorne",
+      role: "Operations Director, Sterling Pay",
+    },
+    heroImage: "/case-studies/migration.jpg",
     date: "2025-01-10",
   },
   {

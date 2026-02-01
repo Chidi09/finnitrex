@@ -100,6 +100,7 @@ export const metadata: Metadata = {
 };
 
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import VisitorTracker from "@/components/VisitorTracker";
 
 export default function RootLayout({
   children,
@@ -119,6 +120,8 @@ export default function RootLayout({
         <GoogleAnalytics
           GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID || ""}
         />
+        <VisitorTracker />
+
         {/* ENHANCEMENT: Custom Cursor */}
         <CustomCursor />
 
