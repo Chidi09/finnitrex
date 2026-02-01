@@ -92,7 +92,7 @@ export default function PricingCalculator() {
     }));
   };
 
-  const generateInvoice = async () => {
+  const generateEstimate = async () => {
     if (!clientInfo.name || !clientInfo.email) {
       alert("Please enter your name and email to generate invoice");
       return;
@@ -406,7 +406,7 @@ export default function PricingCalculator() {
                   </div>
 
                   <button
-                    onClick={generateInvoice}
+                    onClick={generateEstimate}
                     disabled={saving}
                     className="w-full bg-lime-500 text-black font-bold py-3 rounded-lg hover:bg-lime-400 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
@@ -418,7 +418,7 @@ export default function PricingCalculator() {
                     ) : (
                       <>
                         <FileText size={18} />
-                        Generate & Email Invoice
+                        Generate & Email Estimate
                       </>
                     )}
                   </button>
@@ -506,7 +506,7 @@ function InvoiceView({
           </div>
           <div className="text-right">
             <div className="text-xs text-gray-500 print:text-gray-600 mb-1">
-              INVOICE #
+              ESTIMATE #
             </div>
             <div className="text-xl font-bold font-mono text-lime-400 print:text-black">
               {invoiceNumber}

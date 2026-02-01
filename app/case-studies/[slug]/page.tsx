@@ -1,8 +1,11 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getCaseStudyBySlug, getAllCaseStudies } from "@/lib/content/caseStudies";
-import { ArrowLeft, CheckCircle2, Quote } from "lucide-react";
+import {
+  getCaseStudyBySlug,
+  getAllCaseStudies,
+} from "@/lib/content/caseStudies";
+import { ArrowLeft, CheckCircle2, Quote, ArrowRight } from "lucide-react";
 import { BreadcrumbSchema, CaseStudySchema } from "@/components/StructuredData";
 
 interface Props {
@@ -40,7 +43,10 @@ export default async function CaseStudyDetail({ params }: Props) {
         items={[
           { name: "Home", url: "https://finnitrex.com" },
           { name: "Case Studies", url: "https://finnitrex.com/case-studies" },
-          { name: study.title, url: `https://finnitrex.com/case-studies/${study.slug}` },
+          {
+            name: study.title,
+            url: `https://finnitrex.com/case-studies/${study.slug}`,
+          },
         ]}
       />
       <CaseStudySchema
@@ -64,16 +70,23 @@ export default async function CaseStudyDetail({ params }: Props) {
             </Link>
 
             <div className="flex items-center gap-3 mb-6">
-              <span className="text-purple-400 font-mono text-sm">{study.client}</span>
+              <span className="text-purple-400 font-mono text-sm">
+                {study.client}
+              </span>
               <span className="w-1 h-1 bg-gray-600 rounded-full" />
               <span className="text-gray-400 text-sm">{study.industry}</span>
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-bold mb-8">{study.title}</h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-8">
+              {study.title}
+            </h1>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {study.results.map((res) => (
-                <div key={res.label} className="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                <div
+                  key={res.label}
+                  className="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50"
+                >
                   <div className="text-3xl md:text-4xl font-bold text-white mb-1 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
                     {res.value}
                   </div>
@@ -87,29 +100,36 @@ export default async function CaseStudyDetail({ params }: Props) {
         {/* Main Content */}
         <div className="container mx-auto px-4 py-20 max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-
             {/* Left Column: Narrative */}
             <div className="lg:col-span-2 space-y-16">
               <section>
-                <h2 className="text-2xl font-bold mb-4 text-white">The Challenge</h2>
+                <h2 className="text-2xl font-bold mb-4 text-white">
+                  The Challenge
+                </h2>
                 <p className="text-lg text-gray-300 leading-relaxed">
                   {study.challenge}
                 </p>
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold mb-4 text-white">Our Solution</h2>
+                <h2 className="text-2xl font-bold mb-4 text-white">
+                  Our Solution
+                </h2>
                 <p className="text-lg text-gray-300 leading-relaxed mb-6">
                   {study.solution}
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-6 h-6 text-green-500 shrink-0 mt-0.5" />
-                    <span className="text-gray-300">Scalable architecture design</span>
+                    <span className="text-gray-300">
+                      Scalable architecture design
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-6 h-6 text-green-500 shrink-0 mt-0.5" />
-                    <span className="text-gray-300">Performance optimization & caching</span>
+                    <span className="text-gray-300">
+                      Performance optimization & caching
+                    </span>
                   </li>
                 </ul>
               </section>
@@ -121,11 +141,30 @@ export default async function CaseStudyDetail({ params }: Props) {
                     "{study.testimonial.quote}"
                   </p>
                   <footer className="text-sm">
-                    <strong className="text-white block">{study.testimonial.author}</strong>
-                    <span className="text-gray-500">{study.testimonial.role}</span>
+                    <strong className="text-white block">
+                      {study.testimonial.author}
+                    </strong>
+                    <span className="text-gray-500">
+                      {study.testimonial.role}
+                    </span>
                   </footer>
                 </blockquote>
               )}
+
+              <div className="mt-16 p-8 bg-lime-900/10 border border-lime-500/30 rounded-xl">
+                <h3 className="text-xl font-bold text-white mb-2">
+                  Want us to do this for you?
+                </h3>
+                <p className="text-gray-400 mb-6">
+                  Stop losing customers to slow legacy tech.
+                </p>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 bg-lime-500 text-black px-6 py-3 rounded font-bold hover:bg-lime-400 transition-colors"
+                >
+                  Book a Technical Audit <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
             </div>
 
             {/* Right Column: Sidebar */}

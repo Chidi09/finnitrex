@@ -231,7 +231,7 @@ export default function AboutPage() {
                   href="/start"
                   className="inline-flex items-center gap-2 px-10 py-4 bg-lime-400 text-black font-bold text-lg rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_rgba(190,242,100,0.3)]"
                 >
-                  INITIALIZE PROJECT
+                  START PROJECT
                 </Link>
               </div>
             </div>

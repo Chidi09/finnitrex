@@ -25,11 +25,38 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: "legacy-fintech-migration-nextjs",
+    title:
+      "How we migrated a legacy fintech app to Next.js 14 without downtime", // Exact title from doc
+    client: "FinTrust Global", // Placeholder name
+    industry: "FinTech",
+    description:
+      "A complete architectural overhaul of a monolithic banking application to a modern static-first architecture.",
+    challenge:
+      "The client was stuck on a legacy angular codebase that took 12 seconds to load. They needed to migrate to a modern stack without disrupting $5M in daily transactions.",
+    solution:
+      "We utilized the strangler fig pattern to migrate routes one by one to Next.js 14. This allowed us to launch the new 'speed-critical' marketing pages first, while keeping the legacy backend operational during the transition.",
+    results: [
+      { metric: "Downtime", value: "0s", label: "During Migration" },
+      { metric: "Lighthouse", value: "100", label: "Performance Score" },
+      { metric: "Conversion", value: "+45%", label: "Lead Gen Increase" },
+    ],
+    techStack: [
+      "Next.js 14",
+      "React Server Components",
+      "TypeScript",
+      "Vercel",
+    ],
+    heroImage: "/case-studies/migration.jpg", // Ensure you have an image or placeholder
+    date: "2025-01-10",
+  },
+  {
     slug: "edutech-lms-transformation",
     title: "Scaling Remote Learning for 50k Students",
     client: "GlobalEdu Partners",
     industry: "EdTech",
-    description: "Rebuilding a legacy LMS into a real-time, AI-driven learning platform.",
+    description:
+      "Rebuilding a legacy LMS into a real-time, AI-driven learning platform.",
     challenge:
       "GlobalEdu's existing platform crashed under the load of pandemic-era traffic. They needed a solution that could handle 50,000 concurrent users while adding adaptive learning features.",
     solution:
@@ -54,7 +81,8 @@ export const caseStudies: CaseStudy[] = [
     title: "Real-time Fraud Detection System",
     client: "NeoBank Corp",
     industry: "FinTech",
-    description: "Implementing machine learning pipelines to detect transaction anomalies in milliseconds.",
+    description:
+      "Implementing machine learning pipelines to detect transaction anomalies in milliseconds.",
     challenge:
       "NeoBank was facing increasing fraud attempts that manual review couldn't catch. They needed an automated system to flag suspicious transactions without adding friction to legitimate payments.",
     solution:
@@ -72,7 +100,7 @@ export const caseStudies: CaseStudy[] = [
 
 export function getAllCaseStudies(): CaseStudy[] {
   return caseStudies.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 }
 
