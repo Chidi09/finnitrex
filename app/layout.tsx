@@ -5,6 +5,11 @@ import Footer from "@/components/Footer";
 import MobileDock from "@/components/MobileDock";
 import CustomCursor from "@/components/CustomCursor";
 import CookieBanner from "@/components/CookieBanner";
+import {
+  OrganizationSchema,
+  LocalBusinessSchema,
+  WebsiteSchema,
+} from "@/components/StructuredData";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,9 +25,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://finnitrex.com"),
   title: {
     default: "Finnitrex | AI, LMS & Software Solutions",
-    template: "%s | Finnitrex"
+    template: "%s | Finnitrex",
   },
-  description: "Advanced technological solutions specializing in LMS architecture, predictive analytics, AI integration, and custom software development. UK-based technology company providing enterprise-grade solutions for education, finance, and manufacturing sectors.",
+  description:
+    "Advanced technological solutions specializing in LMS architecture, predictive analytics, AI integration, and custom software development. UK-based technology company providing enterprise-grade solutions for education, finance, and manufacturing sectors.",
   keywords: [
     "LMS",
     "Learning Management System",
@@ -38,7 +44,7 @@ export const metadata: Metadata = {
     "optics",
     "SaaS development",
     "enterprise software",
-    "education technology"
+    "education technology",
   ],
   authors: [{ name: "Finnitrex Solutions" }],
   creator: "Finnitrex Solutions",
@@ -60,7 +66,8 @@ export const metadata: Metadata = {
     url: "https://finnitrex.com",
     siteName: "Finnitrex",
     title: "Finnitrex | AI, LMS & Software Solutions",
-    description: "Advanced technological solutions specializing in LMS architecture, predictive analytics, AI integration, and custom software development.",
+    description:
+      "Advanced technological solutions specializing in LMS architecture, predictive analytics, AI integration, and custom software development.",
     images: [
       {
         url: "/og-image.png",
@@ -73,7 +80,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Finnitrex | AI, LMS & Software Solutions",
-    description: "Advanced technological solutions for LMS, AI, and custom software development.",
+    description:
+      "Advanced technological solutions for LMS, AI, and custom software development.",
     images: ["/og-image.png"],
     creator: "@finnitrex",
   },
@@ -98,6 +106,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <OrganizationSchema />
+        <LocalBusinessSchema />
+        <WebsiteSchema />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans bg-black text-white antialiased selection:bg-lime-500/30 selection:text-white`}
       >
@@ -105,9 +118,7 @@ export default function RootLayout({
         <CustomCursor />
 
         {/* Main Content */}
-        <div className="min-h-screen">
-          {children}
-        </div>
+        <div className="min-h-screen">{children}</div>
 
         {/* ENHANCEMENT: High-Tech Footer */}
         <Footer />
