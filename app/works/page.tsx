@@ -6,6 +6,7 @@ import {
   getProjectScreenshotUrl,
 } from "@/lib/content/projects";
 import { ArrowRight, ExternalLink, Github, Code } from "lucide-react";
+import ProjectScreenshot from "@/components/ProjectScreenshot";
 
 export const metadata: Metadata = {
   title: "Our Works | Projects & Solutions Portfolio",
@@ -181,11 +182,10 @@ export default function WorksPage() {
                       rel="noopener noreferrer"
                       className="block mb-6 overflow-hidden rounded-lg border border-gray-800"
                     >
-                      <img
+                      <ProjectScreenshot
                         src={getProjectScreenshotUrl(project.liveUrl)}
                         alt={`${project.title} live screenshot`}
                         className="w-full h-56 object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
                       />
                     </a>
                   )}
@@ -275,11 +275,10 @@ export default function WorksPage() {
                     rel="noopener noreferrer"
                     className="block mb-4 overflow-hidden rounded border border-gray-800"
                   >
-                    <img
+                    <ProjectScreenshot
                       src={getProjectScreenshotUrl(project.liveUrl)}
                       alt={`${project.title} live screenshot`}
                       className="w-full h-36 object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
                     />
                   </a>
                 )}

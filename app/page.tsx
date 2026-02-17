@@ -1,6 +1,7 @@
 import NeuralNetwork3D from "@/components/NeuralNetwork3D";
 import FinnitrexLogo from "@/components/FinnitrexLogo";
 import TechTicker from "@/components/TechTicker";
+import ProjectScreenshot from "@/components/ProjectScreenshot";
 import {
   getFeaturedProjects,
   getProjectScreenshotUrl,
@@ -202,11 +203,10 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="block mb-5 overflow-hidden rounded border border-gray-800"
                   >
-                    <img
+                    <ProjectScreenshot
                       src={getProjectScreenshotUrl(project.liveUrl)}
                       alt={`${project.title} live screenshot`}
                       className="w-full h-40 object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
                     />
                   </a>
                 )}

@@ -13,16 +13,6 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "finnitrex-uk",
-    title: "Finnitrex (UK)",
-    category: "FinTech",
-    description:
-      "UK tech solutions platform built solo using Next.js. Optimized for speed, SEO, and scalability with a full enterprise-grade architecture.",
-    techStack: ["Next.js", "React", "Tailwind"],
-    liveUrl: "https://www.finnitrex.com",
-    featured: true,
-  },
-  {
     slug: "variantrade",
     title: "VarianTrade",
     category: "FinTech",
@@ -123,5 +113,8 @@ export function getProjectCategories(): string[] {
 
 export function getProjectScreenshotUrl(liveUrl: string): string {
   const encodedUrl = encodeURIComponent(liveUrl);
-  return `https://api.microlink.io/?url=${encodedUrl}&screenshot=true&meta=false&embed=screenshot.url&waitFor=3000&viewport.width=1280&viewport.height=800`;
+  // waitFor=6000 gives JS-heavy SPAs time to fully render past loading screens.
+  // force=true bypasses Microlink's cache so stale/blank captures aren't served.
+  // We keep embed=screenshot.url so the API returns the image directly as a src-safe URL.
+  return `https://api.microlink.io/?url=${encodedUrl}&screenshot=true&meta=false&embed=screenshot.url&waitFor=6000&force=true&viewport.width=1280&viewport.height=800`;
 }

@@ -39,7 +39,7 @@ const securityHeaders = [
       default-src 'self';
       script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.google.com https://www.gstatic.com;
       style-src 'self' 'unsafe-inline';
-      img-src 'self' blob: data: https://www.google.com https://api.microlink.io https://*.microlink.io;
+      img-src 'self' blob: data: https://www.google.com https://api.microlink.io https://*.microlink.io https://*.s3.amazonaws.com https://*.s3.us-east-1.amazonaws.com;
       font-src 'self' data:;
       worker-src 'self';
       connect-src 'self' https://api.zeptomail.com;
