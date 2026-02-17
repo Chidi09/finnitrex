@@ -1,5 +1,5 @@
 // Finnitrex Service Worker
-const CACHE_NAME = "finnitrex-v1";
+const CACHE_NAME = "finnitrex-v2";
 const OFFLINE_URL = "/offline";
 
 // Assets to precache on install
@@ -47,6 +47,13 @@ self.addEventListener("fetch", (event) => {
 
   // Skip chrome-extension and other non-http requests
   if (!request.url.startsWith("http")) return;
+
+  // Skip cross-origin requests — let them go straight to the network.
+  // This prevents the SW from intercepting external APIs (e.g. Microlink
+  // screenshot API) whose opaque redirect responses cause the SW to resolve
+  // with undefined, breaking image loads entirely.
+  const requestUrl = new URL(request.url);
+  if (requestUrl.origin !== self.location.origin) return;
 
   // Navigation requests: network-first with offline fallback
   if (request.mode === "navigate") {
