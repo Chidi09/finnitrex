@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="limeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#bef264;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="#051a00" />
+  <circle cx="256" cy="256" r="180" fill="none" stroke="url(#limeGradient)" stroke-width="32" stroke-dasharray="60 50" stroke-linecap="round" />
+  <path d="M256 180 L320 215 L320 295 L256 330 L192 295 L192 215 Z" fill="none" stroke="#bef264" stroke-width="24" stroke-linejoin="round"/>
+  <circle cx="256" cy="256" r="30" fill="#bef264" />
+  <line x1="256" y1="80" x2="256" y2="180" stroke="#bef264" stroke-width="20" stroke-linecap="round" />
+  <circle cx="256" cy="80" r="24" fill="#10b981" />
+  <line x1="410" y1="165" x2="320" y2="215" stroke="#bef264" stroke-width="20" stroke-linecap="round" />
+  <circle cx="410" cy="165" r="24" fill="#10b981" />
+  <line x1="410" y1="345" x2="320" y2="295" stroke="#bef264" stroke-width="20" stroke-linecap="round" />
+  <circle cx="410" cy="345" r="24" fill="#10b981" />
+  <line x1="102" y1="345" x2="192" y2="295" stroke="#bef264" stroke-width="20" stroke-linecap="round" />
+  <circle cx="102" cy="345" r="24" fill="#10b981" />
+  <line x1="102" y1="165" x2="192" y2="215" stroke="#bef264" stroke-width="20" stroke-linecap="round" />
+  <circle cx="102" cy="165" r="24" fill="#10b981" />
+</svg>

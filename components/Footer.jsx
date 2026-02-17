@@ -106,6 +106,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/works"
+                  className="text-gray-400 hover:text-lime-400 transition-colors flex items-center gap-1"
+                >
+                  Our Works <ArrowUpRight size={10} />
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/software"
                   className="text-gray-400 hover:text-lime-400 transition-colors flex items-center gap-1"
                 >

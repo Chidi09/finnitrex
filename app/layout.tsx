@@ -88,8 +88,15 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://finnitrex.com",
   },
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Finnitrex",
+  },
   icons: {
     icon: "/icon.svg",
+    apple: "/icons/icon-192x192.svg",
   },
   verification: {
     // Add your verification codes here when available
@@ -101,6 +108,7 @@ export const metadata: Metadata = {
 
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import VisitorTracker from "@/components/VisitorTracker";
+import PWARegister from "@/components/PWARegister";
 
 export default function RootLayout({
   children,
@@ -110,6 +118,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <meta name="theme-color" content="#bef264" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Finnitrex" />
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.svg" />
         <OrganizationSchema />
         <LocalBusinessSchema />
         <WebsiteSchema />
@@ -136,6 +150,9 @@ export default function RootLayout({
 
         {/* COMPLIANCE: Cookie Banner */}
         <CookieBanner />
+
+        {/* PWA: Service Worker Registration */}
+        <PWARegister />
       </body>
     </html>
   );

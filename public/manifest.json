@@ -1,0 +1,60 @@
+{
+  "name": "Finnitrex - AI, LMS & Software Solutions",
+  "short_name": "Finnitrex",
+  "description": "Advanced technological solutions specializing in LMS architecture, predictive analytics, AI integration, and custom software development.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#bef264",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-GB",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-192x192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-maskable-512x512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Our Works",
+      "short_name": "Works",
+      "url": "/works",
+      "description": "View our project portfolio"
+    },
+    {
+      "name": "Get a Quote",
+      "short_name": "Quote",
+      "url": "/quote",
+      "description": "Request a project quote"
+    },
+    {
+      "name": "Start a Project",
+      "short_name": "Start",
+      "url": "/start",
+      "description": "Begin a new project with us"
+    }
+  ]
+}

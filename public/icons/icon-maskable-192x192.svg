@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <linearGradient id="limeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#bef264;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Full background for maskable safe zone -->
+  <rect width="192" height="192" fill="#051a00" />
+  <!-- Scaled down to fit within 80% safe zone (centered in 153.6x153.6 area) -->
+  <g transform="translate(19.2, 19.2) scale(0.8)">
+    <circle cx="96" cy="96" r="67.5" fill="none" stroke="url(#limeGradient)" stroke-width="12" stroke-dasharray="22.5 18.75" stroke-linecap="round" />
+    <path d="M96 67.5 L120 80.625 L120 110.625 L96 123.75 L72 110.625 L72 80.625 Z" fill="none" stroke="#bef264" stroke-width="9" stroke-linejoin="round"/>
+    <circle cx="96" cy="96" r="11.25" fill="#bef264" />
+    <line x1="96" y1="30" x2="96" y2="67.5" stroke="#bef264" stroke-width="7.5" stroke-linecap="round" />
+    <circle cx="96" cy="30" r="9" fill="#10b981" />
+    <line x1="153.75" y1="61.875" x2="120" y2="80.625" stroke="#bef264" stroke-width="7.5" stroke-linecap="round" />
+    <circle cx="153.75" cy="61.875" r="9" fill="#10b981" />
+    <line x1="153.75" y1="129.375" x2="120" y2="110.625" stroke="#bef264" stroke-width="7.5" stroke-linecap="round" />
+    <circle cx="153.75" cy="129.375" r="9" fill="#10b981" />
+    <line x1="38.25" y1="129.375" x2="72" y2="110.625" stroke="#bef264" stroke-width="7.5" stroke-linecap="round" />
+    <circle cx="38.25" cy="129.375" r="9" fill="#10b981" />
+    <line x1="38.25" y1="61.875" x2="72" y2="80.625" stroke="#bef264" stroke-width="7.5" stroke-linecap="round" />
+    <circle cx="38.25" cy="61.875" r="9" fill="#10b981" />
+  </g>
+</svg>

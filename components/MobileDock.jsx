@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Layers, Activity, UserCircle } from "lucide-react";
+import { Home, Layers, Activity, UserCircle, Briefcase } from "lucide-react";
 import { motion } from "framer-motion";
 
 const items = [
   { name: "Hub", path: "/", icon: Home },
+  { name: "Works", path: "/works", icon: Briefcase },
   { name: "LMS", path: "/lms", icon: Layers },
   { name: "Data", path: "/fintech", icon: Activity },
   { name: "Labs", path: "/robotics", icon: UserCircle },
