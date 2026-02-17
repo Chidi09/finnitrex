@@ -88,15 +88,23 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://finnitrex.com",
   },
-  manifest: "/manifest.json",
+  manifest: "/site.webmanifest",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
     title: "Finnitrex",
   },
   icons: {
-    icon: "/icon.svg",
-    apple: "/icons/icon-192x192.svg",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    other: [
+      { rel: "android-chrome", url: "/android-chrome-192x192.png", sizes: "192x192" },
+      { rel: "android-chrome", url: "/android-chrome-512x512.png",  sizes: "512x512" },
+    ],
   },
   verification: {
     // Add your verification codes here when available
@@ -109,6 +117,7 @@ export const metadata: Metadata = {
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import VisitorTracker from "@/components/VisitorTracker";
 import PWARegister from "@/components/PWARegister";
+import Navbar from "@/components/Navbar";
 
 export default function RootLayout({
   children,
@@ -118,12 +127,19 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <meta name="theme-color" content="#bef264" />
+        <meta name="theme-color" content="#000000" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Finnitrex" />
-        <link rel="apple-touch-icon" href="/icons/icon-192x192.svg" />
+        {/* Standard favicons */}
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        {/* Apple touch icon */}
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        {/* PWA manifest */}
+        <link rel="manifest" href="/site.webmanifest" />
         <OrganizationSchema />
         <LocalBusinessSchema />
         <WebsiteSchema />
@@ -139,8 +155,11 @@ export default function RootLayout({
         {/* ENHANCEMENT: Custom Cursor */}
         <CustomCursor />
 
-        {/* Main Content */}
-        <div className="min-h-screen">{children}</div>
+        {/* Global Navigation */}
+        <Navbar />
+
+        {/* Main Content — pt-14 offsets the fixed 56px navbar */}
+        <div className="min-h-screen pt-14">{children}</div>
 
         {/* ENHANCEMENT: High-Tech Footer */}
         <Footer />
