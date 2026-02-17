@@ -1,6 +1,10 @@
-import NeuralNetwork3D from "@/components/NeuralNetwork3D";
+import dynamic from "next/dynamic";
 import FinnitrexLogo from "@/components/FinnitrexLogo";
-import TechTicker from "@/components/TechTicker";
+
+const NeuralNetwork3D = dynamic(() => import("@/components/NeuralNetwork3D"), {
+  loading: () => <div className="absolute inset-0 bg-black -z-10" />,
+});
+const TechTicker = dynamic(() => import("@/components/TechTicker"));
 import ProjectScreenshot from "@/components/ProjectScreenshot";
 import {
   getFeaturedProjects,
@@ -206,7 +210,7 @@ export default function Home() {
                     <ProjectScreenshot
                       src={getProjectScreenshotUrl(project.liveUrl)}
                       alt={`${project.title} live screenshot`}
-                      className="w-full h-40 object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      aspect="aspect-video"
                     />
                   </a>
                 )}

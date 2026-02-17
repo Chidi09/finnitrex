@@ -8,6 +8,11 @@ const ParticleNetwork = ({ count = 100, radius = 20 }) => {
   const pointsRef = useRef();
   const linesRef = useRef();
 
+  // Pre-allocate the maximum possible line buffer (count*(count-1)/2 segments × 2 endpoints × 3 floats)
+  // Reused every frame to avoid GC pressure from repeated new Float32Array allocations.
+  const maxSegments = (count * (count - 1)) / 2;
+  const lineBuffer = useRef(new Float32Array(maxSegments * 6));
+
   // 1. Initialize Particles with random positions and velocities
   const { positions, velocities, colors } = useMemo(() => {
     // Simple seeded random function
@@ -63,31 +68,37 @@ const ParticleNetwork = ({ count = 100, radius = 20 }) => {
     posAttribute.needsUpdate = true;
 
     // 3. Dynamic Line Connections (The Plexus Effect)
-    const linePositions = [];
-
-    // Threshold for connection distance
+    // Write directly into the pre-allocated buffer — zero GC allocations per frame.
+    const buf = lineBuffer.current;
+    let segCount = 0;
     const connectDistance = 3.5;
+    const connectDistSq = connectDistance * connectDistance;
 
     for (let i = 0; i < count; i++) {
       for (let j = i + 1; j < count; j++) {
         const dx = positionsArray[i * 3] - positionsArray[j * 3];
         const dy = positionsArray[i * 3 + 1] - positionsArray[j * 3 + 1];
         const dz = positionsArray[i * 3 + 2] - positionsArray[j * 3 + 2];
-        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-
-        if (dist < connectDistance) {
-          // Add vertices for the line segment
-          linePositions.push(
-            positionsArray[i * 3], positionsArray[i * 3 + 1], positionsArray[i * 3 + 2],
-            positionsArray[j * 3], positionsArray[j * 3 + 1], positionsArray[j * 3 + 2]
-          );
+        // Avoid sqrt — compare squared distances
+        if (dx * dx + dy * dy + dz * dz < connectDistSq) {
+          const off = segCount * 6;
+          buf[off]     = positionsArray[i * 3];
+          buf[off + 1] = positionsArray[i * 3 + 1];
+          buf[off + 2] = positionsArray[i * 3 + 2];
+          buf[off + 3] = positionsArray[j * 3];
+          buf[off + 4] = positionsArray[j * 3 + 1];
+          buf[off + 5] = positionsArray[j * 3 + 2];
+          segCount++;
         }
       }
     }
 
-    // Update Line Geometry
+    // Update Line Geometry — reuse existing attribute, just swap the typed array slice
     const lineGeo = linesRef.current.geometry;
-    lineGeo.setAttribute("position", new THREE.Float32BufferAttribute(linePositions, 3));
+    lineGeo.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(buf.subarray(0, segCount * 6), 3)
+    );
   });
 
   return (

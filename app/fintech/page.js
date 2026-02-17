@@ -1,5 +1,6 @@
 import { Suspense } from "react";
-import DataViz3D from "@/components/DataViz3D";
+import dynamic from "next/dynamic";
+const DataViz3D = dynamic(() => import("@/components/DataViz3D"));
 import FAQSection from "@/components/FAQSection"; // Import
 import {
   ArrowLeft,

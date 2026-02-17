@@ -1,5 +1,6 @@
 import { Suspense } from "react";
-import ProceduralArm from "@/components/ProceduralArm";
+import dynamic from "next/dynamic";
+const ProceduralArm = dynamic(() => import("@/components/ProceduralArm"));
 import { CheckCircle2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 

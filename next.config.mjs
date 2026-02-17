@@ -54,7 +54,24 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
-    reactStrictMode: false, // Set to FALSE to prevent double-rendering 3D scenes
+    reactStrictMode: false, // FALSE to prevent double-rendering 3D scenes
+    experimental: {
+        // Tree-shake large packages at the module level — reduces bundle size
+        // on every page that uses lucide-react, framer-motion, or drei icons.
+        optimizePackageImports: ["lucide-react", "framer-motion", "@react-three/drei"],
+    },
+    compiler: {
+        // Strip all console.* calls in production builds
+        removeConsole: process.env.NODE_ENV === "production",
+    },
+    images: {
+        // Allow Next.js <Image> to optimise screenshots from Microlink's CDN
+        remotePatterns: [
+            { protocol: "https", hostname: "api.microlink.io" },
+            { protocol: "https", hostname: "*.microlink.io" },
+        ],
+        formats: ["image/avif", "image/webp"],
+    },
     async headers() {
         return [
             {

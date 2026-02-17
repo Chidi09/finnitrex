@@ -1,25 +1,25 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import dynamic from "next/dynamic";
 import "./globals.css";
 import Footer from "@/components/Footer";
-import MobileDock from "@/components/MobileDock";
-import CustomCursor from "@/components/CustomCursor";
 import CookieBanner from "@/components/CookieBanner";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import PWARegister from "@/components/PWARegister";
+import Navbar from "@/components/Navbar";
 import {
   OrganizationSchema,
   LocalBusinessSchema,
   WebsiteSchema,
 } from "@/components/StructuredData";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// Dynamically import heavy client-only components so they are code-split
+// and never block the initial server-rendered HTML.
+const CustomCursor = dynamic(() => import("@/components/CustomCursor"));
+const MobileDock   = dynamic(() => import("@/components/MobileDock"));
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://finnitrex.com"),
@@ -30,24 +30,13 @@ export const metadata: Metadata = {
   description:
     "Advanced technological solutions specializing in LMS architecture, predictive analytics, AI integration, and custom software development. UK-based technology company providing enterprise-grade solutions for education, finance, and manufacturing sectors.",
   keywords: [
-    "LMS",
-    "Learning Management System",
-    "AI solutions",
-    "predictive analytics",
-    "fintech",
-    "software development",
-    "Next.js",
-    "custom software",
-    "UK technology company",
-    "data analytics",
-    "computer vision",
-    "optics",
-    "SaaS development",
-    "enterprise software",
-    "education technology",
+    "LMS", "Learning Management System", "AI solutions", "predictive analytics",
+    "fintech", "software development", "Next.js", "custom software",
+    "UK technology company", "data analytics", "computer vision", "optics",
+    "SaaS development", "enterprise software", "education technology",
   ],
-  authors: [{ name: "Finnitrex Solutions" }],
-  creator: "Finnitrex Solutions",
+  authors:   [{ name: "Finnitrex Solutions" }],
+  creator:   "Finnitrex Solutions",
   publisher: "Finnitrex Solutions",
   robots: {
     index: true,
@@ -68,32 +57,19 @@ export const metadata: Metadata = {
     title: "Finnitrex | AI, LMS & Software Solutions",
     description:
       "Advanced technological solutions specializing in LMS architecture, predictive analytics, AI integration, and custom software development.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Finnitrex - Advanced Technology Solutions",
-      },
-    ],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Finnitrex - Advanced Technology Solutions" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Finnitrex | AI, LMS & Software Solutions",
-    description:
-      "Advanced technological solutions for LMS, AI, and custom software development.",
+    description: "Advanced technological solutions for LMS, AI, and custom software development.",
     images: ["/og-image.png"],
     creator: "@finnitrex",
   },
-  alternates: {
-    canonical: "https://finnitrex.com",
-  },
+  alternates: { canonical: "https://finnitrex.com" },
   manifest: "/site.webmanifest",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-    title: "Finnitrex",
-  },
+  appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: "Finnitrex" },
+  // Next.js injects these as <link> tags automatically — no need to duplicate them in <head>
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -106,24 +82,10 @@ export const metadata: Metadata = {
       { rel: "android-chrome", url: "/android-chrome-512x512.png",  sizes: "512x512" },
     ],
   },
-  verification: {
-    // Add your verification codes here when available
-    // google: "your-google-verification-code",
-    // yandex: "your-yandex-verification-code",
-  },
   category: "Technology",
 };
 
-import GoogleAnalytics from "@/components/GoogleAnalytics";
-import VisitorTracker from "@/components/VisitorTracker";
-import PWARegister from "@/components/PWARegister";
-import Navbar from "@/components/Navbar";
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="scroll-smooth">
       <head>
@@ -132,45 +94,29 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Finnitrex" />
-        {/* Standard favicons */}
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        {/* Apple touch icon */}
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        {/* PWA manifest */}
-        <link rel="manifest" href="/site.webmanifest" />
+        {/* JSON-LD structured data */}
         <OrganizationSchema />
         <LocalBusinessSchema />
         <WebsiteSchema />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans bg-black text-white antialiased selection:bg-lime-500/30 selection:text-white`}
-      >
-        <GoogleAnalytics
-          GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID || ""}
-        />
-        <VisitorTracker />
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans bg-black text-white antialiased selection:bg-lime-500/30 selection:text-white`}>
+        <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID || ""} />
 
-        {/* ENHANCEMENT: Custom Cursor */}
+        {/* Desktop custom cursor — client-only, lazy loaded */}
         <CustomCursor />
 
-        {/* Global Navigation */}
+        {/* Global top navigation */}
         <Navbar />
 
-        {/* Main Content — pt-14 offsets the fixed 56px navbar */}
+        {/* Main content — pt-14 offsets the fixed 56px navbar */}
         <div className="min-h-screen pt-14">{children}</div>
 
-        {/* ENHANCEMENT: High-Tech Footer */}
         <Footer />
 
-        {/* ENHANCEMENT: Mobile App Dock */}
+        {/* Mobile bottom dock — client-only, lazy loaded */}
         <MobileDock />
 
-        {/* COMPLIANCE: Cookie Banner */}
         <CookieBanner />
-
-        {/* PWA: Service Worker Registration */}
         <PWARegister />
       </body>
     </html>

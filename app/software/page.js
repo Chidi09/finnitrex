@@ -1,6 +1,7 @@
 import { Suspense } from "react";
-import LMSStructure from "@/components/LMSStructure"; // Keep the 3D model, it works for "Architecture"
-import ContactTerminal from "@/components/ContactTerminal";
+import dynamic from "next/dynamic";
+const LMSStructure    = dynamic(() => import("@/components/LMSStructure"));
+const ContactTerminal = dynamic(() => import("@/components/ContactTerminal"));
 import {
   ArrowLeft,
   Code,

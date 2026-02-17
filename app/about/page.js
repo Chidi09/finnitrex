@@ -11,7 +11,8 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
-import TalentGlobe from "@/components/TalentGlobe";
+import dynamic from "next/dynamic";
+const TalentGlobe = dynamic(() => import("@/components/TalentGlobe"));
 import { motion } from "framer-motion";
 
 // Animation Variants
