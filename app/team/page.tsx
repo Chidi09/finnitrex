@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, BriefcaseBusiness, Crown, Layers3, Users } from "lucide-react";
 
@@ -28,6 +29,11 @@ const teamMembers = [
       "Client discovery, scope definition, and partnership development",
       "Oversight of delivery posture, governance, and growth planning",
     ],
+    details: [
+      "London-registered Finnitrex leadership",
+      "Client partnerships and commercial direction",
+      "Delivery governance and company growth planning",
+    ],
     tone: "bg-emerald-50 border-emerald-100 text-stone-900 dark:bg-emerald-950/30 dark:border-white/10 dark:text-stone-100",
   },
   {
@@ -35,12 +41,23 @@ const teamMembers = [
     role: "Lead Developer",
     icon: Layers3,
     summary:
-      "Leads technical implementation across platform architecture, product execution, and the engineering detail that turns Finnitrex briefs into working systems.",
+      "Software engineer focused on building digital ecosystems that combine high-performance engineering with refined product execution. As Finnitrex's lead developer, he has solo-architected and developed core platform infrastructure across fintech, AI, real estate, commerce, and operations products.",
     focus: [
       "System architecture and application delivery",
       "Frontend and backend implementation across product builds",
       "Technical quality, maintainability, and production readiness",
     ],
+    details: [
+      "B.Sc. Computer Science, Crawford University (2021 - 2025)",
+      "Based in Lagos, Nigeria",
+      "Specialises in Next.js, React, Angular, Python, Golang, PostgreSQL, and Supabase",
+    ],
+    spotlight: [
+      "Built the Finnitrex UK platform solo with Next.js, React, and Tailwind",
+      "Developed VarianTrade, an AI-powered trading and betting platform",
+      "Shipped platforms across fintech, e-commerce, real estate, agriculture, and AI tools",
+    ],
+    image: "/team/nneji-chidi-ben.jpeg",
     tone: "bg-white border-stone-200 text-stone-900 dark:bg-white/[0.04] dark:border-white/10 dark:text-stone-100",
   },
 ];
@@ -104,38 +121,99 @@ export default function TeamPage() {
               const Icon = member.icon;
 
               return (
-                <article
-                  key={member.name}
-                  className={`border p-8 md:p-10 ${member.tone}`}
-                >
-                  <div className="flex items-start justify-between gap-4">
+                <article key={member.name} className={`border p-8 md:p-10 ${member.tone}`}>
+                  <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-start">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">
-                        {member.role}
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-70">
+                            {member.role}
+                          </p>
+                          <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] md:text-4xl">
+                            {member.name}
+                          </h2>
+                        </div>
+                        <Icon className="h-6 w-6 shrink-0" strokeWidth={1.8} />
+                      </div>
+
+                      <p className="mt-8 max-w-2xl text-sm leading-7 opacity-85">
+                        {member.summary}
                       </p>
-                      <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] md:text-4xl">
-                        {member.name}
-                      </h2>
+
+                      <div className="mt-8 grid gap-6 md:grid-cols-2">
+                        <div className="border-t border-current/10 pt-6">
+                          <p className="text-xs font-semibold uppercase tracking-[0.22em] opacity-70">
+                            Core focus
+                          </p>
+                          <ul className="mt-4 space-y-3 text-sm leading-7 opacity-85">
+                            {member.focus.map((item) => (
+                              <li key={item} className="flex gap-3">
+                                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-current" />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div className="border-t border-current/10 pt-6">
+                          <p className="text-xs font-semibold uppercase tracking-[0.22em] opacity-70">
+                            Profile details
+                          </p>
+                          <ul className="mt-4 space-y-3 text-sm leading-7 opacity-85">
+                            {member.details.map((item) => (
+                              <li key={item} className="flex gap-3">
+                                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-current" />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                      {member.spotlight ? (
+                        <div className="mt-8 border-t border-current/10 pt-6">
+                          <p className="text-xs font-semibold uppercase tracking-[0.22em] opacity-70">
+                            Selected delivery highlights
+                          </p>
+                          <ul className="mt-4 space-y-3 text-sm leading-7 opacity-85">
+                            {member.spotlight.map((item) => (
+                              <li key={item} className="flex gap-3">
+                                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-current" />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : null}
                     </div>
-                    <Icon className="h-6 w-6 shrink-0" strokeWidth={1.8} />
-                  </div>
 
-                  <p className="mt-8 max-w-2xl text-sm leading-7 opacity-85">
-                    {member.summary}
-                  </p>
-
-                  <div className="mt-8 border-t border-current/10 pt-6">
-                    <p className="text-xs font-semibold uppercase tracking-[0.22em] opacity-70">
-                      Core focus
-                    </p>
-                    <ul className="mt-4 space-y-3 text-sm leading-7 opacity-85">
-                      {member.focus.map((item) => (
-                        <li key={item} className="flex gap-3">
-                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-current" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="order-first lg:order-last">
+                      {member.image ? (
+                        <div className="overflow-hidden border border-current/10 bg-stone-100 dark:bg-white/5">
+                          <Image
+                            src={member.image}
+                            alt={member.name}
+                            width={600}
+                            height={760}
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                      ) : (
+                        <div className="flex aspect-[4/5] items-center justify-center border border-current/10 bg-white/50 text-center dark:bg-white/5">
+                          <div>
+                            <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-60">
+                              {member.role}
+                            </p>
+                            <p className="mt-3 text-3xl font-semibold tracking-[-0.05em]">
+                              {member.name
+                                .split(" ")
+                                .map((part) => part[0])
+                                .join("")}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </article>
               );
