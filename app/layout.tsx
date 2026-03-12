@@ -13,6 +13,25 @@ import {
   WebsiteSchema,
 } from "@/components/StructuredData";
 
+const themeScript = `
+  (() => {
+    try {
+      const storageKey = "finnitrex-theme";
+      const root = document.documentElement;
+      const storedTheme = localStorage.getItem(storageKey);
+      const theme = storedTheme === "dark" ? "dark" : "light";
+      const themeColor = document.querySelector('meta[name="theme-color"]');
+
+      root.dataset.theme = theme;
+      root.classList.toggle("dark", theme === "dark");
+
+      if (themeColor) {
+        themeColor.setAttribute("content", theme === "dark" ? "#0f0e0c" : "#f6f2e9");
+      }
+    } catch {}
+  })();
+`;
+
 // Dynamically import heavy client-only components so they are code-split
 // and never block the initial server-rendered HTML.
 const CustomCursor = dynamic(() => import("@/components/CustomCursor"));
@@ -87,34 +106,30 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" data-theme="light" suppressHydrationWarning>
       <head>
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#f6f2e9" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Finnitrex" />
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {/* JSON-LD structured data */}
         <OrganizationSchema />
         <LocalBusinessSchema />
         <WebsiteSchema />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans bg-black text-white antialiased selection:bg-lime-500/30 selection:text-white`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-[var(--background)] font-sans text-[var(--foreground)] antialiased`}>
         <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_ID || ""} />
 
-        {/* Desktop custom cursor — client-only, lazy loaded */}
         <CustomCursor />
 
-        {/* Global top navigation */}
-        <Navbar />
-
-        {/* Main content — pt-14 offsets the fixed 56px navbar */}
-        <div className="min-h-screen pt-14">{children}</div>
-
-        <Footer />
-
-        {/* Mobile bottom dock — client-only, lazy loaded */}
-        <MobileDock />
+        <div className="relative min-h-screen bg-[radial-gradient(circle_at_top,rgba(91,143,61,0.08),transparent_38%)]">
+          <Navbar />
+          <div className="min-h-screen pt-16 pb-[calc(7rem+env(safe-area-inset-bottom))] md:pb-0">{children}</div>
+          <Footer />
+          <MobileDock />
+        </div>
 
         <CookieBanner />
         <PWARegister />
