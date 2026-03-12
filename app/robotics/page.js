@@ -11,7 +11,7 @@ const researchTracks = [
       "We are extending our software and data practice into robotics-ready control surfaces, sensing layers, and machine coordination patterns.",
     icon: Cpu,
     tone:
-      "bg-[#e8ede7] text-[#17352e] dark:bg-emerald-950/40 dark:text-emerald-100",
+      "bg-emerald-50 text-[#17352e] dark:bg-emerald-950/40 dark:text-emerald-100",
   },
   {
     title: "Human-safe automation",
@@ -27,7 +27,7 @@ const researchTracks = [
       "The robotics lab remains R&D-first: validating concepts, simulation patterns, and deployment pathways before production commitments are made.",
     icon: Bot,
     tone:
-      "bg-[#e3ebf2] text-[#213549] dark:bg-sky-950/40 dark:text-sky-100",
+      "bg-sky-50 text-[#213549] dark:bg-sky-950/40 dark:text-sky-100",
   },
 ];
 
@@ -98,7 +98,7 @@ export const metadata = {
 
 export default function RoboticsPage() {
   return (
-    <main className="bg-[#f6f2e9] text-stone-900 transition-colors dark:bg-zinc-950 dark:text-stone-100">
+      <main className="bg-white text-stone-900 transition-colors dark:bg-zinc-950 dark:text-stone-100">
       <section className="border-b border-stone-200/80 dark:border-white/10">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 md:px-10 lg:grid-cols-12 lg:items-end lg:gap-8 lg:py-28">
           <div className="lg:col-span-7">
@@ -128,15 +128,15 @@ export default function RoboticsPage() {
         </div>
       </section>
 
-      <section className="bg-[#efebe6] py-16 dark:bg-zinc-900/70 md:py-24">
+      <section className="bg-stone-50 py-16 dark:bg-zinc-900/70 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-5 px-6 md:px-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(320px,0.7fr)]">
-          <article className="flex min-h-[32rem] flex-col justify-between bg-white p-8 shadow-[0_24px_60px_rgba(28,25,23,0.06)] dark:bg-white/[0.04] dark:shadow-none md:p-12">
+          <article className="flex min-h-[32rem] flex-col justify-between border border-stone-200/80 bg-white p-8 shadow-[0_24px_60px_rgba(28,25,23,0.05)] dark:border-white/10 dark:bg-white/[0.04] dark:shadow-none md:p-12">
             <div>
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
                 Research frame
               </p>
               <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.04em] text-stone-950 dark:text-white md:text-4xl">
-                A lab page shaped like a working brief, not a showroom.
+                Robotics research aligned to practical operational outcomes.
               </h2>
               <div className="mt-8 grid gap-8 text-sm leading-7 text-stone-600 dark:text-stone-300 md:grid-cols-2">
                 <p>
@@ -178,7 +178,7 @@ export default function RoboticsPage() {
             </div>
           </article>
 
-          <aside className="relative overflow-hidden border border-stone-200 bg-[#f4f0ea] p-8 text-stone-900 dark:border-white/10 dark:bg-[#161d1b] dark:text-stone-100 md:p-10">
+          <aside className="relative overflow-hidden border border-stone-200 bg-stone-50 p-8 text-stone-900 dark:border-white/10 dark:bg-[#161d1b] dark:text-stone-100 md:p-10">
             <div className="relative z-10 flex h-full flex-col justify-between gap-8">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-emerald-100/60">
@@ -188,14 +188,14 @@ export default function RoboticsPage() {
                   Procedural arm as a supporting study.
                 </h2>
                 <p className="mt-4 text-sm leading-7 text-stone-600 dark:text-emerald-50/75">
-                  The interactive model is retained as a reference artifact for
-                  motion language and mechanism study, not as the page&rsquo;s primary
-                  message.
+                  The interactive model supports our study of motion,
+                  coordination, and control behaviour while the broader research
+                  programme stays focused on real deployment needs.
                 </p>
               </div>
 
-              <div className="relative overflow-hidden rounded-[1.5rem] border border-stone-200 bg-white/70 dark:border-white/10 dark:bg-black/20">
-                <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(246,242,233,0.36),rgba(244,240,234,0.1))] dark:bg-[linear-gradient(180deg,rgba(245,241,232,0.12),rgba(9,36,30,0.06))]" />
+              <div className="relative overflow-hidden rounded-[1.5rem] border border-stone-200 bg-stone-50 dark:border-white/10 dark:bg-black/20">
+                <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(255,255,255,0.36),rgba(248,250,252,0.14))] dark:bg-[linear-gradient(180deg,rgba(245,241,232,0.12),rgba(9,36,30,0.06))]" />
                 <div className="mx-auto max-w-[24rem] opacity-70 saturate-[0.85]">
                   <Suspense
                     fallback={
@@ -275,20 +275,20 @@ export default function RoboticsPage() {
               The page closes on the logic behind the lab.
             </h2>
             <p className="mt-6 max-w-md text-sm leading-7 text-stone-600 dark:text-stone-300">
-              This editorial structure is translated here into a quieter,
-              shell-friendly sequence: context first, prototype second, and
-              implementation logic last.
+              The research story moves from sector context to prototype insight
+              and finally to the systems thinking needed for safe, deployable
+              automation.
             </p>
           </div>
 
           <div className="space-y-5">
             {systemsCards.map((card, index) => (
-              <article
-                key={card.title}
-                className={`border border-stone-200 bg-[#f0ece6] p-8 dark:border-white/10 dark:bg-white/[0.03] md:p-10 ${
-                  index === 1 ? "md:ml-8" : ""
-                }`}
-              >
+                <article
+                  key={card.title}
+                  className={`border border-stone-200 bg-white p-8 dark:border-white/10 dark:bg-white/[0.03] md:p-10 ${
+                    index === 1 ? "md:ml-8" : ""
+                  }`}
+                >
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
                   {card.eyebrow}
                 </p>

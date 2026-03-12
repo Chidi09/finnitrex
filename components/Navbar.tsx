@@ -13,6 +13,7 @@ const navLinks = [
   { label: "Data", href: "/fintech" },
   { label: "Labs", href: "/robotics" },
   { label: "About", href: "/about" },
+  { label: "Team", href: "/team" },
 ];
 
 export default function Navbar() {
@@ -27,10 +28,10 @@ export default function Navbar() {
       <div className="container mx-auto flex h-16 items-center justify-between gap-4 px-4 md:px-6">
         <div className="flex min-w-0 items-center gap-3">
           <Link href="/" className="flex shrink-0 items-center gap-3" aria-label="Finnitrex home">
-            <FinnitrexLogo className="h-7 w-7" />
+            <FinnitrexLogo className="h-7 w-7" textVisible={false} />
             <div className="min-w-0">
-              <span className="block text-sm font-semibold uppercase tracking-[0.26em] text-[var(--foreground)] sm:text-[0.8rem]">
-                Finnitrex
+              <span className="block text-sm font-black uppercase tracking-[0.18em] text-[var(--foreground)] sm:text-[0.8rem]">
+                FINNITREX
               </span>
               <span className="hidden text-[0.65rem] uppercase tracking-[0.22em] text-[var(--muted)] lg:block">
                 Applied intelligence studio

@@ -11,10 +11,16 @@ export function OrganizationSchema() {
     description:
       "Advanced technological solutions specializing in LMS architecture, predictive analytics, AI integration, and custom software development.",
     foundingDate: "2024",
-    founders: [
+    founder: {
+      "@type": "Person",
+      name: "Divine Adoyi Samuel",
+      jobTitle: "Founder",
+    },
+    employee: [
       {
         "@type": "Person",
-        name: "Finnitrex Solutions",
+        name: "Nneji Chidi Ben",
+        jobTitle: "Lead Developer",
       },
     ],
     address: {
@@ -67,7 +73,6 @@ export function LocalBusinessSchema() {
     name: "Finnitrex Solutions Ltd",
     image: "https://finnitrex.com/og-image.png",
     url: "https://finnitrex.com",
-    telephone: "",
     priceRange: "$$$$",
     address: {
       "@type": "PostalAddress",
@@ -87,11 +92,6 @@ export function LocalBusinessSchema() {
       dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
       opens: "09:00",
       closes: "18:00",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      reviewCount: "1",
     },
   };
 
@@ -114,14 +114,6 @@ export function WebsiteSchema() {
       "Advanced technological solutions specializing in LMS architecture, predictive analytics, AI integration, and custom software development.",
     publisher: {
       "@id": "https://finnitrex.com/#organization",
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: "https://finnitrex.com/search?q={search_term_string}",
-      },
-      "query-input": "required name=search_term_string",
     },
   };
 

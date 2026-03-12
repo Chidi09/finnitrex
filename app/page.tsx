@@ -31,7 +31,7 @@ const capabilities = [
   {
     title: "Speed and precision",
     description:
-      "Static-first architectures, clear delivery scopes, and practical engineering decisions that remove friction from launch to maintenance.",
+      "Lean architectures, clear delivery scopes, and practical engineering decisions that remove friction from launch to maintenance.",
     icon: Zap,
     tone:
       "border-[color:rgba(91,143,61,0.18)] bg-[var(--foreground)] text-[var(--surface-elevated)]",
@@ -104,18 +104,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(91,143,61,0.14),transparent_38%),linear-gradient(180deg,rgba(255,255,255,0.35),transparent_70%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(159,211,109,0.12),transparent_32%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent_70%)]" />
         <div className="relative mx-auto grid max-w-7xl gap-14 px-6 pb-18 pt-16 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-16 lg:px-10 lg:pb-24 lg:pt-24">
           <div className="lg:col-span-7">
-            <div className="mb-8 flex items-center gap-4">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--surface-elevated)] p-2 shadow-[0_20px_60px_rgba(23,21,17,0.06)] dark:shadow-none">
-                <FinnitrexLogo className="h-12 w-12" />
-              </div>
-              <div>
-                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[var(--muted)]">
-                  Finnitrex technology solutions
-                </p>
-                <p className="mt-1 max-w-md text-sm leading-6 text-[var(--muted)]">
-                  Advanced digital systems for education, finance, and operational transformation.
-                </p>
-              </div>
+            <div className="mb-10 inline-block w-fit">
+              <FinnitrexLogo className="w-48 h-48 md:w-64 md:h-64" />
             </div>
 
             <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.06em] text-[var(--foreground)] sm:text-6xl lg:text-7xl lg:leading-[1.02]">
@@ -159,31 +149,31 @@ export default function Home() {
                         Delivery view
                       </p>
                       <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
-                        Precision-led systems for modern operators.
+                        Delivery built for teams that need clear ownership and dependable rollout.
                       </h2>
                     </div>
                     <div className="rounded-full border border-[var(--border)] px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
-                      Since 2020
+                      UK-led delivery
                     </div>
                   </div>
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface-elevated)] p-5">
                       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[var(--muted)]">
-                        Core sectors
+                        Engagement model
                       </p>
-                      <p className="mt-4 text-3xl font-semibold tracking-[-0.05em]">3</p>
+                      <p className="mt-4 text-3xl font-semibold tracking-[-0.05em]">Direct senior oversight</p>
                       <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                        Education, fintech, and advanced technical operations.
+                        Strategy, technical direction, and delivery coordination stay visible from kickoff through launch.
                       </p>
                     </div>
                     <div className="rounded-[1.25rem] border border-[color:rgba(91,143,61,0.22)] bg-[color:rgba(91,143,61,0.08)] p-5 dark:bg-[color:rgba(159,211,109,0.1)]">
                       <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[var(--muted)]">
-                        Delivery posture
+                        Build approach
                       </p>
-                      <p className="mt-4 text-3xl font-semibold tracking-[-0.05em]">Static-first</p>
+                      <p className="mt-4 text-3xl font-semibold tracking-[-0.05em]">Lean by default</p>
                       <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                        Faster experiences, less bloat, and cleaner long-term maintenance.
+                        Choose the simplest architecture that keeps products fast, secure, and easy to maintain.
                       </p>
                     </div>
                   </div>
@@ -196,12 +186,12 @@ export default function Home() {
                     <LineChart className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold tracking-[-0.02em]">Data-informed delivery</p>
-                    <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">Analytics and governance</p>
+                    <p className="text-sm font-semibold tracking-[-0.02em]">Measured execution</p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">Reporting clients can act on</p>
                   </div>
                 </div>
                 <p className="mt-4 text-sm leading-6 text-[var(--muted)]">
-                  Project framing, reporting clarity, and implementation discipline that help enterprise teams move with confidence.
+                  Milestones, risks, and delivery decisions stay documented so stakeholders know what is moving, what needs attention, and why.
                 </p>
               </div>
             </div>

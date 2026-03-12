@@ -1,17 +1,10 @@
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
-const DataViz3D = dynamic(() => import("@/components/DataViz3D"));
-import FAQSection from "@/components/FAQSection"; // Import
-import {
-  ArrowLeft,
-  TrendingUp,
-  ShieldAlert,
-  Activity,
-  Lock,
-} from "lucide-react";
-import Link from "next/link";
+import FAQSection from "@/components/FAQSection";
+import { TrendingUp, ShieldAlert, Activity, Lock } from "lucide-react";
 
-// ... [Keep existing metadata] ...
+const DataViz3D = dynamic(() => import("@/components/DataViz3D"));
+
 export const metadata = {
   title: "Fintech & Predictive Analytics",
   description:
@@ -37,6 +30,87 @@ export const metadata = {
     canonical: "https://finnitrex.com/fintech",
   },
 };
+
+const heroMetrics = [
+  {
+    value: "99.4%",
+    label: "Predictive accuracy",
+    detail: "Validated through historical backtesting, scenario replay, and signal calibration.",
+  },
+  {
+    value: "4.2M/s",
+    label: "Data points processed",
+    detail: "High-volume ingestion across trading feeds, operations telemetry, and compliance events.",
+  },
+  {
+    value: "<12ms",
+    label: "Decision latency",
+    detail: "Low-latency pipelines designed for live monitoring, intervention, and portfolio response.",
+  },
+];
+
+const capabilityCards = [
+  {
+    icon: TrendingUp,
+    eyebrow: "Predictive analytics",
+    title: "Signal models built for live financial movement.",
+    description:
+      "We shape forecasting systems around market volatility, portfolio drift, and pricing anomalies so teams can act earlier with clearer confidence bands.",
+    tone: "bg-white text-stone-900 dark:bg-white/[0.04] dark:text-stone-100",
+  },
+  {
+    icon: Lock,
+    eyebrow: "Compliance automation",
+    title: "RegTech workflows that stay audit-ready under pressure.",
+    description:
+      "AML, KYC, and control monitoring are designed as operational surfaces with traceability, policy logic, and regulator-facing documentation built in.",
+    tone: "bg-[#f4f8f4] text-stone-900 dark:bg-emerald-950/25 dark:text-stone-100",
+  },
+  {
+    icon: ShieldAlert,
+    eyebrow: "Risk management",
+    title: "Modelled downside before exposure compounds.",
+    description:
+      "Risk thresholds, alerting logic, and exception handling are tuned to each institution so teams can move quickly without losing discipline.",
+    tone: "bg-[#faf7f1] text-stone-900 dark:bg-amber-950/20 dark:text-stone-100",
+  },
+];
+
+const operatingLayers = [
+  {
+    title: "Market intelligence",
+    detail: "Pattern recognition, alternative data, and sentiment inputs combined into a single forecasting layer.",
+  },
+  {
+    title: "Regulatory posture",
+    detail: "Continuous AML/KYC monitoring, auditable rule changes, and FCA/GDPR-aligned data handling.",
+  },
+  {
+    title: "Decision operations",
+    detail: "Intervention pathways, risk tolerances, and escalation logic mapped directly to operating teams.",
+  },
+];
+
+const systemsNarrative = [
+  {
+    eyebrow: "For investment firms",
+    title: "Forecasting that reads like institutional infrastructure, not speculative AI.",
+    description:
+      "The architecture is designed to support execution desks, treasury teams, and corporate finance units that need faster interpretation of market movement without sacrificing model oversight.",
+  },
+  {
+    eyebrow: "For compliance teams",
+    title: "Controls sit beside analytics instead of behind them.",
+    description:
+      "We treat compliance as part of the product layer: explainable workflows, documented thresholds, secure data boundaries, and governance states that remain legible during audit review.",
+  },
+  {
+    eyebrow: "For risk leaders",
+    title: "Every metric is framed around response quality.",
+    description:
+      "The page shifts the conversation from dashboard theatre toward practical operating signals: latency, confidence, throughput, and exception management across volatile conditions.",
+  },
+];
 
 const fintechFAQs = [
   {
@@ -64,143 +138,228 @@ const fintechFAQs = [
 
 export default function FintechPage() {
   return (
-    <main className="min-h-screen bg-black text-white p-4 md:p-8">
-      {/* ... [Keep existing Top Nav] ... */}
-      <div className="flex justify-between items-center mb-8">
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-lime-400 hover:text-lime-300 transition-colors"
-        >
-          <ArrowLeft size={20} /> Back to Hub
-        </Link>
-        <div className="text-right">
-          <h1 className="text-2xl font-bold tracking-wider">
-            FINNITREX{" "}
-            <span className="font-light text-gray-500">ANALYTICS</span>
-          </h1>
-          <p className="text-xs text-green-400 font-mono">
-            SYSTEM STATUS: ONLINE
-          </p>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* ... [Keep existing Left Column] ... */}
-        <div className="lg:col-span-2 space-y-6">
-          {/* 3D Main Window */}
-          <div className="bg-gray-900/40 rounded-3xl border border-gray-800 overflow-hidden backdrop-blur-sm relative h-[500px] shadow-2xl shadow-lime-900/10">
-            {/* ... */}
-            <div className="absolute top-4 left-6 z-10">
-              <h2 className="text-xl font-bold flex items-center gap-2">
-                <Activity className="text-lime-400" /> Market Flux Simulator
-              </h2>
-              <p className="text-sm text-gray-400">
-                Real-time AI prediction modeling
+    <main className="bg-white text-stone-900 transition-colors dark:bg-zinc-950 dark:text-stone-100">
+      <section className="border-b border-stone-200/80 dark:border-white/10">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:px-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:items-end lg:gap-16 lg:py-28">
+          <div>
+            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
+              Fintech systems / predictive analytics
+            </p>
+            <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.06em] text-stone-950 dark:text-white md:text-7xl lg:text-[5.4rem] lg:leading-[0.93]">
+              Financial intelligence designed to feel calm, technical, and regulator-ready.
+            </h1>
+            <div className="mt-8 grid gap-6 text-sm leading-7 text-stone-600 dark:text-stone-300 md:grid-cols-2">
+              <p>
+                Finnitrex builds predictive analytics systems for institutions
+                that need credible modeling, fast operational signals, and a
+                clearer line between insight, compliance, and action.
+              </p>
+              <p>
+                We combine live market simulation, measurable model
+                performance, and governance controls in one product surface for
+                investment, compliance, and risk teams.
               </p>
             </div>
-            <Suspense
-              fallback={
-                <div className="flex items-center justify-center h-full text-lime-400 font-mono">
-                  LOADING DATA VISUALIZATION...
+          </div>
+
+          <aside className="border border-stone-200 bg-[#f8f4ed] p-8 dark:border-white/10 dark:bg-white/[0.04] md:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
+              Delivery brief
+            </p>
+            <div className="mt-6 space-y-6">
+              {heroMetrics.map((metric) => (
+                <div
+                  key={metric.label}
+                  className="border-t border-stone-300 pt-5 first:border-t-0 first:pt-0 dark:border-white/10"
+                >
+                  <p className="text-2xl font-semibold tracking-[-0.04em] text-stone-950 dark:text-white">
+                    {metric.value}
+                  </p>
+                  <p className="mt-1 text-sm font-medium text-stone-800 dark:text-stone-200">
+                    {metric.label}
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-stone-600 dark:text-stone-300">
+                    {metric.detail}
+                  </p>
                 </div>
-              }
-            >
-              <DataViz3D />
-            </Suspense>
+              ))}
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section className="bg-white py-16 dark:bg-zinc-900/70 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-5 px-6 md:px-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.75fr)]">
+          <article className="flex min-h-[34rem] flex-col justify-between bg-white p-8 shadow-[0_24px_70px_rgba(28,25,23,0.08)] dark:bg-white/[0.04] dark:shadow-none md:p-12">
+            <div>
+              <div className="flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
+                <span className="rounded-full bg-[#dde7e1] px-3 py-1 text-[#28483f] dark:bg-emerald-950/40 dark:text-emerald-100">
+                  Market flux simulator
+                </span>
+                <span>Real-time AI prediction modeling</span>
+              </div>
+              <h2 className="mt-5 max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-stone-950 dark:text-white md:text-4xl">
+                A live visualization retained as supporting proof, not the whole story.
+              </h2>
+              <div className="mt-8 grid gap-8 text-sm leading-7 text-stone-600 dark:text-stone-300 md:grid-cols-2">
+                <p>
+                  The simulation demonstrates how Finnitrex interprets movement
+                  across multiple financial signals in real time, pairing market
+                  fluctuation with predictive confidence and intervention logic.
+                </p>
+                <p>
+                  The interface stays technical while presenting the model in a
+                  format that is easier for stakeholders to review, compare, and
+                  trust.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-10 overflow-hidden rounded-[2rem] border border-stone-200 bg-[#fcfaf6] dark:border-white/10 dark:bg-[#111310]">
+              <div className="flex items-center justify-between border-b border-stone-200 px-6 py-4 dark:border-white/10">
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
+                    Simulation viewport
+                  </p>
+                  <p className="mt-2 text-sm font-semibold text-stone-950 dark:text-white">
+                    Market flux simulator</p>
+                </div>
+                <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
+                  <Activity className="h-4 w-4" />
+                  <span>Live signal study</span>
+                </div>
+              </div>
+
+              <div className="relative h-[24rem] overflow-hidden bg-[radial-gradient(circle_at_top,rgba(217,228,220,0.75),transparent_50%),linear-gradient(180deg,#f7f3eb_0%,#efe7db_100%)] dark:bg-[linear-gradient(180deg,rgba(20,24,23,0.95),rgba(10,12,12,0.98))]">
+                <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(246,242,233,0.15),rgba(246,242,233,0.02))] dark:bg-[linear-gradient(180deg,rgba(245,241,232,0.08),rgba(12,18,16,0.08))]" />
+                <Suspense
+                  fallback={
+                    <div className="flex h-full items-center justify-center text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
+                      Loading market simulation
+                    </div>
+                  }
+                >
+                  <DataViz3D />
+                </Suspense>
+              </div>
+            </div>
+          </article>
+
+          <aside className="border border-stone-200 bg-[#f8f5ef] p-8 dark:border-white/10 dark:bg-white/[0.03] md:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
+              Operating layers
+            </p>
+            <div className="mt-8 space-y-6">
+              {operatingLayers.map((item) => (
+                <div
+                  key={item.title}
+                  className="border-t border-stone-200 pt-6 first:border-t-0 first:pt-0 dark:border-white/10"
+                >
+                  <p className="text-lg font-semibold tracking-[-0.03em] text-stone-950 dark:text-white">
+                    {item.title}
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-stone-600 dark:text-stone-300">
+                    {item.detail}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-6 md:px-10">
+          <div className="flex flex-col gap-5 border-b border-stone-200 pb-10 dark:border-white/10 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
+                Core capabilities
+              </p>
+              <h2 className="max-w-3xl text-4xl font-semibold tracking-[-0.05em] text-stone-950 dark:text-white md:text-5xl">
+                Predictive systems, compliance controls, and risk logic composed into one enterprise offer.
+              </h2>
+            </div>
+
+            <p className="max-w-xl text-sm leading-7 text-stone-600 dark:text-stone-300">
+              The offer is organized around the three areas financial teams ask
+              us to prove first: forecasting quality, compliance coverage, and
+              response to risk.
+            </p>
           </div>
 
-          {/* Metrics Row */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* ... */}
-            <div className="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
-              <div className="text-gray-400 text-sm mb-1">
-                Predictive Accuracy
-              </div>
-              <div className="text-3xl font-bold text-green-400">99.4%</div>
-              <div className="text-xs text-gray-500 mt-2">
-                Based on historical backtesting
-              </div>
-            </div>
-            <div className="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
-              <div className="text-gray-400 text-sm mb-1">
-                Data Points Processed
-              </div>
-              <div className="text-3xl font-bold text-emerald-400">4.2M/s</div>
-              <div className="text-xs text-gray-500 mt-2">
-                Latency: &lt;12ms
-              </div>
-            </div>
-            <div className="bg-gray-900/60 p-6 rounded-2xl border border-gray-800">
-              <div className="text-gray-400 text-sm mb-1">Risk Assessment</div>
-              <div className="text-3xl font-bold text-lime-300">LOW</div>
-              <div className="text-xs text-gray-500 mt-2">
-                AI-driven compliance active
-              </div>
-            </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {capabilityCards.map((card) => {
+              const Icon = card.icon;
+
+              return (
+                <article
+                  key={card.title}
+                  className={`flex min-h-[17rem] flex-col justify-between p-8 ${card.tone}`}
+                >
+                  <Icon className="h-6 w-6" strokeWidth={1.8} />
+                  <div className="mt-12">
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] opacity-60">
+                      {card.eyebrow}
+                    </p>
+                    <h3 className="mt-4 text-2xl font-semibold tracking-[-0.04em]">
+                      {card.title}
+                    </h3>
+                    <p className="mt-4 text-sm leading-7 opacity-80">
+                      {card.description}
+                    </p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
+      </section>
 
-        {/* ... [Keep existing Right Column] ... */}
-        <div className="space-y-6">
-          {/* Service Cards */}
-          <div className="bg-gray-900/40 p-8 rounded-3xl border border-gray-800 hover:border-lime-500/50 transition-colors">
-            <div className="w-12 h-12 bg-lime-500/10 rounded-full flex items-center justify-center mb-4">
-              <TrendingUp className="text-lime-400" />
-            </div>
-            <h3 className="text-xl font-bold mb-2">AI Predictive Analytics</h3>
-            <p className="text-gray-400 text-sm leading-relaxed mb-4">
-              Designed for investment firms and corporate finance. Our
-              algorithms analyze market volatility to forecast trends before
-              they happen.
+      <section className="border-y border-stone-200/80 bg-[#faf7f2] py-16 dark:border-white/10 dark:bg-zinc-900 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 md:px-10 lg:grid-cols-[minmax(280px,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
+              Systems view
             </p>
-            <ul className="text-sm text-gray-500 space-y-2">
-              <li className="flex gap-2">
-                <span className="text-lime-400">•</span> Pattern Recognition
-              </li>
-              <li className="flex gap-2">
-                <span className="text-lime-400">•</span> Sentiment Analysis
-              </li>
-            </ul>
+            <h2 className="text-4xl font-semibold tracking-[-0.05em] text-stone-950 dark:text-white md:text-5xl">
+              A fintech platform evaluated through operating architecture.
+            </h2>
+            <p className="mt-6 max-w-md text-sm leading-7 text-stone-600 dark:text-stone-300">
+              Each section shows how the platform supports institutional
+              decision-making, governance, and deployment readiness across live
+              financial operations.
+            </p>
           </div>
 
-          <div className="bg-gray-900/40 p-8 rounded-3xl border border-gray-800 hover:border-green-500/50 transition-colors">
-            <div className="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center mb-4">
-              <Lock className="text-green-400" />
-            </div>
-            <h3 className="text-xl font-bold mb-2">RegTech & Compliance</h3>
-            <p className="text-gray-400 text-sm leading-relaxed mb-4">
-              Automated compliance applications for financial institutions.
-              Reduce risk with real-time regulatory monitoring.
-            </p>
-            <ul className="text-sm text-gray-500 space-y-2">
-              <li className="flex gap-2">
-                <span className="text-green-500">•</span> AML/KYC Automation
-              </li>
-              <li className="flex gap-2">
-                <span className="text-green-500">•</span> Smart Contracts
-              </li>
-            </ul>
-          </div>
-
-          <div className="bg-gray-900/40 p-8 rounded-3xl border border-gray-800 hover:border-emerald-500/50 transition-colors">
-            <div className="w-12 h-12 bg-emerald-500/10 rounded-full flex items-center justify-center mb-4">
-              <ShieldAlert className="text-emerald-400" />
-            </div>
-            <h3 className="text-xl font-bold mb-2">Risk Management</h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Diversification of services to mitigate market fluctuations using
-              AI modeling.
-            </p>
+          <div className="space-y-5">
+            {systemsNarrative.map((item, index) => (
+              <article
+                key={item.title}
+                className={`border border-stone-200 bg-white p-8 dark:border-white/10 dark:bg-white/[0.03] md:p-10 ${
+                  index === 1 ? "md:ml-8" : ""
+                }`}
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
+                  {item.eyebrow}
+                </p>
+                <h3 className="mt-4 max-w-2xl text-2xl font-semibold tracking-[-0.04em] text-stone-950 dark:text-white">
+                  {item.title}
+                </h3>
+                <p className="mt-4 max-w-3xl text-sm leading-7 text-stone-600 dark:text-stone-300">
+                  {item.description}
+                </p>
+              </article>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* --- ADDED FAQ SECTION HERE --- */}
-      <div className="mt-16">
+      <div className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
         <FAQSection
           title="Fintech Systems FAQ"
-          description="Technical specifications regarding our AI models and compliance architecture."
+          description="Technical specifications regarding our AI models, compliance architecture, and deployment posture."
           items={fintechFAQs}
+          variant="editorial"
         />
       </div>
     </main>

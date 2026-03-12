@@ -9,23 +9,23 @@ import {
 } from "@/lib/content/projects";
 
 export const metadata: Metadata = {
-  title: "Our Works | Projects & Solutions Portfolio",
+  title: "Works | Finnitrex Proof Hub",
   description:
-    "Explore Finnitrex's portfolio of delivered projects spanning AI platforms, fintech payment systems, LMS solutions, NLP tools, and custom web applications.",
+    "Explore Finnitrex's proof hub of delivered projects across AI platforms, fintech systems, commerce builds, and custom web applications.",
   keywords: [
     "Finnitrex portfolio",
+    "Finnitrex proof hub",
     "software projects",
     "AI solutions",
     "LMS development",
     "fintech projects",
     "NLP platforms",
     "web applications",
-    "case studies",
   ],
   openGraph: {
-    title: "Finnitrex Works | Our Project Portfolio",
+    title: "Finnitrex Works | Proof of Delivery",
     description:
-      "Real projects delivered across AI, fintech, edtech, and custom software development.",
+      "A single proof hub showing real Finnitrex delivery across AI, fintech, edtech, and custom software.",
     url: "https://finnitrex.com/works",
     type: "website",
   },
@@ -90,56 +90,23 @@ export default function WorksPage() {
   const other = allProjects.filter((project) => !project.featured);
   const leadProject = featured[0];
   const supportingFeatured = featured.slice(1);
-  const technologyCount = new Set(allProjects.flatMap((project) => project.techStack)).size;
 
   return (
     <main className="bg-[var(--background)] text-[var(--foreground)]">
       <section className="border-b border-[var(--border)] bg-[var(--surface)] py-18 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.6fr)_minmax(18rem,0.85fr)] lg:items-end">
-            <div className="max-w-4xl">
-              <span className="inline-flex rounded-full border border-[color:rgba(91,143,61,0.22)] bg-[color:rgba(91,143,61,0.08)] px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[var(--foreground)] dark:bg-[color:rgba(159,211,109,0.12)]">
-                Project archive
-              </span>
-              <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-[-0.07em] sm:text-6xl lg:text-7xl">
-                Digital work arranged like an editorial portfolio, not a product wall.
-              </h1>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-[var(--muted)] sm:text-lg">
-                A structured view of Finnitrex delivery across fintech, commerce,
-                operational systems, and AI tooling. Featured builds and archive entries
-                share the same visual language so the page reads as one continuous body of work.
-              </p>
-            </div>
-
-            <aside className="rounded-[2rem] border border-[var(--border)] bg-[var(--surface-elevated)] p-7 shadow-[0_18px_48px_rgba(23,21,17,0.06)] dark:shadow-none">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
-                Portfolio note
-              </p>
-              <p className="mt-4 text-sm leading-7 text-[var(--muted)]">
-                The page takes cues from the Stitch reference: generous spacing, quiet material contrast,
-                and screenshot-first cards that feel closer to case-study spreads than glossy marketing tiles.
-              </p>
-              <div className="mt-8 grid grid-cols-3 gap-4 border-t border-[var(--border)] pt-6">
-                <div>
-                  <p className="text-3xl font-semibold tracking-[-0.06em]">{allProjects.length}</p>
-                  <p className="mt-2 text-[0.68rem] uppercase tracking-[0.18em] text-[var(--muted)]">
-                    Projects
-                  </p>
-                </div>
-                <div>
-                  <p className="text-3xl font-semibold tracking-[-0.06em]">{categories.length}</p>
-                  <p className="mt-2 text-[0.68rem] uppercase tracking-[0.18em] text-[var(--muted)]">
-                    Sectors
-                  </p>
-                </div>
-                <div>
-                  <p className="text-3xl font-semibold tracking-[-0.06em]">{technologyCount}+</p>
-                  <p className="mt-2 text-[0.68rem] uppercase tracking-[0.18em] text-[var(--muted)]">
-                    Tools
-                  </p>
-                </div>
-              </div>
-            </aside>
+          <div className="max-w-4xl">
+            <span className="inline-flex rounded-full border border-[color:rgba(91,143,61,0.22)] bg-[color:rgba(91,143,61,0.08)] px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[var(--foreground)] dark:bg-[color:rgba(159,211,109,0.12)]">
+              Proof hub
+            </span>
+            <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-[-0.07em] sm:text-6xl lg:text-7xl">
+              Real delivery, arranged as one continuous body of work.
+            </h1>
+            <p className="mt-6 max-w-3xl text-base leading-8 text-[var(--muted)] sm:text-lg">
+              This is the single public record of what Finnitrex ships across fintech,
+              commerce, operations, and AI tooling. Featured builds carry a little more
+              story, while the wider archive keeps the same calm, white-first framing.
+            </p>
           </div>
         </div>
       </section>
@@ -152,12 +119,11 @@ export default function WorksPage() {
                 Featured work
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-[-0.05em] sm:text-4xl">
-                Flagship projects lead, while the rest of the archive follows the same system.
+                The lead projects show the brief, the build approach, and the proof in one place.
               </h2>
             </div>
             <p className="max-w-md text-sm leading-7 text-[var(--muted)]">
-              Large cards create breathing room for the key builds, but the same badge, image,
-              chip, and link structure carries through every project card on the page.
+              Larger cards make room for context without turning the page into a separate case-study flow.
             </p>
           </div>
 
@@ -211,6 +177,49 @@ export default function WorksPage() {
                     <ExternalLink className="hidden h-10 w-10 shrink-0 text-[var(--foreground)] transition-transform duration-200 group-hover:translate-x-1 lg:block" />
                   </div>
 
+                  {(leadProject.challenge || leadProject.approach) && (
+                    <div className="mt-8 grid gap-4 border-t border-[var(--border)] pt-6 sm:grid-cols-2">
+                      {leadProject.challenge && (
+                        <div className="rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-5">
+                          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+                            Challenge
+                          </p>
+                          <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
+                            {leadProject.challenge}
+                          </p>
+                        </div>
+                      )}
+                      {leadProject.approach && (
+                        <div className="rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-5">
+                          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+                            Approach
+                          </p>
+                          <p className="mt-3 text-sm leading-7 text-[var(--muted)]">
+                            {leadProject.approach}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {leadProject.proofPoints?.length ? (
+                    <div className="mt-6 rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+                        Proof points
+                      </p>
+                      <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                        {leadProject.proofPoints.map((point) => (
+                          <p
+                            key={point}
+                            className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface-elevated)] px-4 py-4 text-sm leading-7 text-[var(--muted)]"
+                          >
+                            {point}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+
                   <div className="mt-8 border-t border-[var(--border)] pt-5">
                     <ProjectLinks githubUrl={leadProject.githubUrl} liveUrl={leadProject.liveUrl} />
                   </div>
@@ -228,21 +237,6 @@ export default function WorksPage() {
                         {category}
                       </span>
                     ))}
-                  </div>
-                </aside>
-
-                <aside className="flex min-h-[15rem] flex-col justify-between rounded-[2rem] bg-[color:var(--foreground)] p-7 text-[var(--accent-contrast)]">
-                  <div>
-                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[color:rgba(253,252,248,0.7)]">
-                      Delivery signal
-                    </p>
-                    <p className="mt-5 text-5xl font-semibold tracking-[-0.08em]">{featured.length}</p>
-                    <p className="mt-4 max-w-xs text-sm leading-7 text-[color:rgba(253,252,248,0.74)]">
-                      Featured projects sit up front, but they use the same quiet framing as the archive to keep the portfolio coherent.
-                    </p>
-                  </div>
-                  <div className="rounded-[1.5rem] border border-[color:rgba(253,252,248,0.14)] bg-[color:rgba(253,252,248,0.05)] px-4 py-3 text-sm text-[color:rgba(253,252,248,0.82)]">
-                    Screenshots stay grounded with borders and surface framing instead of glow treatments.
                   </div>
                 </aside>
               </div>
@@ -291,6 +285,44 @@ export default function WorksPage() {
                         {project.description}
                       </p>
 
+                      {(project.challenge || project.approach) && (
+                        <div className="mt-5 space-y-3 rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-4">
+                          {project.challenge && (
+                            <div>
+                              <p className="text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
+                                Challenge
+                              </p>
+                              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                                {project.challenge}
+                              </p>
+                            </div>
+                          )}
+                          {project.approach && (
+                            <div>
+                              <p className="text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
+                                Approach
+                              </p>
+                              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                                {project.approach}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {project.proofPoints?.length ? (
+                        <div className="mt-5 space-y-2">
+                          {project.proofPoints.slice(0, 2).map((point) => (
+                            <p
+                              key={point}
+                              className="rounded-[1rem] border border-[var(--border)] bg-[var(--surface)] px-3 py-3 text-sm leading-6 text-[var(--muted)]"
+                            >
+                              {point}
+                            </p>
+                          ))}
+                        </div>
+                      ) : null}
+
                       <div className="mt-5 flex flex-wrap gap-2">
                         {project.techStack.map((tech) => (
                           <span
@@ -326,7 +358,7 @@ export default function WorksPage() {
               </h2>
             </div>
             <p className="max-w-lg text-sm leading-7 text-[var(--muted)]">
-              Smaller cards stay screenshot-led, with category labels, technology chips, and outbound links retained for quick scanning.
+              Smaller cards stay compact and scan-friendly, so the page still reads like one proof hub instead of several content types stitched together.
             </p>
           </div>
 
@@ -418,10 +450,10 @@ export default function WorksPage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/case-studies"
+                href="/contact"
                 className="inline-flex items-center justify-center rounded-full border border-[var(--border)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
               >
-                View case studies
+                Discuss your brief
               </Link>
             </div>
           </div>

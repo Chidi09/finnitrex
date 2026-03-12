@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.3fr_0.9fr_0.9fr_1fr] lg:gap-12">
           <div className="space-y-6">
             <div className="flex items-center gap-4">
-              <FinnitrexLogo className="h-12 w-12" />
+              <FinnitrexLogo className="h-12 w-12" textVisible={false} />
               <div>
                 <p className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-[var(--muted)]">
                   Finnitrex Solutions
@@ -87,6 +87,14 @@ export default function Footer() {
                   className="flex items-center gap-1.5 text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
                 >
                   About Us <ArrowUpRight size={10} />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/team"
+                  className="flex items-center gap-1.5 text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+                >
+                  Meet the Team <ArrowUpRight size={10} />
                 </Link>
               </li>
               <li>

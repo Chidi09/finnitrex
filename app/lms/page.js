@@ -141,7 +141,7 @@ const capabilityCards = [
     description:
       "Parallel migrations, validation ledgers, and record normalization for learner histories, enrolments, and certifications.",
     icon: Database,
-    tone: "bg-[#e2ece9] text-[#17362f] dark:bg-emerald-950/35 dark:text-emerald-100",
+    tone: "bg-emerald-50 text-[#17362f] dark:bg-emerald-950/35 dark:text-emerald-100",
   },
   {
     title: "HRIS and ERP sync",
@@ -155,34 +155,34 @@ const capabilityCards = [
     description:
       "Secure HLS delivery designed for bandwidth shifts, mobile playback, and enterprise video governance.",
     icon: Video,
-    tone: "bg-[#e4ebf4] text-[#22364a] dark:bg-sky-950/35 dark:text-sky-100",
+    tone: "bg-sky-50 text-[#22364a] dark:bg-sky-950/35 dark:text-sky-100",
   },
   {
     title: "Assessment and certification",
     description:
       "Structured quiz delivery, completion evidence, and certificate logic aligned to regulated training environments.",
     icon: GraduationCap,
-    tone: "bg-[#efe7dc] text-[#4e3b27] dark:bg-amber-950/30 dark:text-amber-100",
+    tone: "bg-amber-50 text-[#4e3b27] dark:bg-amber-950/30 dark:text-amber-100",
   },
   {
     title: "Modular product layers",
     description:
       "Dashboard, catalog, live learning, and reporting surfaces designed to work as one platform rather than disconnected features.",
     icon: Layers3,
-    tone: "bg-[#dfe6df] text-[#26352c] dark:bg-lime-950/30 dark:text-lime-100",
+    tone: "bg-lime-50 text-[#26352c] dark:bg-lime-950/30 dark:text-lime-100",
   },
   {
     title: "Measured rollout",
     description:
       "Pilot cohorts, stakeholder training, and proof dashboards that give programme owners confidence before full launch.",
     icon: CheckCircle2,
-    tone: "bg-[#e8e0ea] text-[#413148] dark:bg-fuchsia-950/25 dark:text-fuchsia-100",
+    tone: "bg-fuchsia-50 text-[#413148] dark:bg-fuchsia-950/25 dark:text-fuchsia-100",
   },
 ];
 
 export default function LMSPage() {
   return (
-    <main className="bg-[#f6f2e9] text-stone-900 transition-colors dark:bg-zinc-950 dark:text-stone-100">
+      <main className="bg-white text-stone-900 transition-colors dark:bg-zinc-950 dark:text-stone-100">
       <section className="border-b border-stone-200/80 dark:border-white/10">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:px-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(300px,0.8fr)] lg:items-end lg:gap-16 lg:py-28">
           <div>
@@ -200,15 +200,15 @@ export default function LMSPage() {
                 during critical delivery windows.
               </p>
               <p>
-                The page leads with Finnitrex&rsquo;s LMS consulting offer, then
-                demonstrates how that capability becomes a credible platform
-                surface: calm, editorial, and operationally ready from content
-                delivery to integration governance.
+                We help organisations launch branded learning platforms with
+                structured dashboards, dependable content delivery, and the
+                operational controls needed for enrolment, reporting, and system
+                integration.
               </p>
             </div>
           </div>
 
-          <aside className="border border-stone-200 bg-[#ece5d8] p-8 dark:border-white/10 dark:bg-white/[0.04] md:p-10">
+          <aside className="border border-stone-200 bg-stone-50 p-8 dark:border-white/10 dark:bg-white/[0.04] md:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
               Delivery brief
             </p>
@@ -234,7 +234,7 @@ export default function LMSPage() {
         </div>
       </section>
 
-      <section className="bg-[#efe9de] py-16 dark:bg-zinc-900/70 md:py-24">
+      <section className="bg-stone-50 py-16 dark:bg-zinc-900/70 md:py-24">
         <div className="mx-auto max-w-7xl px-6 md:px-10">
           <div className="flex flex-col gap-5 border-b border-stone-200 pb-10 dark:border-white/10 md:flex-row md:items-end md:justify-between">
             <div>
@@ -247,15 +247,15 @@ export default function LMSPage() {
             </div>
 
             <p className="max-w-xl text-sm leading-7 text-stone-600 dark:text-stone-300">
-              The composition combines a clear sidebar, a composed learning
-              overview, and supporting programme cards to show how enterprise
-              education products can feel both structured and premium.
+              This product view brings together learner progress, programme
+              oversight, and operational signals so teams can manage large-scale
+              education delivery in one clear interface.
             </p>
           </div>
 
-          <div className="mt-10 overflow-hidden border border-stone-200 bg-[#f8f5ef] shadow-[0_30px_80px_rgba(28,25,23,0.08)] dark:border-white/10 dark:bg-[#111310] dark:shadow-none">
+          <div className="mt-10 overflow-hidden border border-stone-200 bg-white shadow-[0_30px_80px_rgba(28,25,23,0.06)] dark:border-white/10 dark:bg-[#111310] dark:shadow-none">
             <div className="grid lg:grid-cols-[250px_minmax(0,1fr)]">
-              <aside className="border-b border-stone-200 bg-[#f1ece3] p-6 dark:border-white/10 dark:bg-white/[0.03] lg:border-b-0 lg:border-r">
+              <aside className="border-b border-stone-200 bg-stone-50 p-6 dark:border-white/10 dark:bg-white/[0.03] lg:border-b-0 lg:border-r">
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
                     Current workspace
@@ -337,7 +337,7 @@ export default function LMSPage() {
                 </header>
 
                 <div className="mt-8 grid gap-5 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)]">
-                  <article className="flex min-h-[20rem] flex-col justify-between bg-[#e8e0d4] p-8 dark:bg-[#171a16] md:p-10">
+                  <article className="flex min-h-[20rem] flex-col justify-between border border-stone-200 bg-stone-50 p-8 dark:border-white/10 dark:bg-[#171a16] md:p-10">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
                         Program overview
@@ -352,7 +352,7 @@ export default function LMSPage() {
                       {dashboardModules.map((module) => (
                         <div
                           key={module.title}
-                          className="border border-stone-300 bg-[#f7f2ea] p-5 dark:border-white/10 dark:bg-white/[0.04]"
+                           className="border border-stone-200 bg-white p-5 dark:border-white/10 dark:bg-white/[0.04]"
                         >
                           <p className="text-sm font-semibold text-stone-950 dark:text-white">
                             {module.title}
@@ -415,7 +415,7 @@ export default function LMSPage() {
               return (
                 <article
                   key={pillar.title}
-                  className={`border border-stone-200 bg-[#f0ece6] p-8 dark:border-white/10 dark:bg-white/[0.03] md:p-10 ${
+                   className={`border border-stone-200 bg-white p-8 dark:border-white/10 dark:bg-white/[0.03] md:p-10 ${
                     index === 1 ? "md:ml-8" : ""
                   }`}
                 >
@@ -440,7 +440,7 @@ export default function LMSPage() {
         </div>
       </section>
 
-      <section className="border-y border-stone-200/80 bg-[#ede7de] py-16 dark:border-white/10 dark:bg-zinc-900 md:py-24">
+      <section className="border-y border-stone-200/80 bg-stone-50 py-16 dark:border-white/10 dark:bg-zinc-900 md:py-24">
         <div className="mx-auto max-w-7xl px-6 md:px-10">
           <div className="flex flex-col gap-5 border-b border-stone-200 pb-10 dark:border-white/10 md:flex-row md:items-end md:justify-between">
             <div>
