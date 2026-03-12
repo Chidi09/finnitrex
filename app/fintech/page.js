@@ -108,7 +108,7 @@ const systemsNarrative = [
     eyebrow: "For risk leaders",
     title: "Every metric is framed around response quality.",
     description:
-      "The page shifts the conversation from dashboard theatre toward practical operating signals: latency, confidence, throughput, and exception management across volatile conditions.",
+      "Risk teams get practical operating signals: latency, confidence, throughput, and exception handling across volatile market conditions.",
   },
 ];
 
@@ -199,7 +199,7 @@ export default function FintechPage() {
                 <span>Real-time AI prediction modeling</span>
               </div>
               <h2 className="mt-5 max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-stone-950 dark:text-white md:text-4xl">
-                A live visualization retained as supporting proof, not the whole story.
+                A live model view paired with measurable trading and governance signals.
               </h2>
               <div className="mt-8 grid gap-8 text-sm leading-7 text-stone-600 dark:text-stone-300 md:grid-cols-2">
                 <p>

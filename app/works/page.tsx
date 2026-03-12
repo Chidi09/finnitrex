@@ -123,7 +123,7 @@ export default function WorksPage() {
               </h2>
             </div>
             <p className="max-w-md text-sm leading-7 text-[var(--muted)]">
-              Larger cards make room for context without turning the page into a separate case-study flow.
+              Each featured project carries the delivery context, technical approach, and proof points needed to understand the work quickly.
             </p>
           </div>
 
@@ -358,7 +358,7 @@ export default function WorksPage() {
               </h2>
             </div>
             <p className="max-w-lg text-sm leading-7 text-[var(--muted)]">
-              Smaller cards stay compact and scan-friendly, so the page still reads like one proof hub instead of several content types stitched together.
+              The wider archive stays compact and easy to scan while still showing what each build delivered.
             </p>
           </div>
 

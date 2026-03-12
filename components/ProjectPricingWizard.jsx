@@ -69,8 +69,8 @@ export default function ProjectPricingWizard() {
   const [showInvoice, setShowInvoice] = useState(false);
   const [saving, setSaving] = useState(false);
   const [savedQuote, setSavedQuote] = useState(null);
-  const [discountType, setDiscountType] = useState("none"); // "none", "percentage", "amount"
-  const [discountValue, setDiscountValue] = useState(0);
+  const [discountType] = useState("none"); // "none", "percentage", "amount"
+  const [discountValue] = useState(0);
   const [showDiscountInput, setShowDiscountInput] = useState(false);
   const [offerAmount, setOfferAmount] = useState("");
   const [offerStatus, setOfferStatus] = useState("IDLE"); // IDLE, PROCESSING, ACCEPTED, REJECTED, REVIEW
@@ -184,15 +184,6 @@ export default function ProjectPricingWizard() {
     offerAmount,
   ]);
 
-  const handleToggleFeature = (feature) => {
-    setData((prev) => ({
-      ...prev,
-      features: prev.features.includes(feature)
-        ? prev.features.filter((f) => f !== feature)
-        : [...prev.features, feature],
-    }));
-  };
-
   const togglePricingFeature = (key) => {
     setSelectedFeatures((prev) => ({
       ...prev,
@@ -296,40 +287,48 @@ export default function ProjectPricingWizard() {
   };
 
   return (
-    <div className="w-full max-w-6xl mx-auto bg-black border border-gray-800 rounded-2xl overflow-hidden shadow-2xl shadow-cyan-900/10 flex flex-col md:flex-row min-h-[600px]">
-      {/* SIDEBAR: Progress & Info */}
-      <div className="bg-gray-900/50 p-8 md:w-1/3 border-b md:border-b-0 md:border-r border-gray-800 flex flex-col justify-between">
+    <div className="mx-auto flex min-h-[600px] w-full max-w-6xl flex-col overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[color:rgba(255,255,255,0.82)] text-[var(--foreground)] shadow-[0_28px_70px_rgba(28,25,23,0.08)] backdrop-blur md:flex-row dark:bg-[var(--surface-elevated)] dark:shadow-none">
+      <div className="flex flex-col justify-between border-b border-[var(--border)] bg-[linear-gradient(180deg,rgba(255,255,255,0.86),rgba(244,241,236,0.92))] p-8 md:w-[31%] md:border-b-0 md:border-r dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))]">
         <div>
-          <div className="text-xs font-mono text-lime-400 mb-6">
-            PROJECT WIZARD v3.0
+          <div className="mb-6 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--muted)]">
+            Guided estimate v3.0
           </div>
-          <h2 className="text-2xl font-bold text-white mb-2">START PROJECT</h2>
-          <p className="text-sm text-gray-400">
+          <h2 className="mb-2 text-2xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
+            Start your project
+          </h2>
+          <p className="text-sm leading-6 text-[var(--muted)]">
             Configure requirements and get instant pricing.
           </p>
         </div>
 
-        <div className="space-y-4 mt-8 md:mt-0">
+        <div className="mt-8 space-y-4 md:mt-0">
           {STEPS.map((s) => {
             const isActive = step === s.id;
             const isCompleted = step > s.id;
             return (
-              <div key={s.id} className="flex items-center gap-3">
+              <div
+                key={s.id}
+                className={`flex items-center gap-3 rounded-2xl border px-3 py-3 transition-colors ${
+                  isActive
+                    ? "border-[color:rgba(91,143,61,0.24)] bg-[color:rgba(91,143,61,0.1)] dark:border-[color:rgba(159,211,109,0.2)] dark:bg-[color:rgba(159,211,109,0.08)]"
+                    : "border-transparent bg-white/40 dark:bg-white/[0.02]"
+                }`}
+              >
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border transition-all
-                  ${
+                  className={`flex h-9 w-9 items-center justify-center rounded-full border text-xs font-semibold transition-all ${
                     isActive
-                      ? "bg-lime-500 text-black border-lime-500"
+                      ? "border-[var(--foreground)] bg-[var(--foreground)] text-[var(--accent-contrast)] dark:border-[var(--accent)] dark:bg-[var(--accent)]"
                       : isCompleted
-                        ? "bg-green-500/20 text-green-500 border-green-500"
-                        : "bg-gray-800 text-gray-500 border-gray-700"
-                  }
-                `}
+                        ? "border-[color:rgba(91,143,61,0.24)] bg-[color:rgba(91,143,61,0.12)] text-[var(--accent)] dark:border-[color:rgba(159,211,109,0.25)]"
+                        : "border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--muted)] dark:bg-[var(--surface)]"
+                  }`}
                 >
                   {isCompleted ? <CheckCircle2 size={16} /> : s.id}
                 </div>
                 <span
-                  className={`text-sm font-mono ${isActive ? "text-white" : "text-gray-600"}`}
+                  className={`text-sm font-medium ${
+                    isActive ? "text-[var(--foreground)]" : "text-[var(--muted)]"
+                  }`}
                 >
                   {s.title}
                 </span>
@@ -339,11 +338,10 @@ export default function ProjectPricingWizard() {
         </div>
       </div>
 
-      {/* MAIN CONTENT AREA */}
-      <div className="p-8 md:w-2/3 bg-black/80 relative">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gray-900">
+      <div className="relative bg-[linear-gradient(180deg,rgba(255,255,255,0.72),rgba(250,247,241,0.64))] p-8 md:w-[69%] dark:bg-transparent">
+        <div className="absolute left-0 top-0 h-1 w-full bg-[color:rgba(0,0,0,0.06)] dark:bg-white/10">
           <motion.div
-            className="h-full bg-lime-500"
+            className="h-full bg-[var(--accent)]"
             initial={{ width: "20%" }}
             animate={{ width: `${step * 20}%` }}
           />
@@ -371,29 +369,28 @@ export default function ProjectPricingWizard() {
             onPrint={printEstimate}
           />
         ) : status === "SUCCESS" ? (
-          <div className="h-full flex flex-col items-center justify-center text-center space-y-6">
-            <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center border border-green-500/50">
-              <CheckCircle2 className="w-10 h-10 text-green-500" />
+          <div className="flex h-full flex-col items-center justify-center space-y-6 text-center">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full border border-[color:rgba(91,143,61,0.22)] bg-[color:rgba(91,143,61,0.1)] dark:border-[color:rgba(159,211,109,0.24)] dark:bg-[color:rgba(159,211,109,0.08)]">
+              <CheckCircle2 className="h-10 w-10 text-[var(--accent)]" />
             </div>
-            <h3 className="text-2xl font-bold text-white">
+            <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
               Quote Generated Successfully!
             </h3>
-            <p className="text-gray-400 max-w-sm">
+            <p className="max-w-sm text-sm leading-7 text-[var(--muted)]">
               Your invoice has been emailed to {data.email}. Check your inbox
               for the detailed quote.
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="px-6 py-2 bg-gray-800 rounded hover:bg-gray-700 text-sm font-mono text-white transition-colors"
+              className="rounded-full border border-[var(--border)] bg-[var(--surface-elevated)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] dark:bg-[var(--surface)]"
             >
-              Start New Sequence
+              Start new estimate
             </button>
           </div>
         ) : (
-          <div className="h-full flex flex-col">
-            <div className="flex-1 py-4 overflow-y-auto">
+          <div className="flex h-full flex-col">
+            <div className="flex-1 overflow-y-auto py-4">
               <AnimatePresence mode="wait">
-                {/* STEP 1: SYSTEM SELECTION */}
                 {step === 1 && (
                   <motion.div
                     key="step1"
@@ -402,7 +399,7 @@ export default function ProjectPricingWizard() {
                     exit={{ opacity: 0, x: -20 }}
                     className="space-y-4"
                   >
-                    <h3 className="text-xl font-bold mb-6 text-white">
+                    <h3 className="mb-6 text-xl font-semibold tracking-[-0.03em] text-[var(--foreground)]">
                       Target Architecture
                     </h3>
                     <div className="grid grid-cols-1 gap-3">
@@ -433,35 +430,27 @@ export default function ProjectPricingWizard() {
                         },
                       ].map((sys) => {
                         const Icon = sys.icon;
+                        const selected = data.system === sys.label;
+
                         return (
                           <button
                             key={sys.id}
-                            onClick={() =>
-                              setData({ ...data, system: sys.label })
-                            }
-                            className={`p-4 rounded-xl border text-left flex items-center gap-4 transition-all
-                              ${
-                                data.system === sys.label
-                                  ? "bg-lime-900/20 border-lime-500 shadow-[0_0_15px_rgba(190,242,100,0.2)]"
-                                  : "bg-gray-900/20 border-gray-800 hover:border-gray-600"
-                              }
-                            `}
+                            onClick={() => setData({ ...data, system: sys.label })}
+                            className={`flex items-center gap-4 rounded-[1.2rem] border p-4 text-left transition-all ${
+                              selected
+                                ? "border-[color:rgba(91,143,61,0.28)] bg-[color:rgba(91,143,61,0.08)] shadow-[0_16px_34px_rgba(91,143,61,0.08)] dark:border-[color:rgba(159,211,109,0.24)] dark:bg-[color:rgba(159,211,109,0.08)] dark:shadow-none"
+                                : "border-[var(--border)] bg-[var(--surface-elevated)] hover:border-[color:rgba(91,143,61,0.24)] dark:bg-[var(--surface)]"
+                            }`}
                           >
                             <Icon
-                              className={
-                                data.system === sys.label
-                                  ? "text-lime-400"
-                                  : "text-gray-600"
-                              }
+                              className={selected ? "text-[var(--accent)]" : "text-[var(--muted)]"}
                               size={24}
                             />
                             <div>
-                              <div
-                                className={`font-bold ${data.system === sys.label ? "text-white" : "text-gray-400"}`}
-                              >
+                              <div className="font-semibold text-[var(--foreground)]">
                                 {sys.label}
                               </div>
-                              <div className="text-xs text-gray-500">
+                              <div className="text-xs text-[var(--muted)]">
                                 {sys.desc}
                               </div>
                             </div>
@@ -472,7 +461,6 @@ export default function ProjectPricingWizard() {
                   </motion.div>
                 )}
 
-                {/* STEP 2: FEATURES & SCOPE */}
                 {step === 2 && (
                   <motion.div
                     key="step2"
@@ -481,11 +469,11 @@ export default function ProjectPricingWizard() {
                     exit={{ opacity: 0, x: -20 }}
                     className="space-y-6"
                   >
-                    <h3 className="text-xl font-bold mb-6 text-white">
+                    <h3 className="mb-6 text-xl font-semibold tracking-[-0.03em] text-[var(--foreground)]">
                       Select Features
                     </h3>
 
-                    <div className="space-y-3 max-h-96 overflow-y-auto">
+                    <div className="max-h-96 space-y-3 overflow-y-auto">
                       {Object.entries(features).map(([key, feature]) => {
                         const isSelected = selectedFeatures[key];
                         const quantity = featureQuantities[key] || 1;
@@ -496,31 +484,34 @@ export default function ProjectPricingWizard() {
                         return (
                           <div
                             key={key}
-                            className={`p-4 rounded-lg border transition-all ${
+                            className={`rounded-[1.15rem] border p-4 transition-all ${
                               isSelected
-                                ? "border-lime-500 bg-lime-900/10"
-                                : "border-gray-700 hover:border-gray-600"
+                                ? "border-[color:rgba(91,143,61,0.26)] bg-[color:rgba(91,143,61,0.08)] dark:border-[color:rgba(159,211,109,0.22)] dark:bg-[color:rgba(159,211,109,0.08)]"
+                                : "border-[var(--border)] bg-[var(--surface-elevated)] hover:border-[color:rgba(91,143,61,0.22)] dark:bg-[var(--surface)]"
                             }`}
                           >
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-3 flex-1">
+                            <div className="flex items-center justify-between gap-4">
+                              <div className="flex flex-1 items-center gap-3">
                                 <button
                                   onClick={() => togglePricingFeature(key)}
-                                  className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
+                                  className={`flex h-5 w-5 items-center justify-center rounded border transition-all ${
                                     isSelected
-                                      ? "border-lime-500 bg-lime-500"
-                                      : "border-gray-600"
+                                      ? "border-[var(--accent)] bg-[var(--accent)]"
+                                      : "border-[var(--border)] bg-transparent"
                                   }`}
                                 >
                                   {isSelected && (
-                                    <Check size={12} className="text-black" />
+                                    <Check
+                                      size={12}
+                                      className="text-[var(--accent-contrast)]"
+                                    />
                                   )}
                                 </button>
                                 <div className="flex-1">
-                                  <div className="font-semibold text-sm text-white">
+                                  <div className="text-sm font-semibold text-[var(--foreground)]">
                                     {feature.name}
                                   </div>
-                                  <div className="text-xs text-gray-400">
+                                  <div className="text-xs text-[var(--muted)]">
                                     £{feature.price.toLocaleString()}
                                   </div>
                                 </div>
@@ -529,16 +520,16 @@ export default function ProjectPricingWizard() {
                                 <div className="flex items-center gap-2">
                                   <button
                                     onClick={() => updateQuantity(key, -1)}
-                                    className="w-7 h-7 rounded border border-gray-600 flex items-center justify-center hover:bg-gray-800"
+                                    className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] dark:bg-[var(--surface-elevated)]"
                                   >
                                     <Minus size={12} />
                                   </button>
-                                  <span className="w-6 text-center font-mono text-sm">
+                                  <span className="w-6 text-center text-sm font-medium text-[var(--foreground)]">
                                     {quantity}
                                   </span>
                                   <button
                                     onClick={() => updateQuantity(key, 1)}
-                                    className="w-7 h-7 rounded border border-gray-600 flex items-center justify-center hover:bg-gray-800"
+                                    className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] dark:bg-[var(--surface-elevated)]"
                                   >
                                     <Plus size={12} />
                                   </button>
@@ -551,8 +542,8 @@ export default function ProjectPricingWizard() {
                     </div>
 
                     <textarea
-                      placeholder="// Additional technical details..."
-                      className="w-full bg-gray-900/20 border border-gray-800 rounded p-3 text-sm text-white focus:border-lime-500 focus:outline-none h-24 resize-none"
+                      placeholder="Additional technical details, context, or dependencies..."
+                      className="h-28 w-full resize-none rounded-[1.2rem] border border-[var(--border)] bg-[var(--surface-elevated)] px-4 py-3 text-sm text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)]/80 focus:border-[var(--accent)] dark:bg-[var(--surface)]"
                       value={data.details}
                       onChange={(e) =>
                         setData({ ...data, details: e.target.value })
@@ -561,7 +552,6 @@ export default function ProjectPricingWizard() {
                   </motion.div>
                 )}
 
-                {/* STEP 3: CONSTRAINTS */}
                 {step === 3 && (
                   <motion.div
                     key="step3"
@@ -570,23 +560,25 @@ export default function ProjectPricingWizard() {
                     exit={{ opacity: 0, x: -20 }}
                     className="space-y-6"
                   >
-                    <h3 className="text-xl font-bold mb-8 text-white">
+                    <h3 className="mb-8 text-xl font-semibold tracking-[-0.03em] text-[var(--foreground)]">
                       Project Constraints
                     </h3>
 
                     <div className="mb-8">
-                      <label className="block text-sm font-mono text-lime-400 mb-4">
-                        ESTIMATED BUDGET
+                      <label className="mb-4 block text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+                        Estimated budget
                       </label>
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
                         {["< $5k", "$5k - $15k", "$15k - $50k", "$50k+"].map(
                           (b) => (
                             <button
                               key={b}
                               onClick={() => setData({ ...data, budget: b })}
-                              className={`py-2 px-4 rounded border text-sm transition-colors
-                              ${data.budget === b ? "bg-lime-500 text-black border-lime-500 font-bold" : "bg-transparent border-gray-700 text-gray-400"}
-                            `}
+                              className={`rounded-full border px-4 py-2.5 text-sm font-medium transition-colors ${
+                                data.budget === b
+                                  ? "border-[var(--foreground)] bg-[var(--foreground)] text-[var(--accent-contrast)] dark:border-[var(--accent)] dark:bg-[var(--accent)]"
+                                  : "border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--muted)] hover:border-[var(--accent)] hover:text-[var(--foreground)] dark:bg-[var(--surface)]"
+                              }`}
                             >
                               {b}
                             </button>
@@ -596,15 +588,15 @@ export default function ProjectPricingWizard() {
                     </div>
 
                     <div className="mb-8">
-                      <label className="block text-sm font-mono text-emerald-400 mb-4">
-                        TARGET TIMELINE
+                      <label className="mb-4 block text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+                        Target timeline
                       </label>
                       <select
                         value={data.timeline}
                         onChange={(e) =>
                           setData({ ...data, timeline: e.target.value })
                         }
-                        className="w-full bg-gray-900 border border-gray-700 rounded p-3 text-white focus:border-lime-500 outline-none"
+                        className="w-full rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface-elevated)] p-3 text-[var(--foreground)] outline-none transition-colors focus:border-[var(--accent)] dark:bg-[var(--surface)]"
                       >
                         <option>Urgent (&lt; 1 Month)</option>
                         <option>Standard (1-3 Months)</option>
@@ -613,35 +605,37 @@ export default function ProjectPricingWizard() {
                       </select>
                     </div>
 
-                    {/* Ongoing Costs */}
                     <div>
-                      <label className="block text-sm font-mono text-lime-400 mb-4">
-                        ONGOING COSTS (Optional)
+                      <label className="mb-4 block text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+                        Ongoing costs (optional)
                       </label>
                       <div className="space-y-2">
                         {Object.entries(ongoingCosts).map(([key, cost]) => (
                           <div
                             key={key}
-                            className="flex items-center justify-between p-3 rounded-lg border border-gray-700"
+                            className="flex items-center justify-between rounded-[1rem] border border-[var(--border)] bg-[var(--surface-elevated)] p-3 dark:bg-[var(--surface)]"
                           >
                             <div className="flex items-center gap-3">
                               <button
                                 onClick={() => toggleOngoing(key)}
-                                className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
+                                className={`flex h-5 w-5 items-center justify-center rounded border ${
                                   ongoing[key]
-                                    ? "border-lime-500 bg-lime-500"
-                                    : "border-gray-600"
+                                    ? "border-[var(--accent)] bg-[var(--accent)]"
+                                    : "border-[var(--border)] bg-transparent"
                                 }`}
                               >
                                 {ongoing[key] && (
-                                  <Check size={12} className="text-black" />
+                                  <Check
+                                    size={12}
+                                    className="text-[var(--accent-contrast)]"
+                                  />
                                 )}
                               </button>
-                              <span className="text-sm text-gray-300">
+                              <span className="text-sm text-[var(--foreground)]/84">
                                 {cost.name}
                               </span>
                             </div>
-                            <span className="text-lime-400 font-mono text-sm">
+                            <span className="text-sm font-semibold text-[var(--accent)]">
                               £{cost.price}
                             </span>
                           </div>
@@ -651,7 +645,6 @@ export default function ProjectPricingWizard() {
                   </motion.div>
                 )}
 
-                {/* STEP 4: PRICING & CONTACT */}
                 {step === 4 && (
                   <motion.div
                     key="step4"
@@ -660,36 +653,35 @@ export default function ProjectPricingWizard() {
                     exit={{ opacity: 0, x: -20 }}
                     className="space-y-6"
                   >
-                    <h3 className="text-xl font-bold mb-6 text-white flex items-center gap-2">
-                      <Calculator className="text-lime-400" size={24} />
+                    <h3 className="mb-6 flex items-center gap-2 text-xl font-semibold tracking-[-0.03em] text-[var(--foreground)]">
+                      <Calculator className="text-[var(--accent)]" size={24} />
                       Pricing Summary
                     </h3>
 
-                    {/* Price Summary */}
-                    <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 mb-6">
-                      <div className="space-y-3 mb-6">
+                    <div className="mb-6 rounded-[1.35rem] border border-[var(--border)] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(246,242,233,0.82))] p-6 dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02))]">
+                      <div className="mb-6 space-y-3">
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-400">Base Package:</span>
-                          <span className="font-mono text-white">
+                          <span className="text-[var(--muted)]">Base Package:</span>
+                          <span className="font-medium text-[var(--foreground)]">
                             £{calculations.baseTotal.toLocaleString()}
                           </span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-400">Features:</span>
-                          <span className="font-mono text-white">
+                          <span className="text-[var(--muted)]">Features:</span>
+                          <span className="font-medium text-[var(--foreground)]">
                             £{calculations.featuresTotal.toLocaleString()}
                           </span>
                         </div>
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-400">Subtotal:</span>
-                          <span className="font-mono text-white">
+                          <span className="text-[var(--muted)]">Subtotal:</span>
+                          <span className="font-medium text-[var(--foreground)]">
                             £{calculations.subtotal.toLocaleString()}
                           </span>
                         </div>
                         {calculations.discountAmount > 0 && (
-                          <div className="flex justify-between text-sm text-lime-400">
+                          <div className="flex justify-between text-sm text-[var(--accent)]">
                             <span>Adjustment / Offer:</span>
-                            <span className="font-mono">
+                            <span className="font-medium">
                               -£
                               {calculations.discountAmount.toLocaleString(
                                 undefined,
@@ -702,30 +694,30 @@ export default function ProjectPricingWizard() {
                           </div>
                         )}
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-400">VAT (20%):</span>
-                          <span className="font-mono text-white">
+                          <span className="text-[var(--muted)]">VAT (20%):</span>
+                          <span className="font-medium text-[var(--foreground)]">
                             £{calculations.vat.toLocaleString()}
                           </span>
                         </div>
-                        <div className="border-t border-gray-700 pt-3 flex justify-between text-lg font-bold">
-                          <span className="text-white">Total:</span>
-                          <span className="text-lime-400 font-mono">
+                        <div className="flex justify-between border-t border-[var(--border)] pt-3 text-lg font-semibold">
+                          <span className="text-[var(--foreground)]">Total:</span>
+                          <span className="text-[var(--accent)]">
                             £{calculations.total.toLocaleString()}
                           </span>
                         </div>
                         {calculations.ongoingTotal > 0 && (
-                          <div className="border-t border-gray-700 pt-3">
-                            <div className="flex justify-between text-sm text-gray-400 mb-1">
+                          <div className="border-t border-[var(--border)] pt-3">
+                            <div className="mb-1 flex justify-between text-sm text-[var(--muted)]">
                               <span>Ongoing (Year 1):</span>
-                              <span className="font-mono">
+                              <span className="font-medium text-[var(--foreground)]">
                                 £{calculations.ongoingTotal.toLocaleString()}
                               </span>
                             </div>
-                            <div className="flex justify-between font-bold">
-                              <span className="text-emerald-400">
+                            <div className="flex justify-between font-semibold">
+                              <span className="text-[var(--accent)]">
                                 First Year Total:
                               </span>
-                              <span className="text-emerald-400 font-mono">
+                              <span className="text-[var(--accent)]">
                                 £{calculations.firstYearTotal.toLocaleString()}
                               </span>
                             </div>
@@ -734,14 +726,13 @@ export default function ProjectPricingWizard() {
                       </div>
                     </div>
 
-                    {/* Negotiation / Offer Section */}
-                    <div className="bg-gray-900/30 border border-gray-800 rounded-xl p-4">
+                    <div className="rounded-[1.25rem] border border-[var(--border)] bg-[color:rgba(255,255,255,0.7)] p-4 dark:bg-white/[0.03]">
                       <button
                         onClick={() => setShowDiscountInput(!showDiscountInput)}
-                        className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors w-full"
+                        className="flex w-full items-center gap-2 text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
                       >
                         <HandCoins size={16} />
-                        <span>Can't meet this quota? Make an offer</span>
+                        <span>Need more flexibility? Make an offer</span>
                       </button>
 
                       {showDiscountInput && (
@@ -752,13 +743,13 @@ export default function ProjectPricingWizard() {
                         >
                           <div className="flex gap-2">
                             <div className="relative flex-1">
-                              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+                              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)]">
                                 £
                               </span>
                               <input
                                 type="number"
                                 placeholder="Enter your budget..."
-                                className="w-full bg-black border border-gray-700 rounded-lg py-2 pl-8 pr-4 text-white focus:border-lime-500 outline-none"
+                                className="w-full rounded-full border border-[var(--border)] bg-[var(--surface-elevated)] py-2.5 pl-8 pr-4 text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] dark:bg-[var(--surface)]"
                                 value={offerAmount}
                                 onChange={(e) => setOfferAmount(e.target.value)}
                                 disabled={offerStatus === "ACCEPTED"}
@@ -770,7 +761,7 @@ export default function ProjectPricingWizard() {
                                 offerStatus === "ACCEPTED" ||
                                 offerStatus === "PROCESSING"
                               }
-                              className="bg-gray-800 hover:bg-gray-700 text-white px-4 rounded-lg text-sm font-bold transition-colors disabled:opacity-50"
+                              className="rounded-full bg-[var(--foreground)] px-4 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--accent-contrast)] transition-opacity hover:opacity-90 disabled:opacity-50 dark:bg-[var(--accent)]"
                             >
                               {offerStatus === "PROCESSING" ? (
                                 <Loader2 className="animate-spin" size={16} />
@@ -781,19 +772,19 @@ export default function ProjectPricingWizard() {
                           </div>
 
                           {offerStatus === "ACCEPTED" && (
-                            <p className="text-lime-400 text-xs flex items-center gap-1">
+                            <p className="flex items-center gap-1 text-xs text-[var(--accent)]">
                               <CheckCircle2 size={12} /> Offer accepted! Quote
                               updated.
                             </p>
                           )}
                           {offerStatus === "REJECTED" && (
-                            <p className="text-red-400 text-xs">
+                            <p className="text-xs text-red-500 dark:text-red-300">
                               Offer too low. Please increase your budget or
                               remove features.
                             </p>
                           )}
                           {offerStatus === "REVIEW" && (
-                            <p className="text-yellow-400 text-xs">
+                            <p className="text-xs text-amber-600 dark:text-amber-300">
                               Offer requires manual review. Submit quote to
                               proceed.
                             </p>
@@ -802,44 +793,43 @@ export default function ProjectPricingWizard() {
                       )}
                     </div>
 
-                    {/* Contact Info */}
-                    <div className="space-y-4">
-                      <div className="group">
-                        <label className="block text-xs font-mono text-gray-500 mb-1">
-                          CLIENT IDENTIFIER
+                    <div className="space-y-4 rounded-[1.25rem] border border-[var(--border)] bg-[color:rgba(255,255,255,0.64)] p-5 dark:bg-white/[0.03]">
+                      <div>
+                        <label className="mb-1 block text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
+                          Client identifier
                         </label>
                         <input
                           type="text"
                           placeholder="Your Name / Company"
-                          className="w-full bg-transparent border-b border-gray-700 py-2 text-lg text-white focus:border-lime-500 outline-none transition-colors"
+                          className="w-full rounded-[1rem] border border-[var(--border)] bg-[var(--surface-elevated)] px-4 py-3 text-base text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] dark:bg-[var(--surface)]"
                           value={data.name}
                           onChange={(e) =>
                             setData({ ...data, name: e.target.value })
                           }
                         />
                       </div>
-                      <div className="group">
-                        <label className="block text-xs font-mono text-gray-500 mb-1">
-                          RETURN ADDRESS
+                      <div>
+                        <label className="mb-1 block text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
+                          Return address
                         </label>
                         <input
                           type="email"
                           placeholder="name@company.com"
-                          className="w-full bg-transparent border-b border-gray-700 py-2 text-lg text-white focus:border-lime-500 outline-none transition-colors"
+                          className="w-full rounded-[1rem] border border-[var(--border)] bg-[var(--surface-elevated)] px-4 py-3 text-base text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] dark:bg-[var(--surface)]"
                           value={data.email}
                           onChange={(e) =>
                             setData({ ...data, email: e.target.value })
                           }
                         />
                       </div>
-                      <div className="group">
-                        <label className="block text-xs font-mono text-gray-500 mb-1">
-                          COMPANY (Optional)
+                      <div>
+                        <label className="mb-1 block text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[var(--muted)]">
+                          Company (optional)
                         </label>
                         <input
                           type="text"
                           placeholder="Company Name"
-                          className="w-full bg-transparent border-b border-gray-700 py-2 text-lg text-white focus:border-lime-500 outline-none transition-colors"
+                          className="w-full rounded-[1rem] border border-[var(--border)] bg-[var(--surface-elevated)] px-4 py-3 text-base text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] dark:bg-[var(--surface)]"
                           value={data.company}
                           onChange={(e) =>
                             setData({ ...data, company: e.target.value })
@@ -852,38 +842,37 @@ export default function ProjectPricingWizard() {
               </AnimatePresence>
             </div>
 
-            {/* NAV BUTTONS */}
-            <div className="flex justify-between pt-6 border-t border-gray-800">
+            <div className="flex justify-between border-t border-[var(--border)] pt-6">
               <button
                 onClick={() => setStep((s) => Math.max(1, s - 1))}
                 disabled={step === 1}
-                className="flex items-center gap-2 text-gray-500 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--muted)] transition-colors hover:text-[var(--foreground)] disabled:cursor-not-allowed disabled:opacity-30"
               >
-                <ArrowLeft size={16} /> BACK
+                <ArrowLeft size={16} /> Back
               </button>
 
               {step < 4 ? (
                 <button
                   onClick={() => canProceed() && setStep((s) => s + 1)}
                   disabled={!canProceed()}
-                  className="flex items-center gap-2 bg-white text-black px-6 py-2 rounded font-bold hover:bg-lime-400 transition-colors disabled:opacity-50 disabled:bg-gray-700 disabled:text-gray-400"
+                  className="flex items-center gap-2 rounded-full bg-[var(--foreground)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent-contrast)] transition-opacity hover:opacity-90 disabled:bg-[var(--border)] disabled:text-[var(--muted)] disabled:opacity-70 dark:bg-[var(--accent)]"
                 >
-                  NEXT <ArrowRight size={16} />
+                  Next <ArrowRight size={16} />
                 </button>
               ) : (
                 <button
                   onClick={generateEstimate}
                   disabled={!canProceed() || saving}
-                  className="flex items-center gap-2 bg-gradient-to-r from-lime-500 to-lime-600 text-black px-8 py-2 rounded font-bold hover:shadow-[0_0_20px_rgba(190,242,100,0.5)] transition-all disabled:opacity-50"
+                  className="flex items-center gap-2 rounded-full bg-[var(--foreground)] px-8 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent-contrast)] transition-opacity hover:opacity-90 disabled:bg-[var(--border)] disabled:text-[var(--muted)] disabled:opacity-70 dark:bg-[var(--accent)]"
                 >
                   {saving ? (
                     <>
                       <Loader2 className="animate-spin" size={16} />{" "}
-                      GENERATING...
+                      Generating...
                     </>
                   ) : (
                     <>
-                      <FileText size={16} /> GENERATE ESTIMATE
+                      <FileText size={16} /> Generate estimate
                     </>
                   )}
                 </button>
@@ -921,110 +910,109 @@ function InvoiceView({
   });
 
   return (
-    <div className="fixed inset-0 bg-black/95 z-50 overflow-y-auto p-6 print:p-0 print:bg-white">
-      <div className="invoice-container max-w-4xl mx-auto bg-black border border-gray-800 rounded-2xl p-8 md:p-12 print:bg-white print:border-0 print:rounded-none print:shadow-none">
-        {/* Invoice Header */}
-        <div className="flex justify-between items-start mb-8 border-b border-gray-800 pb-6 print:border-gray-300">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-[color:rgba(23,21,17,0.45)] p-6 backdrop-blur-sm print:bg-white print:p-0">
+      <div className="invoice-container mx-auto max-w-4xl rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface-elevated)] p-8 text-[var(--foreground)] shadow-[0_26px_70px_rgba(23,21,17,0.14)] dark:bg-[var(--surface)] dark:shadow-none md:p-12 print:rounded-none print:border-0 print:bg-white print:p-0 print:shadow-none">
+        <div className="mb-8 flex items-start justify-between border-b border-[var(--border)] pb-6 print:border-gray-300">
           <div>
-            <div className="flex items-center gap-3 mb-3">
-              <div className="scale-75 origin-left print:hidden">
-                <FinnitrexLogo className="w-16 h-16" textVisible={false} />
+            <div className="mb-3 flex items-center gap-3">
+              <div className="origin-left scale-75 print:hidden">
+                <FinnitrexLogo className="h-16 w-16" textVisible={false} />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-white print:text-black">
+                <h1 className="text-3xl font-semibold tracking-[-0.05em] text-[var(--foreground)] print:text-black">
                   FINNI
-                  <span className="text-lime-400 print:text-lime-600">
+                  <span className="text-[var(--accent)] print:text-gray-800">
                     TREX
                   </span>
                 </h1>
-                <p className="text-xs text-lime-400 print:text-gray-600 font-mono tracking-widest">
-                  SYSTEMS ARCHITECTURE
+                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[var(--muted)] print:text-gray-600">
+                  Systems architecture
                 </p>
               </div>
             </div>
-            <p className="text-sm text-gray-400 print:text-gray-600 mt-2">
+            <p className="mt-2 text-sm text-[var(--muted)] print:text-gray-600">
               Solutions Ltd
             </p>
-            <p className="text-xs text-gray-500 print:text-gray-500 mt-2">
+            <p className="mt-2 text-xs text-[var(--muted)]/80 print:text-gray-500">
               483 Green Lanes, London, N13 4BS
             </p>
           </div>
           <div className="text-right">
-            <div className="text-xs text-gray-500 print:text-gray-600 mb-1">
-              ESTIMATE #
+            <div className="mb-1 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[var(--muted)] print:text-gray-600">
+              Estimate #
             </div>
-            <div className="text-xl font-bold font-mono text-lime-400 print:text-black">
+            <div className="text-xl font-semibold text-[var(--foreground)] print:text-black">
               {invoiceNumber}
             </div>
-            <div className="text-xs text-gray-500 print:text-gray-600 mt-4 mb-1">
-              DATE
+            <div className="mb-1 mt-4 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[var(--muted)] print:text-gray-600">
+              Date
             </div>
-            <div className="font-mono text-gray-300 print:text-black">
+            <div className="text-sm text-[var(--foreground)] print:text-black">
               {invoiceDate}
             </div>
-            <div className="text-xs text-emerald-400 print:text-emerald-600 mt-4 mb-1 flex items-center gap-1">
+            <div className="mt-4 mb-1 flex items-center justify-end gap-1 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[var(--accent)] print:text-gray-700">
               <Calendar size={12} />
-              VALID UNTIL
+              Valid until
             </div>
-            <div className="font-mono text-emerald-400 print:text-emerald-600 text-sm">
+            <div className="text-sm font-medium text-[var(--accent)] print:text-black">
               {expiryDate}
             </div>
-            <div className="mt-2 p-1 bg-lime-400/10 border border-lime-400/20 rounded text-[10px] text-lime-500 text-center uppercase font-bold tracking-wider">
+            <div className="mt-3 rounded-full border border-[color:rgba(91,143,61,0.18)] bg-[color:rgba(91,143,61,0.08)] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--accent)] print:border-gray-300 print:bg-gray-100 print:text-gray-700">
               Provisional Quote
             </div>
           </div>
         </div>
 
-        {/* Client Info */}
         <div className="mb-8">
-          <h3 className="font-bold mb-2 text-white print:text-black">
-            Bill To:
+          <h3 className="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--muted)] print:text-gray-700">
+            Bill to
           </h3>
-          <p className="text-gray-300 print:text-gray-700">{clientInfo.name}</p>
+          <p className="text-base font-medium text-[var(--foreground)] print:text-black">
+            {clientInfo.name}
+          </p>
           {clientInfo.company && (
-            <p className="text-gray-400 print:text-gray-600 text-sm">
+            <p className="text-sm text-[var(--muted)] print:text-gray-600">
               {clientInfo.company}
             </p>
           )}
           {clientInfo.email && (
-            <p className="text-gray-400 print:text-gray-600 text-sm">
+            <p className="text-sm text-[var(--muted)] print:text-gray-600">
               {clientInfo.email}
             </p>
           )}
         </div>
 
-        {/* Items Table */}
-        <div className="bg-gray-900/50 print:bg-gray-50 border border-gray-800 print:border-gray-300 rounded-lg p-6 mb-8">
+        <div className="mb-8 rounded-[1.2rem] border border-[var(--border)] bg-[color:rgba(246,242,233,0.55)] p-6 print:rounded-none print:border print:border-gray-300 print:bg-white">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-gray-700 print:border-gray-300">
-                <th className="text-left py-3 font-bold text-lime-400 print:text-black text-sm">
+              <tr className="border-b border-[var(--border)] print:border-gray-300">
+                <th className="py-3 text-left text-sm font-semibold text-[var(--muted)] print:text-gray-700">
                   Description
                 </th>
-                <th className="text-right py-3 font-bold text-lime-400 print:text-black text-sm">
+                <th className="py-3 text-right text-sm font-semibold text-[var(--muted)] print:text-gray-700">
                   Qty
                 </th>
-                <th className="text-right py-3 font-bold text-lime-400 print:text-black text-sm">
+                <th className="py-3 text-right text-sm font-semibold text-[var(--muted)] print:text-gray-700">
                   Unit Price
                 </th>
-                <th className="text-right py-3 font-bold text-lime-400 print:text-black text-sm">
+                <th className="py-3 text-right text-sm font-semibold text-[var(--muted)] print:text-gray-700">
                   Total
                 </th>
               </tr>
             </thead>
             <tbody>
               {selectedPackage && (
-                <tr className="border-b border-gray-800 print:border-gray-200">
-                  <td className="py-3 text-white print:text-black font-semibold">
+                <tr className="border-b border-[var(--border)]/70 print:border-gray-200">
+                  <td className="py-3 font-semibold text-[var(--foreground)] print:text-black">
                     {basePackages[selectedPackage].name}
                   </td>
-                  <td className="text-right font-mono text-gray-300 print:text-black">
+                  <td className="text-right text-sm text-[var(--foreground)] print:text-black">
                     1
                   </td>
-                  <td className="text-right font-mono text-gray-300 print:text-black">
+                  <td className="text-right text-sm text-[var(--foreground)] print:text-black">
                     £{calculations.baseTotal.toLocaleString()}
                   </td>
-                  <td className="text-right font-mono font-bold text-lime-400 print:text-black">
+                  <td className="text-right text-sm font-semibold text-[var(--accent)] print:text-black">
                     £{calculations.baseTotal.toLocaleString()}
                   </td>
                 </tr>
@@ -1036,18 +1024,18 @@ function InvoiceView({
                 return (
                   <tr
                     key={key}
-                    className="border-b border-gray-800 print:border-gray-200"
+                    className="border-b border-[var(--border)]/70 print:border-gray-200"
                   >
-                    <td className="py-2 text-sm text-gray-300 print:text-gray-700">
+                    <td className="py-2 text-sm text-[var(--foreground)]/88 print:text-gray-700">
                       {features[key].name}
                     </td>
-                    <td className="text-right font-mono text-sm text-gray-400 print:text-black">
+                    <td className="text-right text-sm text-[var(--muted)] print:text-black">
                       {quantity}
                     </td>
-                    <td className="text-right font-mono text-sm text-gray-400 print:text-black">
+                    <td className="text-right text-sm text-[var(--muted)] print:text-black">
                       £{features[key].price.toLocaleString()}
                     </td>
-                    <td className="text-right font-mono text-sm text-gray-300 print:text-black">
+                    <td className="text-right text-sm text-[var(--foreground)] print:text-black">
                       £{total.toLocaleString()}
                     </td>
                   </tr>
@@ -1058,18 +1046,18 @@ function InvoiceView({
                 return (
                   <tr
                     key={key}
-                    className="border-b border-gray-800 print:border-gray-200"
+                    className="border-b border-[var(--border)]/70 print:border-gray-200"
                   >
-                    <td className="py-2 text-sm text-gray-300 print:text-gray-700">
+                    <td className="py-2 text-sm text-[var(--foreground)]/88 print:text-gray-700">
                       {ongoingCosts[key].name} (Annual)
                     </td>
-                    <td className="text-right font-mono text-sm text-gray-400 print:text-black">
+                    <td className="text-right text-sm text-[var(--muted)] print:text-black">
                       1
                     </td>
-                    <td className="text-right font-mono text-sm text-gray-400 print:text-black">
+                    <td className="text-right text-sm text-[var(--muted)] print:text-black">
                       £{ongoingCosts[key].price.toLocaleString()}
                     </td>
-                    <td className="text-right font-mono text-sm text-gray-300 print:text-black">
+                    <td className="text-right text-sm text-[var(--foreground)] print:text-black">
                       £{ongoingCosts[key].price.toLocaleString()}
                     </td>
                   </tr>
@@ -1079,18 +1067,17 @@ function InvoiceView({
           </table>
         </div>
 
-        {/* Totals */}
-        <div className="ml-auto w-64 space-y-2 mb-8">
-          <div className="flex justify-between text-sm text-gray-400 print:text-gray-700">
+        <div className="mb-8 ml-auto w-64 space-y-2">
+          <div className="flex justify-between text-sm text-[var(--muted)] print:text-gray-700">
             <span>Subtotal:</span>
-            <span className="font-mono text-gray-300 print:text-black">
+            <span className="text-[var(--foreground)] print:text-black">
               £{calculations.subtotal.toLocaleString()}
             </span>
           </div>
           {calculations.discountAmount > 0 && (
-            <div className="flex justify-between text-sm text-lime-400 print:text-black">
+            <div className="flex justify-between text-sm text-[var(--accent)] print:text-black">
               <span>Agreed Adjustment:</span>
-              <span className="font-mono">
+              <span>
                 -£
                 {calculations.discountAmount.toLocaleString(undefined, {
                   minimumFractionDigits: 2,
@@ -1099,111 +1086,97 @@ function InvoiceView({
               </span>
             </div>
           )}
-          <div className="flex justify-between text-sm text-gray-400 print:text-gray-700">
+          <div className="flex justify-between text-sm text-[var(--muted)] print:text-gray-700">
             <span>VAT (20%):</span>
-            <span className="font-mono text-gray-300 print:text-black">
+            <span className="text-[var(--foreground)] print:text-black">
               £{calculations.vat.toLocaleString()}
             </span>
           </div>
-          <div className="flex justify-between text-lg font-bold border-t-2 border-lime-500 print:border-gray-300 pt-2">
-            <span className="text-white print:text-black">Total:</span>
-            <span className="text-lime-400 print:text-lime-600 font-mono">
+          <div className="flex justify-between border-t-2 border-[var(--foreground)] pt-2 text-lg font-semibold print:border-gray-300">
+            <span className="text-[var(--foreground)] print:text-black">Total:</span>
+            <span className="text-[var(--foreground)] print:text-black">
               £{calculations.total.toLocaleString()}
             </span>
           </div>
         </div>
 
-        {/* Payment Details */}
-        <div className="bg-lime-900/20 print:bg-gray-100 border border-lime-500/30 print:border-gray-300 p-6 rounded-lg mb-6">
-          <h3 className="font-bold mb-3 text-lime-400 print:text-lime-600 text-sm uppercase tracking-wider">
+        <div className="mb-6 rounded-[1.2rem] border border-[var(--border)] bg-[color:rgba(255,255,255,0.6)] p-6 print:rounded-none print:border-gray-300 print:bg-gray-100">
+          <h3 className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--muted)] print:text-gray-700">
             Payment Details
           </h3>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <div className="text-gray-400 print:text-gray-600 mb-1 text-xs">
-                Bank:
+              <div className="mb-1 text-xs uppercase tracking-[0.14em] text-[var(--muted)] print:text-gray-600">
+                Bank
               </div>
-              <div className="font-mono text-white print:text-black font-bold">
+              <div className="font-medium text-[var(--foreground)] print:text-black">
                 Barclays UK
               </div>
             </div>
             <div>
-              <div className="text-gray-400 print:text-gray-600 mb-1 text-xs">
-                Sort Code:
+              <div className="mb-1 text-xs uppercase tracking-[0.14em] text-[var(--muted)] print:text-gray-600">
+                Sort Code
               </div>
-              <div className="font-mono text-white print:text-black font-bold">
+              <div className="font-medium text-[var(--foreground)] print:text-black">
                 20-00-00
               </div>
             </div>
             <div>
-              <div className="text-gray-400 print:text-gray-600 mb-1 text-xs">
-                Account Number:
+              <div className="mb-1 text-xs uppercase tracking-[0.14em] text-[var(--muted)] print:text-gray-600">
+                Account Number
               </div>
-              <div className="font-mono text-white print:text-black font-bold">
+              <div className="font-medium text-[var(--foreground)] print:text-black">
                 87654321
               </div>
             </div>
             <div>
-              <div className="text-lime-400 print:text-lime-600 mb-1 text-xs font-bold">
-                Reference:
+              <div className="mb-1 text-xs uppercase tracking-[0.14em] text-[var(--muted)] print:text-gray-600">
+                Reference
               </div>
-              <div className="font-mono text-lime-400 print:text-lime-600 font-bold text-base">
+              <div className="font-semibold text-[var(--foreground)] print:text-black">
                 {invoiceNumber}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Quote Expiration */}
-        <div className="bg-emerald-900/20 print:bg-emerald-50 border border-emerald-500/30 print:border-emerald-300 p-4 rounded-lg mb-6 flex items-start gap-3">
+        <div className="mb-6 flex items-start gap-3 rounded-[1.1rem] border border-[color:rgba(91,143,61,0.18)] bg-[color:rgba(91,143,61,0.08)] p-4 print:rounded-none print:border-gray-300 print:bg-white">
           <Calendar
-            className="text-emerald-400 print:text-emerald-600 shrink-0 mt-0.5"
+            className="mt-0.5 shrink-0 text-[var(--accent)] print:text-gray-700"
             size={18}
           />
           <div>
-            <p className="text-emerald-400 print:text-emerald-600 font-bold text-sm mb-1">
+            <p className="mb-1 text-sm font-semibold text-[var(--foreground)] print:text-black">
               Quote Valid for 30 Days
             </p>
-            <p className="text-gray-400 print:text-gray-700 text-xs">
-              This quote expires on{" "}
-              <strong className="text-emerald-300 print:text-emerald-700">
-                {expiryDate}
-              </strong>
-              .
+            <p className="text-xs text-[var(--muted)] print:text-gray-700">
+              This quote expires on <strong>{expiryDate}</strong>.
             </p>
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="text-xs text-gray-500 print:text-gray-600 text-center border-t border-gray-800 print:border-gray-300 pt-4">
+        <div className="border-t border-[var(--border)] pt-4 text-center text-xs text-[var(--muted)] print:border-gray-300 print:text-gray-600">
           <p>Thank you for your business.</p>
           <p className="mt-2">
             Questions? Contact us at{" "}
-            <a
-              href="mailto:info@finnitrex.com"
-              className="text-lime-400 print:text-lime-600 hover:underline"
-            >
+            <a href="mailto:info@finnitrex.com" className="text-[var(--foreground)] hover:underline print:text-black">
               info@finnitrex.com
             </a>{" "}
-            or{" "}
-            <strong className="text-lime-400 print:text-lime-600">
-              +44 7521 511800
-            </strong>
+            or <strong className="text-[var(--foreground)] print:text-black">+44 7521 511800</strong>
           </p>
         </div>
 
-        {/* Action Buttons */}
         <div className="mt-8 flex gap-4 print:hidden">
           <button
             onClick={onPrint}
-            className="flex-1 bg-lime-500 text-black font-bold py-3 rounded-lg hover:bg-lime-400 transition-colors flex items-center justify-center gap-2"
+            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[var(--foreground)] py-3 font-semibold uppercase tracking-[0.16em] text-[var(--accent-contrast)] transition-opacity hover:opacity-90 dark:bg-[var(--accent)]"
           >
             <Download size={18} />
             Print / Save PDF
           </button>
           <button
             onClick={onClose}
-            className="px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors"
+            className="rounded-full border border-[var(--border)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--foreground)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
           >
             Close
           </button>

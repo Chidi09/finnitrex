@@ -135,9 +135,9 @@ export default function RoboticsPage() {
               <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
                 Research frame
               </p>
-              <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.04em] text-stone-950 dark:text-white md:text-4xl">
-                Robotics research aligned to practical operational outcomes.
-              </h2>
+                <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.04em] text-stone-950 dark:text-white md:text-4xl">
+                  Robotics research focused on deployable operational value.
+                </h2>
               <div className="mt-8 grid gap-8 text-sm leading-7 text-stone-600 dark:text-stone-300 md:grid-cols-2">
                 <p>
                   The robotics practice is intentionally early-stage. We are
@@ -146,10 +146,9 @@ export default function RoboticsPage() {
                   losing safety, clarity, or maintainability.
                 </p>
                 <p>
-                  Rather than presenting robotics as a separate identity, this
-                  page positions it inside the broader Finnitrex narrative:
-                  software-led systems design expanding toward physical
-                  automation where it creates measurable value.
+                  Finnitrex approaches robotics as an extension of software-led
+                  systems design, expanding into physical automation where it
+                  can create measurable value.
                 </p>
               </div>
             </div>
@@ -271,9 +270,9 @@ export default function RoboticsPage() {
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
               Systems view
             </p>
-            <h2 className="text-4xl font-semibold tracking-[-0.05em] text-stone-950 dark:text-white md:text-5xl">
-              The page closes on the logic behind the lab.
-            </h2>
+              <h2 className="text-4xl font-semibold tracking-[-0.05em] text-stone-950 dark:text-white md:text-5xl">
+                The lab is grounded in systems logic, not spectacle.
+              </h2>
             <p className="mt-6 max-w-md text-sm leading-7 text-stone-600 dark:text-stone-300">
               The research story moves from sector context to prototype insight
               and finally to the systems thinking needed for safe, deployable

@@ -56,8 +56,8 @@ export default function StartPage() {
                 </h2>
               </div>
               <p className="max-w-md text-sm leading-7 text-[var(--muted)]">
-                The wizard flow stays intact inside a calmer route shell so the
-                process feels aligned with the wider public site.
+                Answer a few practical questions, review the commercial shape,
+                and move into delivery with a clearer brief.
               </p>
             </div>
 

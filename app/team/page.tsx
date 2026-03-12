@@ -157,9 +157,7 @@ export default function TeamPage() {
             </div>
 
             <p className="max-w-xl text-sm leading-7 text-stone-600 dark:text-stone-300">
-              The team page stays intentionally focused: who leads the company,
-              who leads implementation, and how those responsibilities support
-              real delivery.
+              This leadership view shows who sets direction, who leads implementation, and how both roles support dependable delivery.
             </p>
           </div>
 

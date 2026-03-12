@@ -247,9 +247,7 @@ export default function LMSPage() {
             </div>
 
             <p className="max-w-xl text-sm leading-7 text-stone-600 dark:text-stone-300">
-              This product view brings together learner progress, programme
-              oversight, and operational signals so teams can manage large-scale
-              education delivery in one clear interface.
+              Track learner progress, programme oversight, and operational signals in one interface built for large-scale education delivery.
             </p>
           </div>
 
@@ -453,9 +451,7 @@ export default function LMSPage() {
             </div>
 
             <p className="max-w-xl text-sm leading-7 text-stone-600 dark:text-stone-300">
-              These cards reinforce the core Finnitrex LMS offer while matching
-              the quieter, shared-shell presentation established across the rest
-              of the site.
+              The capability set covers migration, integration, media delivery, and programme operations needed for long-running LMS deployments.
             </p>
           </div>
 
