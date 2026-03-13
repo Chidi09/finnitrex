@@ -16,7 +16,7 @@ import {
 const themeScript = `
   (() => {
     try {
-      const storageKey = "finnitrex-theme";
+      const storageKey = "finnitrex-theme-v2";
       const root = document.documentElement;
       const storedTheme = localStorage.getItem(storageKey);
       const theme = storedTheme === "dark" ? "dark" : "light";
@@ -26,7 +26,7 @@ const themeScript = `
       root.classList.toggle("dark", theme === "dark");
 
       if (themeColor) {
-        themeColor.setAttribute("content", theme === "dark" ? "#0f0e0c" : "#f6f2e9");
+        themeColor.setAttribute("content", theme === "dark" ? "#0f0e0c" : "#ffffff");
       }
     } catch {}
   })();
@@ -108,7 +108,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className="scroll-smooth" data-theme="light" suppressHydrationWarning>
       <head>
-        <meta name="theme-color" content="#f6f2e9" />
+        <meta name="theme-color" content="#ffffff" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />

@@ -3,7 +3,7 @@
 import { Moon, Sun } from "lucide-react";
 import { useSyncExternalStore } from "react";
 
-const THEME_STORAGE_KEY = "finnitrex-theme";
+const THEME_STORAGE_KEY = "finnitrex-theme-v2";
 const THEME_EVENT = "finnitrex-theme-change";
 
 type Theme = "light" | "dark";
@@ -44,7 +44,7 @@ function applyTheme(theme: Theme) {
 
   const themeColor = document.querySelector('meta[name="theme-color"]');
   if (themeColor) {
-    themeColor.setAttribute("content", isDark ? "#0f0e0c" : "#f6f2e9");
+    themeColor.setAttribute("content", isDark ? "#0f0e0c" : "#ffffff");
   }
 
   window.dispatchEvent(new Event(THEME_EVENT));
