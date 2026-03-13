@@ -51,7 +51,7 @@ export const projects: Project[] = [
       "Used Supabase-backed workflows to support a dependable portal foundation.",
       "Handled product architecture and delivery as a solo build.",
     ],
-    previewImage: "/previews/nigerian-china-invest.png",
+    previewImage: "/previews/nigerian-china-invest-v2.png",
     techStack: ["React", "Vite", "Golang", "Supabase"],
     liveUrl: "https://www.nigerianchinainvestmentclub.com",
     featured: true,
