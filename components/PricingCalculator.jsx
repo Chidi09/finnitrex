@@ -9,7 +9,6 @@ import {
   Calculator,
   FileText,
   Download,
-  Mail,
   Loader2,
   Calendar,
   CheckCircle2,
@@ -142,15 +141,15 @@ export default function PricingCalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white p-6 md:p-12">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen px-6 py-8 text-[var(--foreground)] md:px-8 md:py-10 lg:px-10">
+      <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-12 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 flex items-center justify-center gap-3">
-            <Calculator className="text-lime-400" size={40} />
+            <Calculator className="text-[var(--accent)]" size={40} />
             Project Pricing Calculator
           </h1>
-          <p className="text-gray-400 text-lg">
+          <p className="text-[var(--muted)] text-lg">
             Select your package and features. Get an instant quote with a
             professional invoice.
           </p>
@@ -160,8 +159,8 @@ export default function PricingCalculator() {
           {/* LEFT: Configuration Panel */}
           <div className="lg:col-span-2 space-y-8">
             {/* Package Selection */}
-            <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6">
-              <h2 className="text-2xl font-bold mb-6 text-lime-400">
+            <div className="rounded-2xl border border-[var(--border)] bg-[color:rgba(255,255,255,0.72)] p-6 shadow-[0_18px_45px_rgba(28,25,23,0.06)] dark:bg-white/[0.04] dark:shadow-none">
+              <h2 className="text-2xl font-bold mb-6 text-[var(--accent)]">
                 1. Select Base Package
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -169,26 +168,26 @@ export default function PricingCalculator() {
                   <button
                     key={key}
                     onClick={() => setSelectedPackage(key)}
-                    className={`p-6 rounded-xl border-2 text-left transition-all ${
+                    className={`p-6 rounded-xl border text-left transition-all ${
                       selectedPackage === key
-                        ? "border-lime-500 bg-lime-900/20"
-                        : "border-gray-700 hover:border-gray-600"
+                        ? "border-[color:rgba(91,143,61,0.35)] bg-[color:rgba(91,143,61,0.08)]"
+                        : "border-[var(--border)] bg-[var(--surface-elevated)] hover:border-[color:rgba(91,143,61,0.28)] dark:bg-[var(--surface)]"
                     }`}
                   >
                     <div className="flex justify-between items-start mb-3">
                       <h3 className="text-xl font-bold">{pkg.name}</h3>
                       {selectedPackage === key && (
-                        <Check className="text-lime-400" size={24} />
+                        <Check className="text-[var(--accent)]" size={24} />
                       )}
                     </div>
-                    <p className="text-gray-400 text-sm mb-3">
+                    <p className="text-[var(--muted)] text-sm mb-3">
                       {pkg.description}
                     </p>
-                    <div className="text-lime-400 font-bold text-lg">
+                    <div className="text-[var(--accent)] font-bold text-lg">
                       £{pkg.minPrice.toLocaleString()} - £
                       {pkg.maxPrice.toLocaleString()}
                     </div>
-                    <ul className="mt-4 space-y-1 text-xs text-gray-500">
+                    <ul className="mt-4 space-y-1 text-xs text-[var(--muted)]">
                       {pkg.includes.map((item, i) => (
                         <li key={i}>• {item}</li>
                       ))}
@@ -200,8 +199,8 @@ export default function PricingCalculator() {
 
             {/* Features Selection */}
             {selectedPackage && (
-              <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6">
-                <h2 className="text-2xl font-bold mb-6 text-lime-400">
+              <div className="rounded-2xl border border-[var(--border)] bg-[color:rgba(255,255,255,0.72)] p-6 shadow-[0_18px_45px_rgba(28,25,23,0.06)] dark:bg-white/[0.04] dark:shadow-none">
+                <h2 className="text-2xl font-bold mb-6 text-[var(--accent)]">
                   2. Add Features
                 </h2>
                 <div className="space-y-4">
@@ -217,29 +216,29 @@ export default function PricingCalculator() {
                         key={key}
                         className={`p-4 rounded-lg border transition-all ${
                           isSelected
-                            ? "border-lime-500 bg-lime-900/10"
-                            : "border-gray-700 hover:border-gray-600"
+                            ? "border-[color:rgba(91,143,61,0.35)] bg-[color:rgba(91,143,61,0.08)]"
+                            : "border-[var(--border)] bg-[var(--surface-elevated)] hover:border-[color:rgba(91,143,61,0.28)] dark:bg-[var(--surface)]"
                         }`}
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3 flex-1">
                             <button
                               onClick={() => toggleFeature(key)}
-                              className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all ${
+                              className={`w-6 h-6 rounded border flex items-center justify-center transition-all ${
                                 isSelected
-                                  ? "border-lime-500 bg-lime-500"
-                                  : "border-gray-600"
+                                  ? "border-[var(--accent)] bg-[var(--accent)]"
+                                  : "border-[var(--border)]"
                               }`}
                             >
                               {isSelected && (
-                                <Check size={16} className="text-black" />
+                                <Check size={16} className="text-[var(--accent-contrast)]" />
                               )}
                             </button>
                             <div className="flex-1">
                               <div className="font-semibold">
                                 {feature.name}
                               </div>
-                              <div className="text-sm text-gray-400">
+                              <div className="text-sm text-[var(--muted)]">
                                 £{feature.price.toLocaleString()}
                               </div>
                             </div>
@@ -248,16 +247,16 @@ export default function PricingCalculator() {
                             <div className="flex items-center gap-2">
                               <button
                                 onClick={() => updateQuantity(key, -1)}
-                                className="w-8 h-8 rounded border border-gray-600 flex items-center justify-center hover:bg-gray-800"
+                                className="w-8 h-8 rounded border border-[var(--border)] flex items-center justify-center hover:bg-[var(--surface)]"
                               >
                                 <Minus size={14} />
                               </button>
-                              <span className="w-8 text-center font-mono">
+                              <span className="w-8 text-center">
                                 {quantity}
                               </span>
                               <button
                                 onClick={() => updateQuantity(key, 1)}
-                                className="w-8 h-8 rounded border border-gray-600 flex items-center justify-center hover:bg-gray-800"
+                                className="w-8 h-8 rounded border border-[var(--border)] flex items-center justify-center hover:bg-[var(--surface)]"
                               >
                                 <Plus size={14} />
                               </button>
@@ -273,32 +272,32 @@ export default function PricingCalculator() {
 
             {/* Ongoing Costs */}
             {selectedPackage && (
-              <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6">
-                <h2 className="text-2xl font-bold mb-6 text-lime-400">
+              <div className="rounded-2xl border border-[var(--border)] bg-[color:rgba(255,255,255,0.72)] p-6 shadow-[0_18px_45px_rgba(28,25,23,0.06)] dark:bg-white/[0.04] dark:shadow-none">
+                <h2 className="text-2xl font-bold mb-6 text-[var(--accent)]">
                   3. Ongoing Costs (Annual)
                 </h2>
                 <div className="space-y-3">
                   {Object.entries(ongoingCosts).map(([key, cost]) => (
                     <div
                       key={key}
-                      className="flex items-center justify-between p-3 rounded-lg border border-gray-700"
+                      className="flex items-center justify-between p-3 rounded-lg border border-[var(--border)] bg-[var(--surface-elevated)] dark:bg-[var(--surface)]"
                     >
                       <div className="flex items-center gap-3">
                         <button
                           onClick={() => toggleOngoing(key)}
-                          className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
+                          className={`w-5 h-5 rounded border flex items-center justify-center ${
                             ongoing[key]
-                              ? "border-lime-500 bg-lime-500"
-                              : "border-gray-600"
+                              ? "border-[var(--accent)] bg-[var(--accent)]"
+                              : "border-[var(--border)]"
                           }`}
                         >
                           {ongoing[key] && (
-                            <Check size={12} className="text-black" />
+                            <Check size={12} className="text-[var(--accent-contrast)]" />
                           )}
                         </button>
                         <span>{cost.name}</span>
                       </div>
-                      <span className="text-lime-400 font-mono">
+                      <span className="text-[var(--accent)] font-semibold">
                         £{cost.price}
                       </span>
                     </div>
@@ -311,59 +310,59 @@ export default function PricingCalculator() {
           {/* RIGHT: Summary & Invoice */}
           <div className="space-y-6">
             {/* Price Summary */}
-            <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 sticky top-6">
-              <h2 className="text-2xl font-bold mb-6 text-lime-400">
+            <div className="sticky top-6 rounded-2xl border border-[var(--border)] bg-[color:rgba(255,255,255,0.74)] p-6 shadow-[0_18px_45px_rgba(28,25,23,0.06)] dark:bg-white/[0.04] dark:shadow-none">
+              <h2 className="text-2xl font-bold mb-6 text-[var(--accent)]">
                 Quote Summary
               </h2>
 
               {!selectedPackage ? (
-                <p className="text-gray-500 text-center py-8">
+                <p className="text-[var(--muted)] text-center py-8">
                   Select a package to begin
                 </p>
               ) : (
                 <>
                   <div className="space-y-3 mb-6">
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Base Package:</span>
-                      <span className="font-mono">
+                      <span className="text-[var(--muted)]">Base Package:</span>
+                      <span className="font-semibold">
                         £{calculations.baseTotal.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Features:</span>
-                      <span className="font-mono">
+                      <span className="text-[var(--muted)]">Features:</span>
+                      <span className="font-semibold">
                         £{calculations.featuresTotal.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Subtotal:</span>
-                      <span className="font-mono">
+                      <span className="text-[var(--muted)]">Subtotal:</span>
+                      <span className="font-semibold">
                         £{calculations.subtotal.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">VAT (20%):</span>
-                      <span className="font-mono">
+                      <span className="text-[var(--muted)]">VAT (20%):</span>
+                      <span className="font-semibold">
                         £{calculations.vat.toLocaleString()}
                       </span>
                     </div>
-                    <div className="border-t border-gray-700 pt-3 flex justify-between text-lg font-bold">
+                    <div className="border-t border-[var(--border)] pt-3 flex justify-between text-lg font-bold">
                       <span>Total:</span>
-                      <span className="text-lime-400 font-mono">
+                      <span className="text-[var(--accent)]">
                         £{calculations.total.toLocaleString()}
                       </span>
                     </div>
                     {calculations.ongoingTotal > 0 && (
-                      <div className="border-t border-gray-700 pt-3">
-                        <div className="flex justify-between text-sm text-gray-400 mb-1">
+                      <div className="border-t border-[var(--border)] pt-3">
+                        <div className="flex justify-between text-sm text-[var(--muted)] mb-1">
                           <span>Ongoing (Year 1):</span>
-                          <span className="font-mono">
+                          <span className="font-semibold">
                             £{calculations.ongoingTotal.toLocaleString()}
                           </span>
                         </div>
                         <div className="flex justify-between font-bold">
                           <span>First Year Total:</span>
-                          <span className="text-emerald-400 font-mono">
+                          <span className="text-[var(--accent)]">
                             £{calculations.firstYearTotal.toLocaleString()}
                           </span>
                         </div>
@@ -372,11 +371,11 @@ export default function PricingCalculator() {
                   </div>
 
                   {/* Client Info for Invoice */}
-                  <div className="space-y-3 mb-6 border-t border-gray-700 pt-6">
+                  <div className="space-y-3 mb-6 border-t border-[var(--border)] pt-6">
                     <input
                       type="text"
                       placeholder="Your Name / Company"
-                      className="w-full bg-black border border-gray-700 rounded p-2 text-white text-sm focus:border-lime-500 outline-none"
+                      className="w-full rounded-lg border border-[var(--border)] bg-[var(--surface-elevated)] p-2.5 text-sm text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] dark:bg-[var(--surface)]"
                       value={clientInfo.name}
                       onChange={(e) =>
                         setClientInfo({ ...clientInfo, name: e.target.value })
@@ -385,7 +384,7 @@ export default function PricingCalculator() {
                     <input
                       type="email"
                       placeholder="Email Address"
-                      className="w-full bg-black border border-gray-700 rounded p-2 text-white text-sm focus:border-lime-500 outline-none"
+                      className="w-full rounded-lg border border-[var(--border)] bg-[var(--surface-elevated)] p-2.5 text-sm text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] dark:bg-[var(--surface)]"
                       value={clientInfo.email}
                       onChange={(e) =>
                         setClientInfo({ ...clientInfo, email: e.target.value })
@@ -394,7 +393,7 @@ export default function PricingCalculator() {
                     <input
                       type="text"
                       placeholder="Company (Optional)"
-                      className="w-full bg-black border border-gray-700 rounded p-2 text-white text-sm focus:border-lime-500 outline-none"
+                      className="w-full rounded-lg border border-[var(--border)] bg-[var(--surface-elevated)] p-2.5 text-sm text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--accent)] dark:bg-[var(--surface)]"
                       value={clientInfo.company}
                       onChange={(e) =>
                         setClientInfo({
@@ -408,7 +407,7 @@ export default function PricingCalculator() {
                   <button
                     onClick={generateEstimate}
                     disabled={saving}
-                    className="w-full bg-lime-500 text-black font-bold py-3 rounded-lg hover:bg-lime-400 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full rounded-lg bg-[var(--foreground)] py-3 font-bold text-[var(--accent-contrast)] transition-opacity flex items-center justify-center gap-2 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-[var(--accent)]"
                   >
                     {saving ? (
                       <>
@@ -473,58 +472,58 @@ function InvoiceView({
   });
 
   return (
-    <div className="fixed inset-0 bg-black/95 z-50 overflow-y-auto p-6 print:p-0 print:bg-white">
-      <div className="max-w-4xl mx-auto bg-black border border-gray-800 rounded-2xl p-8 md:p-12 print:bg-white print:border-0 print:rounded-none print:shadow-none">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-[color:rgba(23,21,17,0.45)] p-6 backdrop-blur-sm print:bg-white print:p-0">
+      <div className="mx-auto max-w-4xl rounded-2xl border border-[var(--border)] bg-[var(--surface-elevated)] p-8 text-[var(--foreground)] shadow-[0_26px_70px_rgba(23,21,17,0.14)] dark:bg-[var(--surface)] dark:shadow-none md:p-12 print:rounded-none print:border-0 print:bg-white print:p-0 print:shadow-none">
         {/* Invoice Header - Finnitrex Branding */}
-        <div className="flex justify-between items-start mb-8 border-b border-gray-800 pb-6 print:border-gray-300">
+        <div className="mb-8 flex items-start justify-between border-b border-[var(--border)] pb-6 print:border-gray-300">
           <div>
             <div className="flex items-center gap-3 mb-3">
               <div className="scale-75 origin-left print:hidden">
                 <FinnitrexLogo className="w-16 h-16" textVisible={false} />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-white print:text-black">
+                <h1 className="text-3xl font-bold text-[var(--foreground)] print:text-black">
                   FINNI
-                  <span className="text-lime-400 print:text-lime-600">
+                  <span className="text-[var(--accent)] print:text-gray-800">
                     TREX
                   </span>
                 </h1>
-                <p className="text-xs text-lime-400 print:text-gray-600 font-mono tracking-widest">
+                <p className="text-xs text-[var(--muted)] print:text-gray-600 tracking-widest">
                   SYSTEMS ARCHITECTURE
                 </p>
               </div>
             </div>
-            <p className="text-sm text-gray-400 print:text-gray-600 mt-2">
+            <p className="mt-2 text-sm text-[var(--muted)] print:text-gray-600">
               Solutions Ltd
             </p>
-            <p className="text-xs text-gray-500 print:text-gray-500 mt-2">
+            <p className="mt-2 text-xs text-[var(--muted)]/80 print:text-gray-500">
               483 Green Lanes, London, N13 4BS
             </p>
-            <p className="text-xs text-gray-500 print:text-gray-500">
+            <p className="text-xs text-[var(--muted)]/80 print:text-gray-500">
               United Kingdom
             </p>
           </div>
           <div className="text-right">
-            <div className="text-xs text-gray-500 print:text-gray-600 mb-1">
+            <div className="mb-1 text-xs text-[var(--muted)] print:text-gray-600">
               ESTIMATE #
             </div>
-            <div className="text-xl font-bold font-mono text-lime-400 print:text-black">
+            <div className="text-xl font-bold text-[var(--foreground)] print:text-black">
               {invoiceNumber}
             </div>
-            <div className="text-xs text-gray-500 print:text-gray-600 mt-4 mb-1">
+            <div className="mb-1 mt-4 text-xs text-[var(--muted)] print:text-gray-600">
               DATE
             </div>
-            <div className="font-mono text-gray-300 print:text-black">
+            <div className="text-[var(--foreground)] print:text-black">
               {invoiceDate}
             </div>
-            <div className="text-xs text-emerald-400 print:text-emerald-600 mt-4 mb-1 flex items-center gap-1">
+            <div className="mb-1 mt-4 flex items-center justify-end gap-1 text-xs text-[var(--accent)] print:text-gray-700">
               <Calendar size={12} />
               VALID UNTIL
             </div>
-            <div className="font-mono text-emerald-400 print:text-emerald-600 text-sm">
+            <div className="text-sm font-semibold text-[var(--accent)] print:text-black">
               {expiryDate}
             </div>
-            <div className="mt-2 p-1 bg-lime-400/10 border border-lime-400/20 rounded text-[10px] text-lime-500 text-center uppercase font-bold tracking-wider">
+            <div className="mt-3 rounded-full border border-[color:rgba(91,143,61,0.18)] bg-[color:rgba(91,143,61,0.08)] px-3 py-1 text-center text-[10px] font-bold uppercase tracking-wider text-[var(--accent)] print:border-gray-300 print:bg-gray-100 print:text-gray-700">
               Provisional Quote
             </div>
           </div>
@@ -532,54 +531,54 @@ function InvoiceView({
 
         {/* Client Info */}
         <div className="mb-8">
-          <h3 className="font-bold mb-2 text-white print:text-black">
+          <h3 className="mb-2 font-bold text-[var(--foreground)] print:text-black">
             Bill To:
           </h3>
-          <p className="text-gray-300 print:text-gray-700">{clientInfo.name}</p>
+          <p className="text-[var(--foreground)] print:text-gray-700">{clientInfo.name}</p>
           {clientInfo.company && (
-            <p className="text-gray-400 print:text-gray-600 text-sm">
+            <p className="text-sm text-[var(--muted)] print:text-gray-600">
               {clientInfo.company}
             </p>
           )}
           {clientInfo.email && (
-            <p className="text-gray-400 print:text-gray-600 text-sm">
+            <p className="text-sm text-[var(--muted)] print:text-gray-600">
               {clientInfo.email}
             </p>
           )}
         </div>
 
         {/* Items Table */}
-        <div className="bg-gray-900/50 print:bg-gray-50 border border-gray-800 print:border-gray-300 rounded-lg p-6 mb-8">
+        <div className="mb-8 rounded-lg border border-[var(--border)] bg-[color:rgba(246,242,233,0.55)] p-6 print:border-gray-300 print:bg-white">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-gray-700 print:border-gray-300">
-                <th className="text-left py-3 font-bold text-lime-400 print:text-black text-sm">
+              <tr className="border-b border-[var(--border)] print:border-gray-300">
+                <th className="py-3 text-left text-sm font-bold text-[var(--muted)] print:text-black">
                   Description
                 </th>
-                <th className="text-right py-3 font-bold text-lime-400 print:text-black text-sm">
+                <th className="py-3 text-right text-sm font-bold text-[var(--muted)] print:text-black">
                   Qty
                 </th>
-                <th className="text-right py-3 font-bold text-lime-400 print:text-black text-sm">
+                <th className="py-3 text-right text-sm font-bold text-[var(--muted)] print:text-black">
                   Unit Price
                 </th>
-                <th className="text-right py-3 font-bold text-lime-400 print:text-black text-sm">
+                <th className="py-3 text-right text-sm font-bold text-[var(--muted)] print:text-black">
                   Total
                 </th>
               </tr>
             </thead>
             <tbody>
               {selectedPackage && (
-                <tr className="border-b border-gray-800 print:border-gray-200">
-                  <td className="py-3 text-white print:text-black font-semibold">
+                <tr className="border-b border-[var(--border)] print:border-gray-200">
+                  <td className="py-3 font-semibold text-[var(--foreground)] print:text-black">
                     {basePackages[selectedPackage].name}
                   </td>
-                  <td className="text-right font-mono text-gray-300 print:text-black">
+                  <td className="text-right text-[var(--foreground)] print:text-black">
                     1
                   </td>
-                  <td className="text-right font-mono text-gray-300 print:text-black">
+                  <td className="text-right text-[var(--foreground)] print:text-black">
                     £{calculations.baseTotal.toLocaleString()}
                   </td>
-                  <td className="text-right font-mono font-bold text-lime-400 print:text-black">
+                  <td className="text-right font-bold text-[var(--accent)] print:text-black">
                     £{calculations.baseTotal.toLocaleString()}
                   </td>
                 </tr>
@@ -591,18 +590,18 @@ function InvoiceView({
                 return (
                   <tr
                     key={key}
-                    className="border-b border-gray-800 print:border-gray-200"
+                      className="border-b border-[var(--border)] print:border-gray-200"
                   >
-                    <td className="py-2 text-sm text-gray-300 print:text-gray-700">
+                    <td className="py-2 text-sm text-[var(--foreground)]/88 print:text-gray-700">
                       {features[key].name}
                     </td>
-                    <td className="text-right font-mono text-sm text-gray-400 print:text-black">
+                    <td className="text-right text-sm text-[var(--muted)] print:text-black">
                       {quantity}
                     </td>
-                    <td className="text-right font-mono text-sm text-gray-400 print:text-black">
+                    <td className="text-right text-sm text-[var(--muted)] print:text-black">
                       £{features[key].price.toLocaleString()}
                     </td>
-                    <td className="text-right font-mono text-sm text-gray-300 print:text-black">
+                    <td className="text-right text-sm text-[var(--foreground)] print:text-black">
                       £{total.toLocaleString()}
                     </td>
                   </tr>
@@ -613,18 +612,18 @@ function InvoiceView({
                 return (
                   <tr
                     key={key}
-                    className="border-b border-gray-800 print:border-gray-200"
+                      className="border-b border-[var(--border)] print:border-gray-200"
                   >
-                    <td className="py-2 text-sm text-gray-300 print:text-gray-700">
+                    <td className="py-2 text-sm text-[var(--foreground)]/88 print:text-gray-700">
                       {ongoingCosts[key].name} (Annual)
                     </td>
-                    <td className="text-right font-mono text-sm text-gray-400 print:text-black">
+                    <td className="text-right text-sm text-[var(--muted)] print:text-black">
                       1
                     </td>
-                    <td className="text-right font-mono text-sm text-gray-400 print:text-black">
+                    <td className="text-right text-sm text-[var(--muted)] print:text-black">
                       £{ongoingCosts[key].price.toLocaleString()}
                     </td>
-                    <td className="text-right font-mono text-sm text-gray-300 print:text-black">
+                    <td className="text-right text-sm text-[var(--foreground)] print:text-black">
                       £{ongoingCosts[key].price.toLocaleString()}
                     </td>
                   </tr>
@@ -635,36 +634,36 @@ function InvoiceView({
         </div>
 
         {/* Totals */}
-        <div className="ml-auto w-64 space-y-2 mb-8">
-          <div className="flex justify-between text-sm text-gray-400 print:text-gray-700">
+          <div className="mb-8 ml-auto w-64 space-y-2">
+          <div className="flex justify-between text-sm text-[var(--muted)] print:text-gray-700">
             <span>Subtotal:</span>
-            <span className="font-mono text-gray-300 print:text-black">
+            <span className="text-[var(--foreground)] print:text-black">
               £{calculations.subtotal.toLocaleString()}
             </span>
           </div>
-          <div className="flex justify-between text-sm text-gray-400 print:text-gray-700">
+          <div className="flex justify-between text-sm text-[var(--muted)] print:text-gray-700">
             <span>VAT (20%):</span>
-            <span className="font-mono text-gray-300 print:text-black">
+            <span className="text-[var(--foreground)] print:text-black">
               £{calculations.vat.toLocaleString()}
             </span>
           </div>
-          <div className="flex justify-between text-lg font-bold border-t-2 border-lime-500 print:border-gray-300 pt-2">
-            <span className="text-white print:text-black">Total:</span>
-            <span className="text-lime-400 print:text-lime-600 font-mono">
+          <div className="flex justify-between border-t-2 border-[var(--foreground)] pt-2 text-lg font-bold print:border-gray-300">
+            <span className="text-[var(--foreground)] print:text-black">Total:</span>
+            <span className="text-[var(--foreground)] print:text-black">
               £{calculations.total.toLocaleString()}
             </span>
           </div>
           {calculations.ongoingTotal > 0 && (
             <>
-              <div className="flex justify-between text-sm text-gray-500 print:text-gray-600 pt-2">
+              <div className="flex justify-between pt-2 text-sm text-[var(--muted)] print:text-gray-600">
                 <span>Ongoing (Year 1):</span>
-                <span className="font-mono">
+                <span>
                   £{calculations.ongoingTotal.toLocaleString()}
                 </span>
               </div>
-              <div className="flex justify-between font-bold text-emerald-400 print:text-emerald-600">
+              <div className="flex justify-between font-bold text-[var(--accent)] print:text-emerald-600">
                 <span>First Year Total:</span>
-                <span className="font-mono">
+                <span>
                   £{calculations.firstYearTotal.toLocaleString()}
                 </span>
               </div>
@@ -673,40 +672,40 @@ function InvoiceView({
         </div>
 
         {/* Payment Details - Finnitrex Style */}
-        <div className="bg-lime-900/20 print:bg-gray-100 border border-lime-500/30 print:border-gray-300 p-6 rounded-lg mb-6">
-          <h3 className="font-bold mb-3 text-lime-400 print:text-lime-600 text-sm uppercase tracking-wider">
+        <div className="mb-6 rounded-lg border border-[color:rgba(91,143,61,0.22)] bg-[color:rgba(91,143,61,0.08)] p-6 print:border-gray-300 print:bg-gray-100">
+          <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-[var(--accent)] print:text-lime-600">
             Payment Details
           </h3>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <div className="text-gray-400 print:text-gray-600 mb-1 text-xs">
+              <div className="mb-1 text-xs text-[var(--muted)] print:text-gray-600">
                 Bank:
               </div>
-              <div className="font-mono text-white print:text-black font-bold">
+              <div className="font-bold text-[var(--foreground)] print:text-black">
                 Barclays UK
               </div>
             </div>
             <div>
-              <div className="text-gray-400 print:text-gray-600 mb-1 text-xs">
+              <div className="mb-1 text-xs text-[var(--muted)] print:text-gray-600">
                 Sort Code:
               </div>
-              <div className="font-mono text-white print:text-black font-bold">
+              <div className="font-bold text-[var(--foreground)] print:text-black">
                 20-00-00
               </div>
             </div>
             <div>
-              <div className="text-gray-400 print:text-gray-600 mb-1 text-xs">
+              <div className="mb-1 text-xs text-[var(--muted)] print:text-gray-600">
                 Account Number:
               </div>
-              <div className="font-mono text-white print:text-black font-bold">
+              <div className="font-bold text-[var(--foreground)] print:text-black">
                 87654321
               </div>
             </div>
             <div>
-              <div className="text-lime-400 print:text-lime-600 mb-1 text-xs font-bold">
+              <div className="mb-1 text-xs font-bold text-[var(--accent)] print:text-lime-600">
                 Reference:
               </div>
-              <div className="font-mono text-lime-400 print:text-lime-600 font-bold text-base">
+              <div className="text-base font-bold text-[var(--accent)] print:text-lime-600">
                 {invoiceNumber}
               </div>
             </div>
@@ -714,18 +713,18 @@ function InvoiceView({
         </div>
 
         {/* Quote Expiration Notice */}
-        <div className="bg-emerald-900/20 print:bg-emerald-50 border border-emerald-500/30 print:border-emerald-300 p-4 rounded-lg mb-6 flex items-start gap-3">
+        <div className="mb-6 flex items-start gap-3 rounded-lg border border-[color:rgba(91,143,61,0.22)] bg-[color:rgba(91,143,61,0.08)] p-4 print:border-emerald-300 print:bg-emerald-50">
           <Calendar
-            className="text-emerald-400 print:text-emerald-600 shrink-0 mt-0.5"
+            className="mt-0.5 shrink-0 text-[var(--accent)] print:text-emerald-600"
             size={18}
           />
           <div>
-            <p className="text-emerald-400 print:text-emerald-600 font-bold text-sm mb-1">
+            <p className="mb-1 text-sm font-bold text-[var(--accent)] print:text-emerald-600">
               Quote Valid for 30 Days
             </p>
-            <p className="text-gray-400 print:text-gray-700 text-xs">
+            <p className="text-xs text-[var(--muted)] print:text-gray-700">
               This quote expires on{" "}
-              <strong className="text-emerald-300 print:text-emerald-700">
+              <strong className="text-[var(--accent)] print:text-emerald-700">
                 {expiryDate}
               </strong>
               . Payment terms: 50% deposit required to begin work.
@@ -734,35 +733,35 @@ function InvoiceView({
         </div>
 
         {/* Footer */}
-        <div className="text-xs text-gray-500 print:text-gray-600 text-center border-t border-gray-800 print:border-gray-300 pt-4">
+        <div className="border-t border-[var(--border)] pt-4 text-center text-xs text-[var(--muted)] print:border-gray-300 print:text-gray-600">
           <p>Thank you for your business.</p>
           <p className="mt-2">
             Questions? Contact us at{" "}
             <a
               href="mailto:info@finnitrex.com"
-              className="text-lime-400 print:text-lime-600 hover:underline"
+              className="text-[var(--accent)] print:text-lime-600 hover:underline"
             >
               info@finnitrex.com
             </a>{" "}
             or{" "}
-            <strong className="text-lime-400 print:text-lime-600">
+            <strong className="text-[var(--accent)] print:text-lime-600">
               +44 7521 511800
             </strong>
           </p>
-          <p className="mt-2 text-gray-600 print:text-gray-500">
+          <p className="mt-2 text-[var(--muted)] print:text-gray-500">
             © {new Date().getFullYear()} Finnitrex Solutions Ltd. All rights
             reserved.
           </p>
         </div>
 
         {/* Success Message */}
-        <div className="mt-6 bg-lime-900/20 border border-lime-500/30 p-4 rounded-lg flex items-center gap-3 print:hidden">
-          <CheckCircle2 className="text-lime-400 shrink-0" size={20} />
+        <div className="mt-6 flex items-center gap-3 rounded-lg border border-[color:rgba(91,143,61,0.22)] bg-[color:rgba(91,143,61,0.08)] p-4 print:hidden">
+          <CheckCircle2 className="shrink-0 text-[var(--accent)]" size={20} />
           <div>
-            <p className="text-lime-400 font-bold text-sm">
+            <p className="text-sm font-bold text-[var(--accent)]">
               Invoice emailed successfully!
             </p>
-            <p className="text-gray-400 text-xs">
+            <p className="text-xs text-[var(--muted)]">
               Check your inbox for the detailed invoice with payment
               instructions.
             </p>
@@ -771,19 +770,19 @@ function InvoiceView({
 
         {/* Action Buttons (hidden in print) */}
         <div className="mt-8 flex gap-4 print:hidden">
-          <button
-            onClick={onPrint}
-            className="flex-1 bg-lime-500 text-black font-bold py-3 rounded-lg hover:bg-lime-400 transition-colors flex items-center justify-center gap-2"
-          >
-            <Download size={18} />
-            Print / Save PDF
-          </button>
-          <button
-            onClick={onClose}
-            className="px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-800 transition-colors"
-          >
-            Close
-          </button>
+            <button
+              onClick={onPrint}
+              className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-[var(--foreground)] py-3 font-bold text-[var(--accent-contrast)] transition-opacity hover:opacity-90 dark:bg-[var(--accent)]"
+            >
+              <Download size={18} />
+              Print / Save PDF
+            </button>
+            <button
+              onClick={onClose}
+              className="rounded-lg border border-[var(--border)] px-6 py-3 transition-colors hover:bg-[var(--surface)]"
+            >
+              Close
+            </button>
         </div>
       </div>
     </div>
