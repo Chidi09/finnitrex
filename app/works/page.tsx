@@ -5,7 +5,7 @@ import ProjectScreenshot from "@/components/ProjectScreenshot";
 import {
   getAllProjects,
   getProjectCategories,
-  getProjectScreenshotUrl,
+  getProjectPreviewImage,
 } from "@/lib/content/projects";
 
 export const metadata: Metadata = {
@@ -139,7 +139,7 @@ export default function WorksPage() {
                     tabIndex={-1}
                   >
                     <ProjectScreenshot
-                      src={getProjectScreenshotUrl(leadProject.liveUrl)}
+                      src={getProjectPreviewImage(leadProject)}
                       alt={`${leadProject.title} live screenshot`}
                       aspect="aspect-[16/10]"
                     />
@@ -259,7 +259,7 @@ export default function WorksPage() {
                       tabIndex={-1}
                     >
                       <ProjectScreenshot
-                        src={getProjectScreenshotUrl(project.liveUrl)}
+                        src={getProjectPreviewImage(project)}
                         alt={`${project.title} live screenshot`}
                         aspect="aspect-video"
                       />
@@ -377,7 +377,7 @@ export default function WorksPage() {
                     tabIndex={-1}
                   >
                     <ProjectScreenshot
-                      src={getProjectScreenshotUrl(project.liveUrl)}
+                      src={getProjectPreviewImage(project)}
                       alt={`${project.title} live screenshot`}
                       aspect="aspect-video"
                     />
