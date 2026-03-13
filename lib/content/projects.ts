@@ -8,6 +8,7 @@ export interface Project {
   challenge?: string;
   approach?: string;
   proofPoints?: string[];
+  previewImage?: string;
   techStack: string[];
   githubUrl?: string;
   liveUrl?: string;
@@ -30,6 +31,7 @@ export const projects: Project[] = [
       "Surfaced real-time arbitrage opportunities for faster execution.",
       "Delivered the full stack solo across frontend, backend, and data layers.",
     ],
+    previewImage: "/previews/variantrade.png",
     techStack: ["Angular", "Python", "Go", "PostgreSQL"],
     liveUrl: "https://variantrades.com",
     featured: true,
@@ -49,6 +51,7 @@ export const projects: Project[] = [
       "Used Supabase-backed workflows to support a dependable portal foundation.",
       "Handled product architecture and delivery as a solo build.",
     ],
+    previewImage: "/previews/nigerian-china-invest.png",
     techStack: ["React", "Vite", "Golang", "Supabase"],
     liveUrl: "https://www.nigerianchinainvestmentclub.com",
     featured: true,
@@ -68,6 +71,7 @@ export const projects: Project[] = [
       "Balanced visual polish with SEO-focused site structure.",
       "Shipped the experience solo from design-minded frontend through launch.",
     ],
+    previewImage: "/previews/grandkonsul-gardens.png",
     techStack: ["React", "Tailwind", "Framer Motion"],
     liveUrl: "https://grandkonsulgardens.com",
     featured: true,
@@ -87,6 +91,7 @@ export const projects: Project[] = [
       "Designed the content flow around trust-building and clarity.",
       "Delivered the full website solo with a production-ready frontend stack.",
     ],
+    previewImage: "/previews/cliftonville-gardens.png",
     techStack: ["React", "Vite", "Tailwind"],
     liveUrl: "https://www.cliftonvillegardens.com",
     githubUrl: "https://github.com/Chidi09/Clifton-ville-website",
@@ -107,6 +112,7 @@ export const projects: Project[] = [
       "Highlighted sustainable produce in a format suited to broad audiences.",
       "Built and launched the site solo using a lightweight React stack.",
     ],
+    previewImage: "/previews/cliftonville-farms.png",
     techStack: ["React", "Vite", "Tailwind"],
     liveUrl: "https://www.cliftonvillefarms.com",
     featured: true,
@@ -163,4 +169,16 @@ export function getProjectScreenshotUrl(liveUrl: string): string {
   // Microlink free-tier limits can return ERATE and break previews.
   // Thum.io returns a direct image URL suitable for <img src>.
   return `https://image.thum.io/get/width/1280/noanimate/${liveUrl}`;
+}
+
+export function getProjectPreviewImage(project: Project): string {
+  if (project.previewImage) {
+    return project.previewImage;
+  }
+
+  if (project.liveUrl) {
+    return getProjectScreenshotUrl(project.liveUrl);
+  }
+
+  return "";
 }
