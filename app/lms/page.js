@@ -208,7 +208,7 @@ export default function LMSPage() {
             </div>
           </div>
 
-          <aside className="border border-stone-200 bg-stone-50 p-8 dark:border-white/10 dark:bg-white/[0.04] md:p-10">
+          <aside className="border border-stone-200 bg-white p-8 dark:border-white/10 dark:bg-white/[0.04] md:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
               Delivery brief
             </p>
@@ -234,7 +234,7 @@ export default function LMSPage() {
         </div>
       </section>
 
-      <section className="bg-stone-50 py-16 dark:bg-zinc-900/70 md:py-24">
+      <section className="bg-white py-16 dark:bg-zinc-900/70 md:py-24">
         <div className="mx-auto max-w-7xl px-6 md:px-10">
           <div className="flex flex-col gap-5 border-b border-stone-200 pb-10 dark:border-white/10 md:flex-row md:items-end md:justify-between">
             <div>
@@ -253,7 +253,7 @@ export default function LMSPage() {
 
           <div className="mt-10 overflow-hidden border border-stone-200 bg-white shadow-[0_30px_80px_rgba(28,25,23,0.06)] dark:border-white/10 dark:bg-[#111310] dark:shadow-none">
             <div className="grid lg:grid-cols-[250px_minmax(0,1fr)]">
-              <aside className="border-b border-stone-200 bg-stone-50 p-6 dark:border-white/10 dark:bg-white/[0.03] lg:border-b-0 lg:border-r">
+              <aside className="border-b border-stone-200 bg-white p-6 dark:border-white/10 dark:bg-white/[0.03] lg:border-b-0 lg:border-r">
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
                     Current workspace
@@ -335,7 +335,7 @@ export default function LMSPage() {
                 </header>
 
                 <div className="mt-8 grid gap-5 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)]">
-                  <article className="flex min-h-[20rem] flex-col justify-between border border-stone-200 bg-stone-50 p-8 dark:border-white/10 dark:bg-[#171a16] md:p-10">
+                  <article className="flex min-h-[20rem] flex-col justify-between border border-stone-200 bg-white p-8 dark:border-white/10 dark:bg-[#171a16] md:p-10">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
                         Program overview
@@ -438,7 +438,7 @@ export default function LMSPage() {
         </div>
       </section>
 
-      <section className="border-y border-stone-200/80 bg-stone-50 py-16 dark:border-white/10 dark:bg-zinc-900 md:py-24">
+      <section className="border-y border-stone-200/80 bg-white py-16 dark:border-white/10 dark:bg-zinc-900 md:py-24">
         <div className="mx-auto max-w-7xl px-6 md:px-10">
           <div className="flex flex-col gap-5 border-b border-stone-200 pb-10 dark:border-white/10 md:flex-row md:items-end md:justify-between">
             <div>

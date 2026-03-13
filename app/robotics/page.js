@@ -128,7 +128,7 @@ export default function RoboticsPage() {
         </div>
       </section>
 
-      <section className="bg-stone-50 py-16 dark:bg-zinc-900/70 md:py-24">
+      <section className="bg-white py-16 dark:bg-zinc-900/70 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-5 px-6 md:px-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(320px,0.7fr)]">
           <article className="flex min-h-[32rem] flex-col justify-between border border-stone-200/80 bg-white p-8 shadow-[0_24px_60px_rgba(28,25,23,0.05)] dark:border-white/10 dark:bg-white/[0.04] dark:shadow-none md:p-12">
             <div>
@@ -177,7 +177,7 @@ export default function RoboticsPage() {
             </div>
           </article>
 
-          <aside className="relative overflow-hidden border border-stone-200 bg-stone-50 p-8 text-stone-900 dark:border-white/10 dark:bg-[#161d1b] dark:text-stone-100 md:p-10">
+          <aside className="relative overflow-hidden border border-stone-200 bg-white p-8 text-stone-900 dark:border-white/10 dark:bg-[#161d1b] dark:text-stone-100 md:p-10">
             <div className="relative z-10 flex h-full flex-col justify-between gap-8">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-emerald-100/60">
@@ -193,7 +193,7 @@ export default function RoboticsPage() {
                 </p>
               </div>
 
-              <div className="relative overflow-hidden rounded-[1.5rem] border border-stone-200 bg-stone-50 dark:border-white/10 dark:bg-black/20">
+              <div className="relative overflow-hidden rounded-[1.5rem] border border-stone-200 bg-white dark:border-white/10 dark:bg-black/20">
                 <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(255,255,255,0.36),rgba(248,250,252,0.14))] dark:bg-[linear-gradient(180deg,rgba(245,241,232,0.12),rgba(9,36,30,0.06))]" />
                 <div className="mx-auto max-w-[24rem] opacity-70 saturate-[0.85]">
                   <Suspense

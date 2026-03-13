@@ -109,7 +109,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-stone-50 py-16 dark:bg-zinc-900/70 md:py-24">
+      <section className="bg-white py-16 dark:bg-zinc-900/70 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-5 px-6 md:px-10 lg:grid-cols-3">
           <article className="flex min-h-[22rem] flex-col justify-between border border-stone-200/80 bg-white p-8 shadow-[0_20px_60px_rgba(28,25,23,0.05)] dark:border-white/10 dark:bg-white/5 dark:shadow-none md:col-span-2 md:p-12">
             <div>
@@ -138,14 +138,14 @@ export default function AboutPage() {
             </div>
           </article>
 
-          <article className="flex min-h-[22rem] flex-col justify-center border border-emerald-100 bg-emerald-50 p-8 text-stone-900 md:p-12 dark:border-white/10 dark:bg-emerald-950/40 dark:text-white">
+          <article className="flex min-h-[22rem] flex-col justify-center border border-stone-200 bg-white p-8 text-stone-900 md:p-12 dark:border-white/10 dark:bg-white/[0.04] dark:text-white">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-800/70 dark:text-white/60">
               Established
             </p>
             <div className="mt-5 text-6xl font-semibold tracking-[-0.06em]">
               2024
             </div>
-            <p className="mt-5 max-w-xs text-sm leading-7 text-stone-600 dark:text-emerald-50/80">
+              <p className="mt-5 max-w-xs text-sm leading-7 text-stone-600 dark:text-stone-300">
               A London-registered company building software, AI, and digital
               infrastructure with a focus on reliability, governance, and
               long-term operational value.
@@ -212,7 +212,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="border border-stone-200 bg-stone-50 p-8 dark:border-white/10 dark:bg-white/[0.04] md:p-10">
+            <div className="border border-stone-200 bg-white p-8 dark:border-white/10 dark:bg-white/[0.04] md:p-10">
               <p className="max-w-2xl text-2xl font-medium tracking-[-0.04em] text-stone-950 dark:text-white md:text-3xl">
                 &ldquo;The best systems feel composed long before they feel
                 complex.&rdquo;
@@ -225,7 +225,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-stone-200/80 bg-stone-50 py-16 dark:border-white/10 dark:bg-zinc-900 md:py-24">
+      <section className="border-y border-stone-200/80 bg-white py-16 dark:border-white/10 dark:bg-zinc-900 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 md:px-10 lg:grid-cols-[minmax(260px,0.7fr)_minmax(0,1.3fr)] lg:items-center lg:gap-16">
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
@@ -312,7 +312,7 @@ export default function AboutPage() {
           <div className="mt-12 flex flex-wrap gap-3 justify-start">
             <Link
               href="/team"
-              className="inline-flex items-center gap-2 border border-stone-200 bg-stone-50 px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-stone-900 transition hover:border-stone-900 dark:border-white/10 dark:bg-white/[0.03] dark:text-white"
+              className="inline-flex items-center gap-2 border border-stone-200 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-stone-900 transition hover:border-stone-900 dark:border-white/10 dark:bg-white/[0.03] dark:text-white"
             >
               Meet the Team
               <ArrowUpRight className="h-4 w-4" />

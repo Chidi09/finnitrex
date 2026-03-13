@@ -162,7 +162,7 @@ export default function FintechPage() {
             </div>
           </div>
 
-          <aside className="border border-stone-200 bg-[#f8f4ed] p-8 dark:border-white/10 dark:bg-white/[0.04] md:p-10">
+          <aside className="border border-stone-200 bg-white p-8 dark:border-white/10 dark:bg-white/[0.04] md:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
               Delivery brief
             </p>
@@ -215,7 +215,7 @@ export default function FintechPage() {
               </div>
             </div>
 
-            <div className="mt-10 overflow-hidden rounded-[2rem] border border-stone-200 bg-[#fcfaf6] dark:border-white/10 dark:bg-[#111310]">
+            <div className="mt-10 overflow-hidden rounded-[2rem] border border-stone-200 bg-white dark:border-white/10 dark:bg-[#111310]">
               <div className="flex items-center justify-between border-b border-stone-200 px-6 py-4 dark:border-white/10">
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
@@ -230,7 +230,7 @@ export default function FintechPage() {
                 </div>
               </div>
 
-              <div className="relative h-[24rem] overflow-hidden bg-[radial-gradient(circle_at_top,rgba(217,228,220,0.75),transparent_50%),linear-gradient(180deg,#f7f3eb_0%,#efe7db_100%)] dark:bg-[linear-gradient(180deg,rgba(20,24,23,0.95),rgba(10,12,12,0.98))]">
+              <div className="relative h-[24rem] overflow-hidden bg-[radial-gradient(circle_at_top,rgba(223,232,226,0.42),transparent_48%),linear-gradient(180deg,#ffffff_0%,#f6f7f4_100%)] dark:bg-[linear-gradient(180deg,rgba(20,24,23,0.95),rgba(10,12,12,0.98))]">
                 <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(246,242,233,0.15),rgba(246,242,233,0.02))] dark:bg-[linear-gradient(180deg,rgba(245,241,232,0.08),rgba(12,18,16,0.08))]" />
                 <Suspense
                   fallback={
@@ -245,7 +245,7 @@ export default function FintechPage() {
             </div>
           </article>
 
-          <aside className="border border-stone-200 bg-[#f8f5ef] p-8 dark:border-white/10 dark:bg-white/[0.03] md:p-10">
+          <aside className="border border-stone-200 bg-white p-8 dark:border-white/10 dark:bg-white/[0.03] md:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
               Operating layers
             </p>
@@ -315,7 +315,7 @@ export default function FintechPage() {
         </div>
       </section>
 
-      <section className="border-y border-stone-200/80 bg-[#faf7f2] py-16 dark:border-white/10 dark:bg-zinc-900 md:py-24">
+      <section className="border-y border-stone-200/80 bg-white py-16 dark:border-white/10 dark:bg-zinc-900 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 md:px-10 lg:grid-cols-[minmax(280px,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">

@@ -34,6 +34,7 @@ const teamMembers = [
       "Client partnerships and commercial direction",
       "Delivery governance and company growth planning",
     ],
+    image: "/team/divine-adoyi-samuel.jpeg",
     tone: "bg-emerald-50 border-emerald-100 text-stone-900 dark:bg-emerald-950/30 dark:border-white/10 dark:text-stone-100",
   },
   {
@@ -94,7 +95,7 @@ export default function TeamPage() {
             </h1>
           </div>
 
-          <aside className="border border-stone-200 bg-stone-50 p-8 dark:border-white/10 dark:bg-white/[0.04] md:p-10">
+          <aside className="border border-stone-200 bg-white p-8 dark:border-white/10 dark:bg-white/[0.04] md:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-stone-500 dark:text-stone-400">
               Leadership layer
             </p>
@@ -114,7 +115,7 @@ export default function TeamPage() {
         </div>
       </section>
 
-      <section className="bg-stone-50 py-16 dark:bg-zinc-900/70 md:py-24">
+      <section className="bg-white py-16 dark:bg-zinc-900/70 md:py-24">
         <div className="mx-auto max-w-7xl px-6 md:px-10">
           <div className="grid gap-6 lg:grid-cols-2">
             {teamMembers.map((member) => {
