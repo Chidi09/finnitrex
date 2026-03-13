@@ -4,7 +4,7 @@ import FinnitrexLogo from "@/components/FinnitrexLogo";
 import ProjectScreenshot from "@/components/ProjectScreenshot";
 import {
   getFeaturedProjects,
-  getProjectPreviewImage,
+  getProjectScreenshotUrl,
 } from "@/lib/content/projects";
 import {
   ArrowRight,
@@ -366,7 +366,7 @@ export default function Home() {
                     className="block overflow-hidden rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)]"
                   >
                     <ProjectScreenshot
-                      src={getProjectPreviewImage(project)}
+                      src={getProjectScreenshotUrl(project.liveUrl)}
                       alt={`${project.title} live screenshot`}
                       aspect="aspect-video"
                     />
