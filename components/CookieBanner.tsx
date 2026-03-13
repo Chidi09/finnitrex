@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, ChevronRight, X, Settings, Check } from "lucide-react";
+import { Shield, X, Settings } from "lucide-react";
 import { getConsent, saveConsent, type ConsentState, DEFAULT_CONSENT } from "@/lib/cookieManager";
 import Link from "next/link";
 
@@ -54,18 +54,18 @@ export default function CookieBanner() {
                 >
                     {!showSettings ? (
                         // Main Banner
-                        <div className="bg-black/80 backdrop-blur-xl border border-gray-800 rounded-2xl shadow-2xl p-6 overflow-hidden relative">
-                            <div className="absolute top-0 right-0 p-4 bg-gradient-to-bl from-lime-500/10 to-transparent rounded-bl-3xl" />
+                        <div className="relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[color:rgba(255,255,255,0.9)] p-6 shadow-[0_24px_70px_rgba(28,25,23,0.14)] backdrop-blur-xl dark:bg-[var(--surface)] dark:shadow-none">
+                            <div className="absolute top-0 right-0 p-4 bg-gradient-to-bl from-[color:rgba(91,143,61,0.16)] to-transparent rounded-bl-3xl" />
 
                             <div className="flex items-start gap-4 mb-4">
-                                <div className="bg-lime-900/20 p-3 rounded-xl border border-lime-500/20">
-                                    <Shield className="text-lime-400 w-6 h-6" />
+                                <div className="rounded-xl border border-[color:rgba(91,143,61,0.28)] bg-[color:rgba(91,143,61,0.12)] p-3">
+                                    <Shield className="h-6 w-6 text-[var(--accent)]" />
                                 </div>
                                 <div>
-                                    <h3 className="text-white font-bold text-lg">Privacy Preferences</h3>
-                                    <p className="text-gray-400 text-sm mt-1 leading-relaxed">
+                                    <h3 className="text-lg font-bold text-[var(--foreground)]">Privacy Preferences</h3>
+                                    <p className="mt-1 text-sm leading-relaxed text-[var(--muted)]">
                                         We use cookies to enhance your experience and analyze our traffic.
-                                        Manage your preferences below. See our <Link href="/cookie-policy" className="text-lime-400 hover:underline">Cookie Policy</Link>.
+                                        Manage your preferences below. See our <Link href="/cookie-policy" className="text-[var(--accent)] hover:underline">Cookie Policy</Link>.
                                     </p>
                                 </div>
                             </div>
@@ -74,20 +74,20 @@ export default function CookieBanner() {
                                 <div className="flex gap-2">
                                     <button
                                         onClick={handleAcceptAll}
-                                        className="flex-1 bg-lime-400 hover:bg-lime-500 text-black font-bold py-2.5 px-4 rounded-xl transition-all active:scale-95"
+                                        className="flex-1 rounded-xl bg-[var(--foreground)] px-4 py-2.5 font-bold text-[var(--accent-contrast)] transition-all hover:opacity-90 active:scale-95 dark:bg-[var(--accent)]"
                                     >
                                         Accept All
                                     </button>
                                     <button
                                         onClick={handleRejectAll}
-                                        className="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-bold py-2.5 px-4 rounded-xl transition-all active:scale-95 border border-gray-700 hover:border-gray-600"
+                                        className="flex-1 rounded-xl border border-[var(--border)] bg-[var(--surface-elevated)] px-4 py-2.5 font-bold text-[var(--foreground)] transition-all hover:bg-[var(--surface)] active:scale-95 dark:bg-[var(--surface)]"
                                     >
                                         Reject All
                                     </button>
                                 </div>
                                 <button
                                     onClick={() => setShowSettings(true)}
-                                    className="w-full text-gray-500 hover:text-white text-sm py-2 transition-colors flex items-center justify-center gap-2"
+                                    className="flex w-full items-center justify-center gap-2 py-2 text-sm text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
                                 >
                                     <Settings size={14} /> Customize Settings
                                 </button>
@@ -95,14 +95,14 @@ export default function CookieBanner() {
                         </div>
                     ) : (
                         // Settings Modal
-                        <div className="bg-black/90 backdrop-blur-xl border border-gray-800 rounded-2xl shadow-2xl p-6 relative">
+                        <div className="relative rounded-2xl border border-[var(--border)] bg-[color:rgba(255,255,255,0.94)] p-6 shadow-[0_24px_70px_rgba(28,25,23,0.14)] backdrop-blur-xl dark:bg-[var(--surface)] dark:shadow-none">
                             <div className="flex justify-between items-center mb-6">
-                                <h3 className="text-white font-bold text-lg flex items-center gap-2">
-                                    <Settings className="text-lime-400 w-5 h-5" /> Settings
+                                <h3 className="flex items-center gap-2 text-lg font-bold text-[var(--foreground)]">
+                                    <Settings className="h-5 w-5 text-[var(--accent)]" /> Settings
                                 </h3>
                                 <button
                                     onClick={() => setShowSettings(false)}
-                                    className="text-gray-400 hover:text-white transition-colors"
+                                    className="text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
                                 >
                                     <X size={20} />
                                 </button>
@@ -110,54 +110,54 @@ export default function CookieBanner() {
 
                             <div className="space-y-4 mb-6">
                                 {/* Essential */}
-                                <div className="flex items-center justify-between p-3 rounded-xl bg-gray-900/50 border border-gray-800">
+                                <div className="flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--surface-elevated)] p-3 dark:bg-[var(--surface)]">
                                     <div>
-                                        <div className="text-white font-medium flex items-center gap-2">
-                                            Essential <span className="text-[10px] bg-lime-500 text-black px-1.5 rounded font-bold">REQUIRED</span>
+                                        <div className="flex items-center gap-2 font-medium text-[var(--foreground)]">
+                                            Essential <span className="rounded bg-[var(--accent)] px-1.5 text-[10px] font-bold text-[var(--accent-contrast)]">REQUIRED</span>
                                         </div>
-                                        <p className="text-gray-500 text-xs mt-0.5">Core site functionality.</p>
+                                        <p className="mt-0.5 text-xs text-[var(--muted)]">Core site functionality.</p>
                                     </div>
-                                    <div className="w-10 h-6 bg-lime-900/40 rounded-full border border-lime-500/30 flex items-center justify-end px-1">
-                                        <div className="w-4 h-4 bg-lime-500 rounded-full shadow-lg" />
+                                    <div className="flex h-6 w-10 items-center justify-end rounded-full border border-[color:rgba(91,143,61,0.34)] bg-[color:rgba(91,143,61,0.18)] px-1">
+                                        <div className="h-4 w-4 rounded-full bg-[var(--accent)] shadow-sm" />
                                     </div>
                                 </div>
 
                                 {/* Performance */}
-                                <div className="flex items-center justify-between p-3 rounded-xl bg-gray-900/50 border border-gray-800">
+                                <div className="flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--surface-elevated)] p-3 dark:bg-[var(--surface)]">
                                     <div>
-                                        <div className="text-white font-medium">Performance</div>
-                                        <p className="text-gray-500 text-xs mt-0.5">Analytics and usage tracking.</p>
+                                        <div className="font-medium text-[var(--foreground)]">Performance</div>
+                                        <p className="mt-0.5 text-xs text-[var(--muted)]">Analytics and usage tracking.</p>
                                     </div>
                                     <button
                                         onClick={() => setConsent(prev => ({ ...prev, performance: !prev.performance }))}
-                                        className={`w-10 h-6 rounded-full border flex items-center px-1 transition-all ${consent.performance
-                                            ? 'bg-lime-500 border-lime-500 justify-end'
-                                            : 'bg-gray-800 border-gray-600 justify-start'
+                                        className={`flex h-6 w-10 items-center rounded-full border px-1 transition-all ${consent.performance
+                                            ? 'justify-end border-[var(--accent)] bg-[var(--accent)]'
+                                            : 'justify-start border-[var(--border)] bg-[var(--surface)] dark:bg-[var(--surface-elevated)]'
                                             }`}
                                     >
                                         <motion.div
                                             layout
-                                            className={`w-4 h-4 rounded-full shadow-lg ${consent.performance ? 'bg-white' : 'bg-gray-400'}`}
+                                            className={`h-4 w-4 rounded-full shadow-sm ${consent.performance ? 'bg-[var(--accent-contrast)]' : 'bg-[var(--muted)]/70'}`}
                                         />
                                     </button>
                                 </div>
 
                                 {/* Targeting */}
-                                <div className="flex items-center justify-between p-3 rounded-xl bg-gray-900/50 border border-gray-800">
+                                <div className="flex items-center justify-between rounded-xl border border-[var(--border)] bg-[var(--surface-elevated)] p-3 dark:bg-[var(--surface)]">
                                     <div>
-                                        <div className="text-white font-medium">Targeting</div>
-                                        <p className="text-gray-500 text-xs mt-0.5">Advertising and marketing.</p>
+                                        <div className="font-medium text-[var(--foreground)]">Targeting</div>
+                                        <p className="mt-0.5 text-xs text-[var(--muted)]">Advertising and marketing.</p>
                                     </div>
                                     <button
                                         onClick={() => setConsent(prev => ({ ...prev, targeting: !prev.targeting }))}
-                                        className={`w-10 h-6 rounded-full border flex items-center px-1 transition-all ${consent.targeting
-                                            ? 'bg-lime-500 border-lime-500 justify-end'
-                                            : 'bg-gray-800 border-gray-600 justify-start'
+                                        className={`flex h-6 w-10 items-center rounded-full border px-1 transition-all ${consent.targeting
+                                            ? 'justify-end border-[var(--accent)] bg-[var(--accent)]'
+                                            : 'justify-start border-[var(--border)] bg-[var(--surface)] dark:bg-[var(--surface-elevated)]'
                                             }`}
                                     >
                                         <motion.div
                                             layout
-                                            className={`w-4 h-4 rounded-full shadow-lg ${consent.targeting ? 'bg-white' : 'bg-gray-400'}`}
+                                            className={`h-4 w-4 rounded-full shadow-sm ${consent.targeting ? 'bg-[var(--accent-contrast)]' : 'bg-[var(--muted)]/70'}`}
                                         />
                                     </button>
                                 </div>
@@ -165,7 +165,7 @@ export default function CookieBanner() {
 
                             <button
                                 onClick={handleSaveSettings}
-                                className="w-full bg-lime-400 hover:bg-lime-500 text-black font-bold py-2.5 px-4 rounded-xl transition-all"
+                                className="w-full rounded-xl bg-[var(--foreground)] px-4 py-2.5 font-bold text-[var(--accent-contrast)] transition-all hover:opacity-90 dark:bg-[var(--accent)]"
                             >
                                 Save Preferences
                             </button>
