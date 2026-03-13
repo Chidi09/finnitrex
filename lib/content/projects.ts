@@ -160,9 +160,7 @@ export function getProjectCategories(): string[] {
 }
 
 export function getProjectScreenshotUrl(liveUrl: string): string {
-  const encodedUrl = encodeURIComponent(liveUrl);
-  // waitFor=6000 gives JS-heavy SPAs time to fully render past loading screens.
-  // force=true bypasses Microlink's cache so stale/blank captures aren't served.
-  // We keep embed=screenshot.url so the API returns the image directly as a src-safe URL.
-  return `https://api.microlink.io/?url=${encodedUrl}&screenshot=true&meta=false&embed=screenshot.url&waitFor=6000&force=true&viewport.width=1280&viewport.height=800`;
+  // Microlink free-tier limits can return ERATE and break previews.
+  // Thum.io returns a direct image URL suitable for <img src>.
+  return `https://image.thum.io/get/width/1280/noanimate/${liveUrl}`;
 }
