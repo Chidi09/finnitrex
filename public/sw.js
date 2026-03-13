@@ -1,5 +1,5 @@
 // Finnitrex Service Worker
-const CACHE_NAME = "finnitrex-v2";
+const CACHE_NAME = "finnitrex-v3";
 const OFFLINE_URL = "/offline";
 
 // Assets to precache on install
@@ -55,21 +55,12 @@ self.addEventListener("fetch", (event) => {
   const requestUrl = new URL(request.url);
   if (requestUrl.origin !== self.location.origin) return;
 
-  // Navigation requests: network-first with offline fallback
+  // Navigation requests: network-first with offline fallback.
+  // Do NOT cache route HTML by URL, otherwise temporary network failures can
+  // pin users to stale page shells.
   if (request.mode === "navigate") {
     event.respondWith(
-      fetch(request)
-        .then((response) => {
-          // Cache successful navigation responses
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          return response;
-        })
-        .catch(() => {
-          return caches
-            .match(request)
-            .then((cached) => cached || caches.match(OFFLINE_URL));
-        })
+      fetch(request, { cache: "no-store" }).catch(() => caches.match(OFFLINE_URL))
     );
     return;
   }

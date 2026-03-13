@@ -6,9 +6,12 @@ export default function PWARegister() {
   useEffect(() => {
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
-        .register("/sw.js")
+        .register("/sw.js", { updateViaCache: "none" })
         .then((registration) => {
           console.log("[PWA] Service Worker registered, scope:", registration.scope);
+
+          // Pull latest worker immediately on load.
+          registration.update();
 
           // Check for updates periodically
           setInterval(() => {
