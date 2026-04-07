@@ -118,6 +118,46 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "naijaspride",
+    title: "NaijasPride",
+    category: "Entertainment",
+    description:
+      "Comprehensive African entertainment streaming platform offering movies, TV shows, comics, manga, music, and anime with cross-platform support.",
+    challenge:
+      "The platform needed to deliver a unified entertainment experience for African content while supporting multiple media formats (streaming video, e-books, audio) with a single subscription model.",
+    approach:
+      "Built a full-featured streaming platform with adaptive playback, built-in subtitle support, continue-watching, and a creator membership system that works across web, mobile, and TV.",
+    proofPoints: [
+      "Unified streaming experience for movies, comics, music, and anime in one platform.",
+      "Implemented cross-device sync with progress tracking across web, mobile, and TV.",
+      "Built creator support system with membership tiers and revenue sharing.",
+    ],
+    previewImage: "/previews/naijaspride.png",
+    techStack: ["Angular", "Fastify", "PostgreSQL", "Redis"],
+    liveUrl: "https://naijaspride.com",
+    featured: true,
+  },
+  {
+    slug: "gazillion-cri",
+    title: "Gazillion CRI",
+    category: "SaaS",
+    description:
+      "Communication intelligence platform that detects low-value meetings and communication breakdowns, showing organizations exactly how much time and money they save.",
+    challenge:
+      "Companies lose millions annually to unnecessary meetings and unclear communication, but had no way to measure the impact or identify the root causes of inefficiency.",
+    approach:
+      "Built an AI-powered platform that integrates with Slack, Jira, Teams, Zoom, and Calendar to analyze communication patterns, detect meeting waste, and provide real-time cost savings dashboards.",
+    proofPoints: [
+      "Identifies $2M+ annual savings potential for 500-person organizations.",
+      "Integrates with major workplace tools: Slack, Jira, Teams, Zoom, Google Calendar.",
+      "Provides real-time dashboards showing measurable communication ROI.",
+    ],
+    previewImage: "/previews/gazillion-cri.png",
+    techStack: ["Next.js", "FastAPI", "AI/ML", "PostgreSQL", "Redis"],
+    liveUrl: "https://gazillioncri.com",
+    featured: true,
+  },
+  {
     slug: "fluxpay-crypto-gateway",
     title: "FluxPay",
     category: "Web3",
